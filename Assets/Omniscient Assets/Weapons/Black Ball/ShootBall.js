@@ -1,7 +1,7 @@
 var thePrefab: GameObject;
 
 
-function Update () {
+function shoot () {
 
 	var cam : GameObject = GameObject.Find("ARCamera");
 	if(Input.GetMouseButtonUp(0))

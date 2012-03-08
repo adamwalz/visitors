@@ -4,7 +4,6 @@ using System.Collections.Generic;
 
 public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, IHUDGameViewController
 {
-	
 	private HUDSearchingView _searchingView;
 	private HUDGameView _gameView;
 	// Use this for initialization
@@ -53,12 +52,19 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
-		
 	}
 	
 	public void HUDGameViewFireButtonPressed()
 	{
 		_gameView.Energy = _gameView.Energy - 1.0f;
+		GameObject cam = GameObject.Find("ARCamera");
+		Debug.Log(cam.transform.position);
+		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
+		GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
+		Vector3 fwd = cam.transform.forward * 50000;
+		instance.rigidbody.AddForce(fwd);
+		
+		
 	}
 	
 	public void HUDGameViewPauseButtonPressed()
