@@ -97,11 +97,11 @@ public class MainMenuImageGui : MonoBehaviour {
 			if(_singlePlayerGUITexture.HitTest(Input.mousePosition))
 			{
 				 if(_activeButton == _singlePlayerGUITexture)
-					print("Adam or Keeyon, use your gypsy magic to make this go to single player");
+					Application.LoadLevel("sampleHUD");
 			}
 			if(_multiPlayerGUITexture.HitTest(Input.mousePosition))
 			{
-				if(_activeButton == _multiPlayerGUITexture) Application.LoadLevel("start Scene");
+				if(_activeButton == _multiPlayerGUITexture) Application.LoadLevel("NetworkingScene");
 			}
 			if(_optionsGUITexture.HitTest(Input.mousePosition))
 			{

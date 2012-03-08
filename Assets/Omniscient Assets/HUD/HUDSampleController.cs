@@ -42,12 +42,12 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	
 	public void HUDSearchingViewPauseButtonPressed()
 	{
-		print("Paused!");
+		Application.LoadLevel("sampleHUD");
 	}
 	
 	public void HUDSearchingViewMenuButtonPressed()
 	{
-		print("Menu'd! (searching view)");	
+		Application.LoadLevel("VisitorsMainScene");	
 	}
 	
 	// IHUDGameViewController methods
@@ -63,11 +63,11 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	
 	public void HUDGameViewPauseButtonPressed()
 	{
-		
+		Application.LoadLevel("sampleHUD");
 	}
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		print("Menu'd! (game view)");
+		Application.LoadLevel("VisitorsMainScene");	
 	}
 }
