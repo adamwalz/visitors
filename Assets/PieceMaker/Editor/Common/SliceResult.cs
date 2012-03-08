@@ -88,7 +88,7 @@ namespace Piecemaker
 
                 Object prefab = AssetDatabase.LoadAssetAtPath(data.FinalPrefabPath, typeof(GameObject));
                 if (!prefab)
-                    prefab = EditorUtility.CreateEmptyPrefab(data.FinalPrefabPath);
+                    prefab = PrefabUtility.CreateEmptyPrefab(data.FinalPrefabPath);
 
                 EditorUtility.ReplacePrefab(data.NewHullObject, prefab, ReplacePrefabOptions.Default);
                 AssetDatabase.SaveAssets();

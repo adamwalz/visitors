@@ -135,7 +135,7 @@ public class MeshUnifyBase : EditorWindow
 		filter.sharedMesh = newRealMesh;
 		
 		var path = "Assets/" + finalMeshName + ".prefab";
-		var prefab = EditorUtility.CreateEmptyPrefab(path);
+		var prefab = PrefabUtility.CreateEmptyPrefab(path);
 				
 		EditorUtility.ReplacePrefab(go, prefab, ReplacePrefabOptions.ReplaceNameBased);
 		AssetDatabase.SaveAssets();

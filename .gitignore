@@ -1,5 +1,23 @@
 # Unity Stuff
+*.suo
+*.userprefs
+*.sln
 
 # when using external version control,
 # Library is only a local cache of imported assets.
 Library/
+
+/Visitors.userprefs
+/Assembly-CSharp.csproj
+/Assembly-CSharp.pidb
+/Assembly-CSharp-Editor.csproj
+/Assembly-CSharp-Editor.pidb
+/Assembly-CSharp-Editor-vs.csproj
+/Assembly-CSharp-firstpass.csproj
+/Assembly-CSharp-firstpass.pidb
+/Assembly-CSharp-firstpass-vs.csproj
+/Assembly-CSharp-vs.csproj
+/Assembly-UnityScript-firstpass.pidb
+/Assembly-UnityScript-firstpass.unityproj
+/Assembly-UnityScript-firstpass-vs.unityproj
+

@@ -395,7 +395,7 @@ namespace Piecemaker
             var prefabPath = plainPrefabPath + "/" + finalPrefabName + ".prefab";
             Object prefab = AssetDatabase.LoadAssetAtPath(prefabPath, typeof(GameObject));
             if (!prefab)
-                prefab = EditorUtility.CreateEmptyPrefab(prefabPath);
+                prefab = PrefabUtility.CreateEmptyPrefab(prefabPath);
 
             EditorUtility.ReplacePrefab(rootGameObject, prefab, ReplacePrefabOptions.ReplaceNameBased);
             AssetDatabase.SaveAssets();
