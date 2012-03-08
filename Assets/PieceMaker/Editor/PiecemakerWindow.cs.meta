@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: 8ad2074be196b7547b7fd5dd2b39bb40
+labels:
+- Procedural
+- Destroy
+- Perforation
+- Deformation
+- Cut
+- Slice
+- Mesh
+- Shard
+- Destruction
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
