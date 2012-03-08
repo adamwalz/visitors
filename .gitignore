@@ -3,6 +3,9 @@
 *.userprefs
 *.sln
 
+# XCode directory probably should be rebuilt
+XCode
+
 # when using external version control,
 # Library is only a local cache of imported assets.
 Library/
