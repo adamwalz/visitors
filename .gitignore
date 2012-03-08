@@ -2,6 +2,7 @@
 *.suo
 *.userprefs
 *.sln
+Temp
 
 # XCode directory probably should be rebuilt
 XCode
