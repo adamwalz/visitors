@@ -1,0 +1,84 @@
+fileFormatVersion: 2
+guid: 43c1bba10a12aa94482237512a9b47e4
+labels:
+- fireball
+- explosion
+- bang
+- crash
+- fire
+- effect
+- magic
+ModelImporter:
+  fileIDToRecycleName:
+    4300000: fireballSurface1
+    4300002: fireballSurface2
+    4300004: fireballSurface3
+    4300006: fireballSurface4
+    4300008: fireballSurface5
+    4300010: fireballSurface6
+    4300012: fireballSurface7
+    4300014: fireballSurface8
+    4300016: fireballSurface9
+    4300018: fireballSurface10
+    4300020: fireballSurface11
+    4300022: fireballSurface12
+    4300024: fireballSurface13
+    4300026: fireballSurface14
+    4300028: fireballSurface15
+    4300030: fireballSurface16
+    4300032: fireballSurface17
+    4300034: fireballSurface18
+    4300036: fireballSurface19
+    4300038: fireballSurface20
+    4300040: fireball
+    100100000: DataTemplate __Singleton__
+  serializedVersion: 10
+  materials:
+    importMaterials: 1
+    materialName: 3
+    materialSearch: 1
+  animations:
+    generateAnimations: 3
+    bakeSimulation: 0
+    splitAnimations: 1
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    clipAnimations: []
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMesh: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  textMetaNamesToFileIDs:
+    //RootNode:
+      data:
+        first: 1
+        second: a0860100
+      data:
+        first: 4
+        second: 801a0600
+      data:
+        first: 23
+        second: 60182300
+      data:
+        first: 33
+        second: a05a3200
+      data:
+        first: 111
+        second: 605fa900
