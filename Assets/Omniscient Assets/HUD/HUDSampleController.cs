@@ -43,9 +43,9 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 		_searchingView.Hide(false);
 		_gameView.SetController(this);
 		List<Texture2D> list = new List<Texture2D>();
-		Texture2D tex = (Texture2D)Resources.Load("tempWeaponOne", typeof(Texture2D));
+		Texture2D tex = (Texture2D)Resources.Load("fireballWeapon", typeof(Texture2D));
 		list.Add(tex);
-		tex = (Texture2D)Resources.Load("tempWeaponTwo", typeof(Texture2D));
+		tex = (Texture2D)Resources.Load("blueWeaponOne", typeof(Texture2D));
 		list.Add(tex);
 		_gameView.Show(list, false);
 	}
@@ -64,6 +64,7 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
+		
 	}
 	
 	public void HUDGameViewFireButtonPressed()
