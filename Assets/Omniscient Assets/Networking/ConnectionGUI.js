@@ -32,6 +32,8 @@ function OnGUI ()
 				// About OnNetworkLoadedLevel later
 				go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
 			}
+			
+			Application.LoadLevel("sampleHUDnetworking");
 		}
 		
 
@@ -76,7 +78,8 @@ function OnGUI ()
 			if (GUILayout.Button("Connect"))
 			{
 				// Connect to HostData struct, internally the correct method is used (GUID when using NAT).
-				Network.Connect(element);			
+				Network.Connect(element);
+				Application.LoadLevel("sampleHUDnetworking");			
 			}
 			
 			GUILayout.EndHorizontal();	

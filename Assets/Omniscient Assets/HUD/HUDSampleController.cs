@@ -6,6 +6,9 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 {
 	private HUDSearchingView _searchingView;
 	private HUDGameView _gameView;
+	private	GUIText clientMessage;
+	private	GUIText serverMessage;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -13,7 +16,15 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 		_gameView = GetComponent<HUDGameView>();
 		_searchingView.Show(false);
 		_searchingView.setController(this);
+		
+		//reset level messages
+		//clientMessage.gameObject.active = false;
+		//serverMessage.gameObject.active = false;
+		
+
+		
 	}
+	
 	
 	// Update is called once per frame
 	void Update () 
@@ -41,12 +52,13 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	
 	public void HUDSearchingViewPauseButtonPressed()
 	{
-		Application.LoadLevel("sampleHUD");
+		//Application.LoadLevel("sampleHUD");
+		
 	}
 	
 	public void HUDSearchingViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");	
+		//Application.LoadLevel("VisitorsMainScene");
 	}
 	
 	// IHUDGameViewController methods
@@ -69,11 +81,86 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	
 	public void HUDGameViewPauseButtonPressed()
 	{
-		Application.LoadLevel("sampleHUD");
+		//Multiplayer Server
+		if(Network.peerType == NetworkPeerType.Server)
+		{
+			Application.LoadLevel("sampleHUDnetworking");
+		}
+		
+		//Multiplayer Client
+		if(Network.peerType == NetworkPeerType.Client)
+		{
+
+			
+			//clientMessage.gameObject.active = true;
+			
+			Instantiate(clientMessage);
+			clientMessage.text = "A Message has been sent to Player 1 Requesting a Level Reset";
+		
+			StartCoroutine(ClientMessageTimer());
+			
+			//Send Message to Server
+			networkView.RPC("PrintSeverMessage", RPCMode.Server);
+		}
+		
+		//singlePlayer
+		if(Network.peerType == NetworkPeerType.Disconnected)
+		{
+			Application.LoadLevel("sampleHUD");
+		}
+		
 	}
+	
+		
+	//Only called on Server, Prints request to reset
+	public void PrintServerMessage()
+	{
+		Instantiate(serverMessage);
+		serverMessage.text = "A Player has requested you to reset the level";
+	
+		StartCoroutine(ServerMessageTimer());
+			
+	}
+	
+	//Timer Functions to delete the message/// 
+	IEnumerator ClientMessageTimer()
+	{
+		yield return new WaitForSeconds(2);
+		
+		//Deactivate Message
+		//clientMessage.gameObject.active = false;
+		Destroy(clientMessage);
+	}
+
+	IEnumerator ServerMessageTimer()
+	{
+		yield return new WaitForSeconds(2);
+		
+		//Deactivate Message
+		//clientMessage.gameObject.active = false;
+		Destroy(serverMessage);
+	}
+
+	
+	
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");	
+		if(Network.peerType == NetworkPeerType.Disconnected)
+		{
+			Application.LoadLevel("VisitorsMainScene");	
+		}
+			
+		if(Network.peerType == NetworkPeerType.Client)
+		{
+			Network.Disconnect(200);
+			Application.LoadLevel("VisitorsMainScene");
+		}
+		
+		if(Network.peerType == NetworkPeerType.Server)
+		{
+			Network.Disconnect(200);
+			Application.LoadLevel("VisitorsMainScene");	
+		}
 	}
 }

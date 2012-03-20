@@ -101,7 +101,7 @@ public class MainMenuImageGui : MonoBehaviour {
 			}
 			if(_multiPlayerGUITexture.HitTest(Input.mousePosition))
 			{
-				if(_activeButton == _multiPlayerGUITexture) Application.LoadLevel("sampleHUDnetworking");
+				if(_activeButton == _multiPlayerGUITexture) Application.LoadLevel("ConnectionScene");
 			}
 			if(_optionsGUITexture.HitTest(Input.mousePosition))
 			{
