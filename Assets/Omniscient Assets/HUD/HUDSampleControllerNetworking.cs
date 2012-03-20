@@ -6,6 +6,9 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 {
 	private HUDSearchingView _searchingView;
 	private HUDGameView _gameView;
+	
+	private int _weaponIndex;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -13,6 +16,7 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 		_gameView = GetComponent<HUDGameView>();
 		_searchingView.Show(false);
 		_searchingView.setController(this);
+		_weaponIndex = 0;
 	}
 	
 	// Update is called once per frame
@@ -52,19 +56,31 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
+		_weaponIndex = newWeapon;
 	}
 	
 	public void HUDGameViewFireButtonPressed()
 	{
+//		_gameView.Energy = _gameView.Energy - 1.0f;
+//		GameObject cam = GameObject.Find("ARCamera");
+//		Debug.Log(cam.transform.position);
+//		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
+//		GameObject instance = (GameObject)Network.Instantiate(thePrefab, cam.transform.position, cam.transform.rotation, 0);
+//		Vector3 fwd = cam.transform.forward * 50000;
+//		instance.rigidbody.AddForce(fwd);
+		
 		_gameView.Energy = _gameView.Energy - 1.0f;
 		GameObject cam = GameObject.Find("ARCamera");
-		Debug.Log(cam.transform.position);
-		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-		GameObject instance = (GameObject)Network.Instantiate(thePrefab, cam.transform.position, cam.transform.rotation, 0);
-		Vector3 fwd = cam.transform.forward * 50000;
-		instance.rigidbody.AddForce(fwd);
 		
+		Transform spawn;
+		if (_weaponIndex == 0)
+			spawn = (Transform) Resources.Load("fireballPrefab 1", typeof(Transform));
+		else
+			spawn = (Transform) Resources.Load("fireballPrefab 5", typeof(Transform));
 		
+		float initialVelocity = 5000; 
+		Transform newWeapon = (Transform) Network.Instantiate(spawn, cam.transform.position, cam.transform.rotation, 0);
+		newWeapon.rigidbody.AddForce(cam.transform.forward * initialVelocity);
 	}
 	
 	public void HUDGameViewPauseButtonPressed()

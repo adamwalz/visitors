@@ -9,6 +9,8 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	private	GUIText clientMessage;
 	private	GUIText serverMessage;
 	
+	private int _weaponIndex;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -16,6 +18,7 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 		_gameView = GetComponent<HUDGameView>();
 		_searchingView.Show(false);
 		_searchingView.setController(this);
+		_weaponIndex = 0;
 		
 		//reset level messages
 		//clientMessage.gameObject.active = false;
@@ -64,19 +67,31 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
+		_weaponIndex = newWeapon;
 	}
 	
 	public void HUDGameViewFireButtonPressed()
 	{
+//		_gameView.Energy = _gameView.Energy - 1.0f;
+//		GameObject cam = GameObject.Find("ARCamera");
+//		Debug.Log(cam.transform.position);
+//		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
+//		GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
+//		Vector3 fwd = cam.transform.forward * 50000;
+//		instance.rigidbody.AddForce(fwd);
+		
 		_gameView.Energy = _gameView.Energy - 1.0f;
 		GameObject cam = GameObject.Find("ARCamera");
-		Debug.Log(cam.transform.position);
-		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-		GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
-		Vector3 fwd = cam.transform.forward * 50000;
-		instance.rigidbody.AddForce(fwd);
 		
+		Transform spawn;
+		if (_weaponIndex == 0)
+			spawn = (Transform) Resources.Load("fireballPrefab 1", typeof(Transform));
+		else
+			spawn = (Transform) Resources.Load("fireballPrefab 5", typeof(Transform));
 		
+		float initialVelocity = 5000; 
+		Transform newWeapon = (Transform) Instantiate(spawn, cam.transform.position, cam.transform.rotation);
+		newWeapon.rigidbody.AddForce(cam.transform.forward * initialVelocity);
 	}
 	
 	public void HUDGameViewPauseButtonPressed()

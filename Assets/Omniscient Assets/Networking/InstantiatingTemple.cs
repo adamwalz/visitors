@@ -8,15 +8,16 @@ public class InstantiatingTemple : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		
+		GameObject templeObject = null;
 		if (Network.peerType == NetworkPeerType.Server)
 		{
-			GameObject templeObject;
 			Transform templeTransform;
 			float templeX, templeY, templeZ;
 		
 			templeX = transform.position.x;
-			templeY = transform.position.y + 17.0f;
+			templeY = transform.position.y;
 			templeZ = transform.position.z;
+			temple.transform.localScale += new Vector3(5.0f, 5.0f, 5.0f);
 		
 		
 			//Network.Instantiate(temple, transform.position, transform.rotation,0);
@@ -30,9 +31,9 @@ public class InstantiatingTemple : MonoBehaviour {
 			templeObject.AddComponent("NetworkView");
 		
 			//Grab transform to make it child of ImageTarget
-			//templeTransform = templeObject.transform;
-			//templeTransform.parent = transform;
-			templeObject.transform.parent = transform;
+			templeTransform = templeObject.transform;
+			
+			templeTransform.parent = transform;
 		}
 	}
 	
