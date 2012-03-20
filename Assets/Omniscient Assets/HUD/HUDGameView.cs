@@ -78,13 +78,6 @@ public class HUDGameView : MonoBehaviour, IHUDView
 		tex = (Texture2D)Resources.Load("energy", typeof(Texture2D));
 		_energyGUITexture.texture = tex;
 		
-		// Setup weapon highlighter
-		_highlighterGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
-		_highlighterGUITexture.transform.position = new Vector3(0.05f, 0.4f, 0.0f);
-		_highlighterGUITexture.pixelInset = new Rect(-35, -35, 70, 70);
-		tex = (Texture2D)Resources.Load("weaponHighlighter", typeof(Texture2D));
-		_highlighterGUITexture.texture = tex;
-		
 		// Setup "menu" button
 		_menuButtonGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
 		_menuButtonGUITexture.transform.position = new Vector3(1, 1, 0);
@@ -112,6 +105,13 @@ public class HUDGameView : MonoBehaviour, IHUDView
 			weapon.texture = texture;
 			_weapons.Add(weapon);
 		}
+		
+		// Setup weapon highlighter
+		_highlighterGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
+		_highlighterGUITexture.transform.position = new Vector3(0.05f, 0.4f, 0.0f);
+		_highlighterGUITexture.pixelInset = new Rect(-35, -35, 70, 70);
+		Texture2D tex = (Texture2D)Resources.Load("weaponHighlighter", typeof(Texture2D));
+		_highlighterGUITexture.texture = tex;
 	}
 	
 	// Hides the view from the user, optionally by animating them out. When the view is done hiding, the 
