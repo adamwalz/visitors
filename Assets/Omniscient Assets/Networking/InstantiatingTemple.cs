@@ -16,7 +16,7 @@ public class InstantiatingTemple : MonoBehaviour {
 		
 			templeX = transform.position.x;
 			templeY = transform.position.y + 17.0f;
-			templeZ = transform.position.z - 70.0f;
+			templeZ = transform.position.z;
 		
 		
 			//Network.Instantiate(temple, transform.position, transform.rotation,0);
@@ -30,9 +30,9 @@ public class InstantiatingTemple : MonoBehaviour {
 			templeObject.AddComponent("NetworkView");
 		
 			//Grab transform to make it child of ImageTarget
-			templeTransform = templeObject.transform;
-			templeTransform.parent = transform;
-
+			//templeTransform = templeObject.transform;
+			//templeTransform.parent = transform;
+			templeObject.transform.parent = transform;
 		}
 	}
 	
