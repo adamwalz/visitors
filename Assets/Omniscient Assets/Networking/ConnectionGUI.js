@@ -10,6 +10,8 @@ var useNAT = false;
 var yourIP = "";
 var yourPort = "";
 var gameName = "Game Name";
+var playerNumberString = "2";
+var playerNumberInt : int; 
 var lastRefreshTime = -1000.0;
 var refreshTimer = 10.0;
 
@@ -19,22 +21,34 @@ function OnGUI ()
 	if (Network.peerType == NetworkPeerType.Disconnected)
 	{
 		gameName = GUI.TextField(new Rect(120,105,100,20),gameName);
+		GUI.Label (Rect (10, 135, 100, 50), "Number of Players:");
+		playerNumberString = GUI.TextField(new Rect(120, 140, 50, 20), playerNumberString);
 		
 		if (GUI.Button (new Rect(10,100,100,30),"Start Server"))
 		{
-			Network.InitializeServer(32, listenPort, false);
-			MasterServer.updateRate = 3;
-			MasterServer.RegisterHost("BlockGame", gameName, "");
-						
-			// Notify our objects that the level and the network is ready
-			for (var go : GameObject in FindObjectsOfType(GameObject))
-			{
-				// About OnNetworkLoadedLevel later
-				go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
-			}
 			
-			Application.LoadLevel("sampleHUDnetworking");
+			
+			if (int.TryParse(playerNumberString, playerNumberInt))
+			{
+				Network.InitializeServer(32, listenPort, false);
+				Network.maxConnections = playerNumberInt;
+				
+				MasterServer.updateRate = 3;
+				MasterServer.RegisterHost("BlockGame", gameName, "");
+			
+			
+				// Notify our objects that the level and the network is ready
+				for (var go : GameObject in FindObjectsOfType(GameObject))
+				{
+					// About OnNetworkLoadedLevel later
+					go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
+				}
+			
+				Application.LoadLevel("sampleHUDnetworking");
+			}
 		}
+	
+			
 		
 
 		//The next two If Statements deal with refreshing current Available Games
