@@ -55,7 +55,7 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	
 	public void HUDSearchingViewPauseButtonPressed()
 	{
-		//Application.LoadLevel("sampleHUD");
+		//Application.LoadLevel("sampleHudCastle");
 		
 	}
 	
@@ -67,11 +67,7 @@ public class HUDSampleController : MonoBehaviour, IHUDSearchingViewController, I
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
-<<<<<<< HEAD
 		_weaponIndex = newWeapon;
-=======
-		
->>>>>>> 19e11bfe97a1cafc5bb5b47d8c64b2f173455fb3
 	}
 	
 	public void HUDGameViewFireButtonPressed()
