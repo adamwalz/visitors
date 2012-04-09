@@ -28,13 +28,13 @@ function OnGUI ()
 		{
 			
 			
-			if (int.TryParse(playerNumberString, playerNumberInt))
+			if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1))
 			{
 				Network.InitializeServer(32, listenPort, false);
-				Network.maxConnections = playerNumberInt;
+				Network.maxConnections = playerNumberInt - 1;
 				
 				MasterServer.updateRate = 3;
-				MasterServer.RegisterHost("BlockGame", gameName, "");
+				MasterServer.RegisterHost("BlockGame", gameName, "Open");
 			
 			
 				// Notify our objects that the level and the network is ready
@@ -70,6 +70,11 @@ function OnGUI ()
 		// Go through all the hosts in the host list
 		for (var element in data)
 		{
+			if (element.playerLimit == element.connectedPlayers)
+			{
+				continue;
+			}
+			
 			GUILayout.BeginHorizontal();	
 			var name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
 			GUILayout.Label(name);

@@ -38,11 +38,10 @@ public class InstantiatingTemple : MonoBehaviour {
 	
 		if ((hasCreated == false) && (Network.peerType == NetworkPeerType.Server))
 		{
-			if (Network.maxConnections == Network.connections.Length + 1)
+			if (Network.maxConnections == Network.connections.Length)
 			{
 				Debug.Log("Temple Being Created");
 				networkView.RPC("SetUpTemple", RPCMode.All);
-				
 			}
 			
 		}
@@ -74,13 +73,13 @@ public class InstantiatingTemple : MonoBehaviour {
 			
 		
 		//Find Object
-		//templeObject = GameObject.Find("Temple1(Clone)");
+		templeObject = GameObject.Find("Temple1(Clone)");
 		
 		//Give Network View
 		//templeObject.AddComponent("NetworkView");
 		
 		//Grab transform to make it child of ImageTarget
-		//templeObject.transform.parent = transform;
+		templeObject.transform.parent = transform;
 		
 		//templeTransform = templeObject.transform;
 		//templeTransform.parent = transform;

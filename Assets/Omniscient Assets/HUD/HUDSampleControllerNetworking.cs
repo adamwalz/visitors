@@ -21,12 +21,21 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	{
 		if ((hasStarted == false) && (Network.peerType == NetworkPeerType.Server))
 		{
-			if (Network.maxConnections == Network.connections.Length + 1)
+			if (Network.maxConnections == Network.connections.Length)
 			{
+				Network.maxConnections = -1;
 				networkView.RPC("GameIsFull",RPCMode.All);
 			}
 		}
 		
+	}
+	
+    void OnPlayerDisconnected(NetworkPlayer player) 
+	{
+       if (hasStarted == true)
+		{
+			networkView.RPC("MainMenu", RPCMode.Server);
+		}
 	}
 	
 	[RPC]
@@ -34,6 +43,7 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	{
 		hasStarted = true;
 	}
+	
 	// IHUDSearchingViewController methods
 	public void HUDSearchingViewPrintButtonPressed()
 	{
@@ -69,13 +79,11 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	
 	public void HUDGameViewFireButtonPressed()
 	{
-		Debug.Log ("Max Connections = " + Network.maxConnections);
-		Debug.Log ("Network Connections = " + Network.connections.Length);
-		Debug.Log ("Network Upper Bound = " + Network.connections.GetUpperBound(0));
-		
 		if (hasStarted)
 		{
-			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All);
+			GameObject cam = GameObject.Find("ARCamera");
+			Vector3 fwd = cam.transform.forward * 50000;
+			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd);
 			_gameView.Energy = _gameView.Energy - 1.0f;
 		}
 
@@ -91,22 +99,45 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	}
 	
 	[RPC]
-	public void ShootWithoutNetworkInstantiate()
+	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd)
 	{
-		GameObject cam = GameObject.Find("ARCamera");
+		//GameObject cam = GameObject.Find("ARCamera");
 		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-		GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
-		Vector3 fwd = cam.transform.forward * 50000;
+		//GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
+		GameObject instance = (GameObject)Instantiate(thePrefab, position, rotation);
+		//Vector3 fwd = cam.transform.forward * 50000;
 		instance.rigidbody.AddForce(fwd);
 	}
 	
 	public void HUDGameViewPauseButtonPressed()
 	{
-		Application.LoadLevel("sampleHUD");
+		networkView.RPC("ResetLevel",RPCMode.All);
 	}
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");	
+		networkView.RPC("MainMenu", RPCMode.Server);
 	}
+	
+	[RPC]
+	public void ResetLevel()
+	{
+		Application.LoadLevel("sampleHUDnetworking");
+	}
+	
+	[RPC]
+	public void Disconnect()
+	{
+		Network.Disconnect();
+		Application.LoadLevel("VisitorsMainScene");
+	}
+	
+	[RPC]
+	public void MainMenu()
+	{
+		networkView.RPC("Disconnect", RPCMode.Others);
+		Network.Disconnect(200);
+		Application.LoadLevel("VisitorsMainScene");
+	}
+	
 }
