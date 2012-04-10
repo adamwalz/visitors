@@ -6,41 +6,13 @@ public class InstantiatingTemple : MonoBehaviour {
 	public GameObject temple;
 	public bool hasCreated = false;
 
-
-	// Use this for initialization
-	void Start () {
-		//networkView.RPC("SetUpTemple", RPCMode.All);
-		Debug.Log("Max Connections: " + Network.maxConnections);
-		Debug.Log("Current Players: " + Network.connections.Length);
-	/*	if (Network.peerType == NetworkPeerType.Server)
-		{
-			GameObject templeObject;
-			Transform templeTransform;
-			float templeX, templeY, templeZ;
-		
-			templeX = transform.position.x;
-			templeY = transform.position.y + 17.0f;
-			templeZ = transform.position.z;
-		
-			NetworkViewID viewID = Network.AllocateViewID();
-		
-			//Network.Instantiate(temple, transform.position, transform.rotation,0);
-			Network.Instantiate(temple, new Vector3(templeX, templeY, templeZ), transform.rotation, 0);
-			//Instantiate(temple, transform.position, transform.rotation);
-		
-			networkView.RPC("SetUpTemple", RPCMode.All, viewID);
-
-		} */
-	}
-	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update () 
+	{
 		if ((hasCreated == false) && (Network.peerType == NetworkPeerType.Server))
 		{
 			if (Network.maxConnections == Network.connections.Length)
 			{
-				Debug.Log("Temple Being Created");
 				networkView.RPC("SetUpTemple", RPCMode.All);
 			}
 			

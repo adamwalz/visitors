@@ -6,7 +6,11 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 {
 	private HUDSearchingView _searchingView;
 	private HUDGameView _gameView;
+	
+	private int _weaponIndex;
+	
 	private bool hasStarted = false;
+
 	// Use this for initialization
 	void Start () 
 	{
@@ -14,6 +18,7 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 		_gameView = GetComponent<HUDGameView>();
 		_searchingView.Show(false);
 		_searchingView.setController(this);
+		_weaponIndex = 0;
 	}
 	
 	// Update is called once per frame
@@ -75,15 +80,28 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
+		_weaponIndex = newWeapon;
 	}
 	
 	public void HUDGameViewFireButtonPressed()
 	{
+
+//		_gameView.Energy = _gameView.Energy - 1.0f;
+//		GameObject cam = GameObject.Find("ARCamera");
+//		Debug.Log(cam.transform.position);
+//		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
+//		GameObject instance = (GameObject)Network.Instantiate(thePrefab, cam.transform.position, cam.transform.rotation, 0);
+//		Vector3 fwd = cam.transform.forward * 50000;
+//		instance.rigidbody.AddForce(fwd);
+		
+
+	
+		
 		if (hasStarted)
 		{
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 fwd = cam.transform.forward * 50000;
-			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd);
+			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd, _weaponIndex);
 			_gameView.Energy = _gameView.Energy - 1.0f;
 		}
 
@@ -99,14 +117,27 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	}
 	
 	[RPC]
-	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd)
+	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd, int weaponIndex)
 	{
 		//GameObject cam = GameObject.Find("ARCamera");
-		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
+		Transform spawn;
+		if (weaponIndex == 0)
+			spawn = (Transform) Resources.Load("fireballPrefab 1", typeof(Transform));
+		else
+			spawn = (Transform) Resources.Load("fireballPrefab 5", typeof(Transform));
+
+		
+		//GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
 		//GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
-		GameObject instance = (GameObject)Instantiate(thePrefab, position, rotation);
+		
+		Transform newWeapon = (Transform)Instantiate(spawn, position, rotation);
+		newWeapon.rigidbody.AddForce(fwd);
+		
+		
+		
+		//GameObject instance = (GameObject)Instantiate(thePrefab, position, rotation);
 		//Vector3 fwd = cam.transform.forward * 50000;
-		instance.rigidbody.AddForce(fwd);
+		//instance.rigidbody.AddForce(fwd);
 	}
 	
 	public void HUDGameViewPauseButtonPressed()
