@@ -30,21 +30,29 @@ function OnGUI ()
 			
 			if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1))
 			{
-				Network.InitializeServer(32, listenPort, false);
-				Network.maxConnections = playerNumberInt - 1;
-				
-				MasterServer.updateRate = 3;
-				MasterServer.RegisterHost("BlockGame", gameName, "Open");
-			
-			
-				// Notify our objects that the level and the network is ready
-				for (var go : GameObject in FindObjectsOfType(GameObject))
+				try
 				{
-					// About OnNetworkLoadedLevel later
-					go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
+					Network.InitializeServer(32, listenPort, false);
+					Network.maxConnections = playerNumberInt - 1;
+					
+					MasterServer.updateRate = 3;
+					MasterServer.RegisterHost("BlockGame", gameName, "Open");
+				
+				
+					// Notify our objects that the level and the network is ready
+					for (var go : GameObject in FindObjectsOfType(GameObject))
+					{
+						// About OnNetworkLoadedLevel later
+						go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
+					}
+				
+					Application.LoadLevel("sampleHUDnetworking");
 				}
-			
-				Application.LoadLevel("sampleHUDnetworking");
+				
+				catch (err)
+				{
+					Debug.Log("Exception catched: " + err);;
+				}
 			}
 		}
 	

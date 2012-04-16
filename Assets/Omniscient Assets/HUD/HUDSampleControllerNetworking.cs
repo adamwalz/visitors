@@ -10,7 +10,8 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	private int _weaponIndex;
 	
 	private bool hasStarted = false;
-
+	private int currentLevel = -1;
+	
 	// Use this for initialization
 	void Start () 
 	{
@@ -26,6 +27,8 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	{
 		if ((hasStarted == false) && (Network.peerType == NetworkPeerType.Server))
 		{
+			//If the game becomes full, this makes it so other devices
+			//No Longer see this game session as an option
 			if (Network.maxConnections == Network.connections.Length)
 			{
 				Network.maxConnections = -1;
@@ -33,14 +36,35 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 			}
 		}
 		
+		//If we ever have the game started, and for some reason the game isn't full,
+		//we disconnect and go back to the main Menu
+		if ((hasStarted == true) && (Network.peerType == NetworkPeerType.Server))
+		{
+			if (Network.maxConnections != Network.connections.Length)
+			{
+				networkView.RPC("MainMenu", RPCMode.Server);
+			}
+		}
 	}
 	
+	//This function is called on Server when a Client Disconnects
     void OnPlayerDisconnected(NetworkPlayer player) 
 	{
-       if (hasStarted == true)
+		//if full, we do stuff, if not full, stay and wait for more
+		if (hasStarted == true)
 		{
-			networkView.RPC("MainMenu", RPCMode.Server);
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
 		}
+	}
+	
+	
+	void OnDisconnectedFromServer(NetworkDisconnection info)
+	{
+		//This is called on the Client when the Connection to Server is severed. 
+		//Usually when the server DC's
+		
+		Application.LoadLevel("VisitorsMainScene");
 	}
 	
 	[RPC]
@@ -69,12 +93,21 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	
 	public void HUDSearchingViewPauseButtonPressed()
 	{
-		Application.LoadLevel("sampleHUD");
+		networkView.RPC("ResetLevel",RPCMode.All);
 	}
 	
 	public void HUDSearchingViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");	
+		if (hasStarted == true)
+		{
+			networkView.RPC("MainMenu", RPCMode.Server);
+		}
+		
+		else
+		{
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
+		}
 	}
 	
 	// IHUDGameViewController methods
@@ -147,13 +180,28 @@ public class HUDSampleControllerNetworking : MonoBehaviour, IHUDSearchingViewCon
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		networkView.RPC("MainMenu", RPCMode.Server);
+		if (hasStarted == true)
+		{
+			networkView.RPC("MainMenu", RPCMode.Server);
+		}
+		
+		else
+		{
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
+		}
+		
 	}
 	
 	[RPC]
 	public void ResetLevel()
 	{
-		Application.LoadLevel("sampleHUDnetworking");
+		if (currentLevel != Application.loadedLevel)
+		{
+			currentLevel = Application.loadedLevel;
+		}
+		Application.LoadLevel(currentLevel);
+		//Application.LoadLevel("sampleHUDnetworking");
 	}
 	
 	[RPC]
