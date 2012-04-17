@@ -24,7 +24,7 @@ public class UtilityPlugin : MonoBehaviour
 	public static int ContentScaleFactor()
 	{
 		if(Application.platform == RuntimePlatform.IPhonePlayer) return _ContentScaleFactor();
-		else return 1;
+		else return 2;
 	}
 	
 	// Returns the device's name

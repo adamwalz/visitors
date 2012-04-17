@@ -30,6 +30,11 @@ public class PlayingView : GameView
 		get{return _switcher;}	
 	}
 	
+	public WeaponBar WeaponBar
+	{
+		get{return _weaponBar;}	
+	}
+	
 	public override void Init()
 	{
 		base.Init();
