@@ -13,18 +13,19 @@ var gameName = "Game Name";
 var playerNumberString = "2";
 var playerNumberInt : int; 
 var lastRefreshTime = -1000.0;
-var refreshTimer = 10.0;
+var refreshTimer = 0.5;
 
 function OnGUI ()
 {
 	// Checking if you are connected to the server or not
 	if (Network.peerType == NetworkPeerType.Disconnected)
 	{
-		gameName = GUI.TextField(new Rect(120,105,100,20),gameName);
-		GUI.Label (Rect (10, 135, 100, 50), "Number of Players:");
-		playerNumberString = GUI.TextField(new Rect(120, 140, 50, 20), playerNumberString);
+		//gameName = GUI.TextField(new Rect(120,105,100,20),gameName);
+		gameName = SystemInfo.deviceName;
+		GUI.Label (Rect (350, 510, 100, 50), "Number of Players:");
+		playerNumberString = GUI.TextField(new Rect(350, 550, 50, 30), playerNumberString);
 		
-		if (GUI.Button (new Rect(10,100,100,30),"Start Server"))
+		if (GUI.Button (new Rect(220,500,120,100),"Start New Game"))
 		{
 			
 			
@@ -51,7 +52,7 @@ function OnGUI ()
 				
 				catch (err)
 				{
-					Debug.Log("Exception catched: " + err);;
+					Debug.Log("Exception catched: " + err);
 				}
 			}
 		}
@@ -67,7 +68,7 @@ function OnGUI ()
 			MasterServer.RequestHostList("BlockGame");
 		}
 		
-		if (GUI.Button (new Rect(10,60,210,30),"Refresh available Servers"))
+		if (GUI.Button (new Rect(10,500,200,100),"Show Joinable Games"))
 		{
 			lastRefreshTime = Time.realtimeSinceStartup;
 			MasterServer.ClearHostList();
@@ -83,10 +84,15 @@ function OnGUI ()
 				continue;
 			}
 			
-			GUILayout.BeginHorizontal();	
+			GUILayout.BeginHorizontal();
+			var availableGamesSyle:GUIStyle = new GUIStyle();
+			availableGamesSyle.fontSize = 30;
+			
 			var name = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
-			GUILayout.Label(name);
-			GUILayout.Space(5);
+			GUILayout.Label(name, availableGamesSyle);
+			
+			
+			/*GUILayout.Space(5);
 			var hostInfo : String;
 			hostInfo = "[";
 			
@@ -101,7 +107,8 @@ function OnGUI ()
 			GUILayout.Label(element.comment);
 			GUILayout.Space(5);
 			GUILayout.FlexibleSpace();
-			
+			*/
+			GUILayout.Space(10);
 			if (GUILayout.Button("Connect"))
 			{
 				// Connect to HostData struct, internally the correct method is used (GUID when using NAT).

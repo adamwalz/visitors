@@ -88,7 +88,7 @@ public class InstantiatingTemple : MonoBehaviour {
 		templeObject.transform.parent = transform;
 		
 		//Scale the Temple
-		templeObject.transform.localScale += new Vector3(2, 2, 2);
+		//templeObject.transform.localScale += new Vector3(2, 2, 2);
 		
 		//We say the game has not started so this function will not be called again.
 		hasCreated = true;
