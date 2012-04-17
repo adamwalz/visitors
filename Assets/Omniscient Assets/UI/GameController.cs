@@ -9,6 +9,7 @@ public class GameController : MonoBehaviour
 	private GameScreen _mainScreen;
 	private SearchingView _searchingView;
 	private PlayingView _playingView;
+	private PauseMenu _pauseMenu;
 	private bool hasStarted = false;
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
@@ -21,7 +22,7 @@ public class GameController : MonoBehaviour
 		_searchingView.Init();
 		_searchingView.Size = new Vector2(_mainScreen.Size.x, _mainScreen.Size.y);
 		_searchingView.SetPosition(new Vector2(0, 0), GameView.GameViewAnchor.BottomLeftAnchor);
-		_searchingView.PauseButton.ButtonPressed += new EventHandler(PauseButtonPressed);
+		_searchingView.PauseButton.ButtonPressed += new EventHandler(PausePressed);
 		_searchingView.PrintButton.ButtonPressed += new EventHandler(PrintButtonPressed);
 		_searchingView.PlayWithoutButton.ButtonPressed += new EventHandler(PlayWithoutButtonPressed);
 		_mainScreen.AddView(_searchingView);
@@ -30,10 +31,36 @@ public class GameController : MonoBehaviour
 		_playingView.Init();
 		_playingView.Size = new Vector2(_mainScreen.Size.x, _mainScreen.Size.y);
 		_playingView.SetPosition(new Vector2(0, 0), GameView.GameViewAnchor.BottomLeftAnchor);
-		_playingView.PauseButton.ButtonPressed += new EventHandler(PauseButtonPressed);
+		_playingView.PauseButton.ButtonPressed += new EventHandler(PausePressed);
 		_playingView.SwitchWeaponButton.ButtonPressed += new EventHandler(SwitchWeaponButtonPressed);
+		_playingView.FireButton.ButtonPressed += new EventHandler(FireButtonPressed);
 		_mainScreen.AddView(_playingView);
 		_searchingView.Show(true);
+		
+		_pauseMenu = (PauseMenu)gameObject.AddComponent("PauseMenu");
+		_pauseMenu.Init();
+		_pauseMenu.Size = _mainScreen.Size;
+		_pauseMenu.Position = new Vector2(_mainScreen.Size.x / 2.0f, _mainScreen.Size.y / 2.0f);
+		_pauseMenu.ResumeButton.ButtonPressed += new EventHandler(ResumePressed);
+		_pauseMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
+		_pauseMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
+		print(_pauseMenu);
+		_mainScreen.AddView(_pauseMenu);
+	}
+			
+	public void ResumePressed(object sender)	
+	{
+		DismissPauseMenu();
+	}
+	
+	public void MenuPressed(object sender)
+	{
+		HUDGameViewMenuButtonPressed();
+	}
+	
+	public void ResetPressed(object sender)
+	{
+		networkView.RPC("ResetLevel",RPCMode.All);
 	}
 	
 	public void SwitchWeaponButtonPressed(object sender)
@@ -43,9 +70,23 @@ public class GameController : MonoBehaviour
 		_playingView.Switcher.CurrentWeapon = _weaponIndex;
 	}
 	
-	public void PauseButtonPressed(object sender)
+	public void ShowPauseMenu()
 	{
-		networkView.RPC("ResetLevel",RPCMode.All);
+		_pauseMenu.Show(true);
+		_playingView.HasFocus = false;
+		_searchingView.HasFocus = false;
+	}
+	
+	public void PausePressed(object sender)
+	{
+		ShowPauseMenu();
+	}
+	
+	public void DismissPauseMenu()
+	{
+		_pauseMenu.Hide(true);
+		_playingView.HasFocus = true;
+		_searchingView.HasFocus = true;
 	}
 	
 	public void PrintButtonPressed(object sender)
@@ -144,7 +185,7 @@ public class GameController : MonoBehaviour
 		_weaponIndex = newWeapon;
 	}
 	
-	public void HUDGameViewFireButtonPressed()
+	public void FireButtonPressed(object sender)
 	{
 
 //		_gameView.Energy = _gameView.Energy - 1.0f;

@@ -48,7 +48,7 @@ public class WeaponSwitcher : GameView
 		
 		_weaponHighlighter.Size = new Vector2(50, 50);
 		Color highlighterColor = _weaponHighlighter.ImageGUITexture.color;
-		if(State == GameView.GameViewState.Showing) highlighterColor.a = 0.5f + Mathf.Abs(Mathf.Cos(_animationTimer)) / 4.0f;
+		if(State == GameView.GameViewState.Showing) highlighterColor.a = 0.25f + Mathf.Abs(Mathf.Cos(_animationTimer)) / 3.0f;
 		_weaponHighlighter.ImageGUITexture.color = highlighterColor;
 		if(_currentWeapon == 0) _weaponHighlighter.Position = _weaponOne.Position;
 		else _weaponHighlighter.Position = _weaponTwo.Position;
