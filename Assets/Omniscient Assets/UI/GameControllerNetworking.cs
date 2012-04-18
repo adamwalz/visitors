@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class GameController : MonoBehaviour 
+public class GameControllerNetworking : MonoBehaviour 
 {
 	
 	private	GUIText clientMessage;
@@ -10,6 +10,7 @@ public class GameController : MonoBehaviour
 	private SearchingView _searchingView;
 	private PlayingView _playingView;
 	private PauseMenu _pauseMenu;
+	private bool hasStarted = false;
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
 	
@@ -59,7 +60,7 @@ public class GameController : MonoBehaviour
 	
 	public void ResetPressed(object sender)
 	{
-		ResetLevel();
+		networkView.RPC("ResetLevel",RPCMode.All);
 	}
 	
 	public void SwitchWeaponButtonPressed(object sender)
@@ -113,7 +114,73 @@ public class GameController : MonoBehaviour
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
 		_searchingView.Show(true);
 	}
-
+	
+	
+	// Update is called once per frame
+	void Update () 
+	{
+		if ((hasStarted == false) && (Network.peerType == NetworkPeerType.Server))
+		{
+			//If the game becomes full, this makes it so other devices
+			//No Longer see this game session as an option
+			if (Network.maxConnections == Network.connections.Length)
+			{
+				Network.maxConnections = -1;
+				networkView.RPC("GameIsFull",RPCMode.All);
+			}
+		}
+		
+		//If we ever have the game started, and for some reason the game isn't full,
+		//we disconnect and go back to the main Menu
+		if ((hasStarted == true) && (Network.peerType == NetworkPeerType.Server))
+		{
+			if (Network.maxConnections != Network.connections.Length)
+			{
+				networkView.RPC("MainMenu", RPCMode.Server);
+			}
+		}
+	}
+	
+	//This function is called on Server when a Client Disconnects
+    void OnPlayerDisconnected(NetworkPlayer player) 
+	{
+		//if full, we do stuff, if not full, stay and wait for more
+		if (hasStarted == true)
+		{
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
+		}
+	}
+	
+	
+	void OnDisconnectedFromServer(NetworkDisconnection info)
+	{
+		//This is called on the Client when the Connection to Server is severed. 
+		//Usually when the server DC's
+		
+		Application.LoadLevel("VisitorsMainScene");
+	}
+	
+	[RPC]
+	public void GameIsFull()
+	{
+		hasStarted = true;
+	}
+	
+	public void HUDSearchingViewMenuButtonPressed()
+	{
+		if (hasStarted == true)
+		{
+			networkView.RPC("MainMenu", RPCMode.Server);
+		}
+		
+		else
+		{
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
+		}
+	}
+	
 	// IHUDGameViewController methods
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
@@ -134,10 +201,13 @@ public class GameController : MonoBehaviour
 
 	
 		
-		GameObject cam = GameObject.Find("ARCamera");
-		Vector3 fwd = cam.transform.forward * 50000;
-		ShootWithoutNetworkInstantiate(cam.transform.position, cam.transform.rotation, fwd, _weaponIndex);
-		_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
+		if (hasStarted)
+		{
+			GameObject cam = GameObject.Find("ARCamera");
+			Vector3 fwd = cam.transform.forward * 50000;
+			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd, _weaponIndex);
+			_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
+		}
 
 		
 		//networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All);
@@ -150,7 +220,7 @@ public class GameController : MonoBehaviour
 		*/
 	}
 	
-	
+	[RPC]
 	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd, int weaponIndex)
 	{
 		//GameObject cam = GameObject.Find("ARCamera");
@@ -176,9 +246,20 @@ public class GameController : MonoBehaviour
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");
+		if (hasStarted == true)
+		{
+			networkView.RPC("MainMenu", RPCMode.Server);
+		}
+		
+		else
+		{
+			Network.Disconnect();
+			Application.LoadLevel("VisitorsMainScene");
+		}
+		
 	}
 	
+	[RPC]
 	public void ResetLevel()
 	{
 		if (currentLevel != Application.loadedLevel)
@@ -186,5 +267,21 @@ public class GameController : MonoBehaviour
 			currentLevel = Application.loadedLevel;
 		}
 		Application.LoadLevel(currentLevel);
+		//Application.LoadLevel("sampleHUDnetworking");
+	}
+	
+	[RPC]
+	public void Disconnect()
+	{
+		Network.Disconnect();
+		Application.LoadLevel("VisitorsMainScene");
+	}
+	
+	[RPC]
+	public void MainMenu()
+	{
+		networkView.RPC("Disconnect", RPCMode.Others);
+		Network.Disconnect(200);
+		Application.LoadLevel("VisitorsMainScene");
 	}
 }
