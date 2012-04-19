@@ -1,3 +1,6 @@
+// ImageView
+// Created by Nathan Swenson
+
 using UnityEngine;
 using System.Collections;
 

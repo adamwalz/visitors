@@ -10,12 +10,20 @@ public class ButtonView : GameView
 	private string _highlightImageName;
 	private bool _isHighlighted;
 	public event EventHandler ButtonPressed;
+	protected bool _disabled;
 	
 	// The filename of the texture to be used for this button, when it is not highlighted
 	public string ButtonImageName
 	{
 		get { return _buttonImageName; }
 		set { _buttonImageName = value; }
+	}
+	
+	// Use this to disable a button
+	public bool Disabled
+	{
+		get {return _disabled;}
+		set {_disabled = value;}
 	}
 	
 	// The filename of the texture to be used for this button, when it is not highlighted
@@ -26,13 +34,14 @@ public class ButtonView : GameView
 	}
 
 	// Use this for initialization
-	public new void Init ()
+	public override void Init ()
 	{
 		base.Init();
 		_buttonImage = (ImageView)gameObject.AddComponent("ImageView");
 		_buttonImage.Init();
 		_buttonImage.TextureName = _buttonImageName;
 		_isHighlighted = false;
+		_disabled = false;
 		AddSubview(_buttonImage);
 	}
 	
@@ -43,11 +52,20 @@ public class ButtonView : GameView
 		_buttonImage.Size = Size;
 		if(_isHighlighted) _buttonImage.TextureName = _highlightImageName;
 		else _buttonImage.TextureName = _buttonImageName;
+		Color color = _buttonImage.ImageGUITexture.color;
+		if(_disabled)
+		{
+			color.r = 0.3f;
+			color.g = 0.3f;
+			color.b = 0.3f;
+			color.a = 0.2f;
+		}
+		_buttonImage.ImageGUITexture.color = color;
 	}
 	
 	public override bool RespondsToTouchInput()
 	{
-		return true;
+		return !_disabled;
 	}
 	
 	public override void TouchBegan (Vector2 touch)
