@@ -54,6 +54,7 @@ public class ImageView : GameView
 		Texture2D tex = LoadTexture(_textureName);
 		_imageGUITexture.texture = tex;
 		_imageGUITexture.pixelInset = new Rect(0, 0, 0, 0);
+		print("I'm being called!");
 	}
 	
 	protected override void OnHidden()
