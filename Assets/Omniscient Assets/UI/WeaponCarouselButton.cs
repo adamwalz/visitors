@@ -9,8 +9,10 @@ public class WeaponCarouselButton : ButtonView
 	// or a "primary weapon" icon to indicate it is already
 	// your primary weapon
 	private ImageView _overlayImage;
+	private ImageView _haloImage;
 	
 	private string _weaponID;
+	private bool _selected;
 	
 	public string WeaponID
 	{
@@ -27,11 +29,22 @@ public class WeaponCarouselButton : ButtonView
 		get {return _overlayImage;}
 	}
 	
+	public bool Selected
+	{
+		get {return _selected;}
+		set {_selected = value;}
+	}
+	
 	public override void Init()
 	{
 		base.Init();
 		ButtonImageName = "CarouselButtonBackground";
 		HighlightImageName = "CarouselButtonBackground";
+		
+		_haloImage = (ImageView)gameObject.AddComponent("ImageView");
+		_haloImage.Init();
+		_haloImage.TextureName = "CarouselButtonHalo";
+		AddSubview(_haloImage);
 		
 		_weaponImage = (ImageView)gameObject.AddComponent("ImageView");
 		_weaponImage.Init();
@@ -39,8 +52,10 @@ public class WeaponCarouselButton : ButtonView
 		
 		_overlayImage = (ImageView)gameObject.AddComponent("ImageView");
 		_overlayImage.Init();
-		_overlayImage.TextureName = "PrimaryWeaponOverlay";
+		_overlayImage.TextureName = "";
 		AddSubview(_overlayImage);
+		
+		_selected = false;
 	}
 	
 	public override bool RespondsToTouchInput()
@@ -56,6 +71,11 @@ public class WeaponCarouselButton : ButtonView
 		
 		_overlayImage.Size = Size;
 		_overlayImage.Position = new Vector2(0, 0);
+		
+		if(_selected && _haloImage.State != GameView.GameViewState.Showing)_haloImage.Show(false);
+		if(!_selected && _haloImage.State != GameView.GameViewState.Hidden)_haloImage.Hide(false);
+		_haloImage.Size = new Vector2(Size.x + 20, Size.y + 20);
+		_haloImage.Position = new Vector2(0, 0);
 	}
 	
 }

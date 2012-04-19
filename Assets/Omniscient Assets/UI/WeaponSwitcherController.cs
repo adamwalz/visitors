@@ -12,7 +12,8 @@ public class WeaponSwitcherController : MonoBehaviour
 	private ButtonView _backButton;
 	private ButtonView _chooseButton;
 	private ButtonView _doneButton;
-	private WeaponCarouselButton _tempButton;
+	private WeaponCarousel _carousel;
+	private TextView _textView;
 	
 	// Use this for initialization
 	void Start () 
@@ -60,13 +61,19 @@ public class WeaponSwitcherController : MonoBehaviour
 		_doneButton.ButtonPressed += new EventHandler(DoneButtonPressed);
 		_mainScreen.AddView(_doneButton);
 		
-		_tempButton = (WeaponCarouselButton)gameObject.AddComponent("WeaponCarouselButton");
-		_tempButton.Init();
-		_tempButton.Size = new Vector2(100, 100);
-		_tempButton.SetPosition(new Vector2(_mainScreen.Size.x / 2, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
-		_tempButton.WeaponID = "FireballWeapon";
-		_tempButton.Show(false);
-		_mainScreen.AddView(_tempButton);
+		_carousel = (WeaponCarousel)gameObject.AddComponent("WeaponCarousel");
+		_carousel.Init();
+		_carousel.Size = new Vector2(_mainScreen.Size.x, 200);
+		_carousel.SetPosition(new Vector2(_mainScreen.Size.x / 2, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
+		_carousel.Show(false);
+		_mainScreen.AddView(_carousel);
+		
+		_textView = (TextView)gameObject.AddComponent("TextView");
+		_textView.Init();
+		_textView.Position = new Vector2(120, 50);
+		_textView.Text = "";
+		_textView.Show(false);
+		_mainScreen.AddView(_textView);
 		
 		TransitionToPrimaryWeapon();
 	}
@@ -95,7 +102,6 @@ public class WeaponSwitcherController : MonoBehaviour
 		_backButton.Hide(false);
 		_chooseButton.Show(false);
 		_primaryBackground.Show(false);
-		_chooseButton.Disabled = true;
 	}
 	
 	public void TransitionToSecondaryWeapon()
