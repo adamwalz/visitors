@@ -17,8 +17,6 @@ public class ImageView : GameView
 				_textureName = value;
 				if(State != GameView.GameViewState.Hidden)
 				{
-					if(_imageGUITexture != null) Destroy(_imageGUITexture);
-					_imageGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
 					Texture2D tex = LoadTexture(_textureName);
 					_imageGUITexture.texture = tex;
 				}
