@@ -47,11 +47,11 @@ public class Weapon : Object
 			weapon._description = "Ball that disintegrates the first thing it touches";
 			weapon._unlockRequirements = "Conquer 1 Civilization";
 		}
-		else if(id.Equals("StrongBall"))
+		else if(id.Equals("TheEarth"))
 		{
-			weapon._id = "StrongBall";
-			weapon._name = "Stone";
-			weapon._description = "Ball with a heavy mass to inflict damage to stone buildings";
+			weapon._id = "TheEarth";
+			weapon._name = "The Earth";
+			weapon._description = "It's the Earth... and you can shoot it at stuff";
 			weapon._unlockRequirements = "None";
 		}
 		else if(id.Equals("Fireball1"))
@@ -105,7 +105,7 @@ public class Weapon : Object
 	public static string[] WeaponIDs()
 	{
 		return new string[]{"DestroyBall", 
-							"StrongBall",
+							"TheEarth",
 							"Fireball1", 
 							"Fireball2",
 							"Fireball3",

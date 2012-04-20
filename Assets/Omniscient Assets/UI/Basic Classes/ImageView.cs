@@ -50,7 +50,7 @@ public class ImageView : GameView
 	public override void Show(bool animated)
 	{
 		base.Show(animated);
-		_imageGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
+		if(_imageGUITexture == null) _imageGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
 		Texture2D tex = LoadTexture(_textureName);
 		_imageGUITexture.texture = tex;
 		_imageGUITexture.pixelInset = new Rect(0, 0, 0, 0);
