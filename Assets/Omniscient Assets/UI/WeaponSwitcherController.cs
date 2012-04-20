@@ -74,7 +74,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_nameView.Init();
 		_nameView.Position = new Vector2(_mainScreen.Size.x / 2, 80);
 		_nameView.Text = "Hello";
-		_nameView.FontSize = 25;
+		_nameView.Small = false;
 		_nameView.Show(false);
 		_mainScreen.AddView(_nameView);
 		
@@ -82,7 +82,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_descriptionView.Init();
 		_descriptionView.Position = new Vector2(_mainScreen.Size.x / 2, 60);
 		_descriptionView.Text = "Hello";
-		_descriptionView.FontSize = 15;
+		_descriptionView.Small = true;
 		_descriptionView.Show(false);
 		_mainScreen.AddView(_descriptionView);
 		

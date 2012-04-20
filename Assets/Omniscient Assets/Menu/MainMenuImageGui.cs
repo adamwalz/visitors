@@ -7,7 +7,6 @@ public class MainMenuImageGui : MonoBehaviour {
 	private GUITexture _singlePlayerGUITexture;
 	private GUITexture _multiPlayerGUITexture;
 	private GUITexture _optionsGUITexture;
-	private GUITexture _helpGUITexture;
 	private GUITexture _activeButton;
 	
 	// Use this for initialization
@@ -40,13 +39,6 @@ public class MainMenuImageGui : MonoBehaviour {
 		_optionsGUITexture.pixelInset = new Rect(0, 0, 180, 180);
 		tex = (Texture2D)Resources.Load("options", typeof(Texture2D));
 		_optionsGUITexture.texture = tex;
-		
-		// Setup help button
-		_helpGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
-		_helpGUITexture.transform.position = new Vector3(0.82f, 0.0f, 0.0f);
-		_helpGUITexture.pixelInset = new Rect(0, 0, 180, 180);
-		tex = (Texture2D)Resources.Load("help", typeof(Texture2D));
-		_helpGUITexture.texture = tex;
 	}
 	
 	// Update is called once per frame
@@ -77,11 +69,6 @@ public class MainMenuImageGui : MonoBehaviour {
 				_optionsGUITexture.texture = (Texture2D)Resources.Load("options_hover");
 				_activeButton = _optionsGUITexture;		
 			}
-			if(_helpGUITexture.HitTest(Input.mousePosition))
-			{
-				_helpGUITexture.texture = (Texture2D)Resources.Load("help_hover");
-				_activeButton = _helpGUITexture;
-			}
 		}
 		
 		// If mouse is released, set all buttons to their non-highlighted state. If the active button
@@ -92,7 +79,6 @@ public class MainMenuImageGui : MonoBehaviour {
 			_singlePlayerGUITexture.texture = (Texture2D)Resources.Load("single_player");
 			_multiPlayerGUITexture.texture = (Texture2D)Resources.Load("multi_player");
 			_optionsGUITexture.texture = (Texture2D)Resources.Load("options");
-			_helpGUITexture.texture = (Texture2D)Resources.Load("help");
 			
 			if(_singlePlayerGUITexture.HitTest(Input.mousePosition))
 			{
@@ -107,11 +93,6 @@ public class MainMenuImageGui : MonoBehaviour {
 			{
 				if(_activeButton == _optionsGUITexture)
 					print("No options for you!");
-			}
-			if(_helpGUITexture.HitTest(Input.mousePosition))
-			{
-				if(_activeButton == _helpGUITexture)
-					print("I'll only help if you say please");
 			}
 		}	
 	}
