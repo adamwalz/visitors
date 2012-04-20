@@ -8,8 +8,6 @@ public class ButtonView : GameView
 	private string _highlightImageName;
 	private bool _isHighlighted;
 	public event EventHandler ButtonPressed;
-	public event EventHandler ButtonPressBegan;
-	public event EventHandler ButtonPressReleased;
 	protected bool _disabled;
 	
 	// The filename of the texture to be used for this button, when it is not highlighted
@@ -17,6 +15,11 @@ public class ButtonView : GameView
 	{
 		get { return _buttonImageName; }
 		set { _buttonImageName = value; }
+	}
+	
+	public bool Highlighted
+	{
+		get{return _isHighlighted;}
 	}
 	
 	// Use this to disable a button
@@ -71,7 +74,6 @@ public class ButtonView : GameView
 	public override void TouchBegan (Vector2 touch)
 	{
 		_isHighlighted = true;
-		if(ButtonPressBegan != null) ButtonPressBegan(this);
 	}
 	
 	public override void TouchEnded (Vector2 touch)
@@ -80,7 +82,6 @@ public class ButtonView : GameView
 		{
 			if(ButtonPressed != null) ButtonPressed(this);
 		}
-		if(ButtonPressReleased != null) ButtonPressReleased(this);
 		_isHighlighted = false;
 	}
 }
