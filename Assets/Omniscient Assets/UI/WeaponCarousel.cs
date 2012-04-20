@@ -85,7 +85,7 @@ public class WeaponCarousel : GameView
 	public void SelectWeapon(int weaponIndex)
 	{
 		_selectedWeaponIndex = weaponIndex;
-		WeaponSelected(this);
+		if(WeaponSelected != null) WeaponSelected(this);
 	}
 	
 	
@@ -96,6 +96,10 @@ public class WeaponCarousel : GameView
 	
 	public void RefreshCarouselStuff()
 	{
+		Weapon WeaponOne = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset]);
+		Weapon WeaponTwo = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset + 1]);
+		Weapon WeaponThree = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset + 2]);
+		
 		SelectWeapon(_selectedWeaponIndex);
 		_weaponOne.Selected = false;
 		_weaponTwo.Selected = false;
@@ -103,6 +107,10 @@ public class WeaponCarousel : GameView
 		if(_selectedWeaponIndex == _carouselWeaponListOffset) _weaponOne.Selected = true;
 		if(_selectedWeaponIndex == _carouselWeaponListOffset + 1) _weaponTwo.Selected = true;
 		if(_selectedWeaponIndex == _carouselWeaponListOffset + 2) _weaponThree.Selected = true;
+		
+		if(WeaponOne.isLocked()) _weaponOne.Overlay.TextureName = "lock";
+		if(WeaponTwo.isLocked()) _weaponTwo.Overlay.TextureName = "lock";
+		if(WeaponThree.isLocked()) _weaponThree.Overlay.TextureName = "lock";
 	}
 	
 	public override void RefreshContent()

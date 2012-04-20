@@ -1,8 +1,8 @@
 // Scroll main texture based on time
-var scrollSpeedX = 0.015;
-var scrollSpeedY = 0.015;
-var scrollSpeedXMaterial2 = 0.015;
-var scrollSpeedYMaterial2 = 0.015;
+var scrollSpeedX = 0.000;
+var scrollSpeedY = 0.000;
+var scrollSpeedXMaterial2 = 0.000;
+var scrollSpeedYMaterial2 = 0.000;
 function Update () {
     var offsetX = Time.time * scrollSpeedX;
     var offsetY = Time.time * scrollSpeedY;

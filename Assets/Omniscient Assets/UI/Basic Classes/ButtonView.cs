@@ -17,6 +17,11 @@ public class ButtonView : GameView
 		set { _buttonImageName = value; }
 	}
 	
+	public bool Highlighted
+	{
+		get{return _isHighlighted;}
+	}
+	
 	// Use this to disable a button
 	public bool Disabled
 	{
