@@ -2,12 +2,18 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class NewLvlSelectCS : MonoBehaviour {
+public class NewLvlSelectCS : MonoBehaviour 
+{
 	
 	public string scene;
 	
 	// Use this for initialization
+<<<<<<< HEAD
 	void Start () {
+=======
+	void Start () 
+	{
+>>>>>>> 6ab4df4d3c3705c63fbe3bcea4ab9a0aaf203b55
 		GameState.setCurrentLevel(scene);
 	}
 	

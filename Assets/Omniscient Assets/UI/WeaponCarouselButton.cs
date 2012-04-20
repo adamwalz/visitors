@@ -44,7 +44,7 @@ public class WeaponCarouselButton : ButtonView
 		_haloImage = (ImageView)gameObject.AddComponent("ImageView");
 		_haloImage.Init();
 		_haloImage.TextureName = "CarouselButtonHalo";
-		AddSubview(_haloImage);
+		AddSubviewToFront(_haloImage);
 		
 		_weaponImage = (ImageView)gameObject.AddComponent("ImageView");
 		_weaponImage.Init();
@@ -76,6 +76,13 @@ public class WeaponCarouselButton : ButtonView
 		if(!_selected && _haloImage.State != GameView.GameViewState.Hidden)_haloImage.Hide(false);
 		_haloImage.Size = new Vector2(Size.x + 20, Size.y + 20);
 		_haloImage.Position = new Vector2(0, 0);
+		
+		if(State == GameView.GameViewState.Showing && _selected == true)
+		{
+			Color highlighterColor = _haloImage.ImageGUITexture.color;
+			if(State == GameView.GameViewState.Showing) highlighterColor.a = 0.25f + Mathf.Abs(Mathf.Cos(_animationTimer)) / 3.0f;
+			_haloImage.ImageGUITexture.color = highlighterColor;
+		}
 	}
 	
 }

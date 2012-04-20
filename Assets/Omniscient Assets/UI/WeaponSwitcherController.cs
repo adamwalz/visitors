@@ -15,7 +15,6 @@ public class WeaponSwitcherController : MonoBehaviour
 	private WeaponCarousel _carousel;
 	private TextView _nameView;
 	private TextView _descriptionView;
-	private GameEndMenu _menu;
 	
 	// Use this for initialization
 	void Start () 
@@ -73,7 +72,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		
 		_nameView = (TextView)gameObject.AddComponent("TextView");
 		_nameView.Init();
-		_nameView.Position = new Vector2(120, 75);
+		_nameView.Position = new Vector2(_mainScreen.Size.x / 2, 80);
 		_nameView.Text = "Hello";
 		_nameView.FontSize = 25;
 		_nameView.Show(false);
@@ -81,18 +80,11 @@ public class WeaponSwitcherController : MonoBehaviour
 		
 		_descriptionView = (TextView)gameObject.AddComponent("TextView");
 		_descriptionView.Init();
-		_descriptionView.Position = new Vector2(120, 60);
+		_descriptionView.Position = new Vector2(_mainScreen.Size.x / 2, 60);
 		_descriptionView.Text = "Hello";
 		_descriptionView.FontSize = 15;
 		_descriptionView.Show(false);
 		_mainScreen.AddView(_descriptionView);
-		
-		_menu = (GameEndMenu)gameObject.AddComponent("GameEndMenu");
-		_menu.Init();
-		_menu.Size = _mainScreen.Size;
-		_menu.Position = new Vector2(_mainScreen.Size.x / 2.0f, _mainScreen.Size.y / 2.0f);
-		_menu.Show(true);
-		_mainScreen.AddView(_menu);
 		
 		TransitionToPrimaryWeapon();
 	}
@@ -130,7 +122,7 @@ public class WeaponSwitcherController : MonoBehaviour
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
 		GameState.SaveSecondaryWeapon(weaponID);
-		Application.LoadLevel(GameState.getCurrentLevel());	
+		Application.LoadLevel(GameState.GetCurrentLevel());	
 	}
 	
 	public void TransitionToPrimaryWeapon()
