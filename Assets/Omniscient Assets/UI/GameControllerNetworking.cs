@@ -14,6 +14,7 @@ public class GameControllerNetworking : MonoBehaviour
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
 	
+	public AudioClip[] soundEffects = new AudioClip[2];
 	// Use this for initialization
 	void Start () 
 	{
@@ -65,6 +66,9 @@ public class GameControllerNetworking : MonoBehaviour
 	
 	public void SwitchWeaponButtonPressed(object sender)
 	{
+		audio.clip = soundEffects[1];
+		audio.Play();
+		
 		if(_weaponIndex == 0) _weaponIndex = 1;
 		else _weaponIndex = 0;
 		_playingView.Switcher.CurrentWeapon = _weaponIndex;
@@ -198,6 +202,7 @@ public class GameControllerNetworking : MonoBehaviour
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
 		_weaponIndex = newWeapon;
+		
 	}
 	
 	public void FireButtonPressed(object sender)
@@ -216,6 +221,12 @@ public class GameControllerNetworking : MonoBehaviour
 		
 		if (hasStarted)
 		{
+			//sound
+			audio.clip = soundEffects[0];
+			audio.pitch = Random.Range(0.9F, 1.1F);
+			audio.Play();
+			
+			//shoot
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 fwd = cam.transform.forward * 50000;
 			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd);

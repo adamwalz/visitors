@@ -8,7 +8,7 @@ public class NewLvlSelectCS : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-	
+		GameState.setCurrentLevel(scene);
 	}
 	
 	// Update is called once per frame
@@ -16,7 +16,6 @@ public class NewLvlSelectCS : MonoBehaviour {
 		if (Input.GetMouseButtonDown(0)) // check for left-mouse
 		{	
    			Ray ray = Camera.main.ScreenPointToRay (Input.mousePosition);
-    		
 			RaycastHit hit;
 			 
 			

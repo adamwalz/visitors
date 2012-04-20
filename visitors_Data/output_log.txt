@@ -8,6 +8,16 @@ Direct3D:
 desktop: 1600x900 59Hz; virtual: 1600x900 at 0,0
 <I> Initializing (RawInput).
 <RI> Input initialized.
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 9.0c [nvd3dum.dll 8.17.12.8562]
+    Renderer: NVIDIA GeForce 310M  
+    Vendor:   NVIDIA
+    VRAM:     466 MB (via DXGI)
+    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 DF24=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
+desktop: 1600x900 59Hz; virtual: 1600x900 at 0,0
+<I> Initializing (RawInput).
+<RI> Input initialized.
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -15,28 +25,8 @@ Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Dat
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.068 seconds
+- Completed reload, in  0.064 seconds
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
-GfxDevice: creating device client; threaded=1
-Direct3D:
-    Version:  Direct3D 9.0c [nvd3dum.dll 8.17.12.8562]
-    Renderer: NVIDIA GeForce 310M  
-    Vendor:   NVIDIA
-    VRAM:     466 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 DF24=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
-desktop: 1600x900 59Hz; virtual: 1600x900 at 0,0
-<I> Initializing (RawInput).
-<RI> Input initialized.
-GfxDevice: creating device client; threaded=1
-Direct3D:
-    Version:  Direct3D 9.0c [nvd3dum.dll 8.17.12.8562]
-    Renderer: NVIDIA GeForce 310M  
-    Vendor:   NVIDIA
-    VRAM:     466 MB (via DXGI)
-    Caps:     Shader=30 DepthRT=1 NativeDepth=1 NativeShadow=1 DF16=0 DF24=0 INTZ=1 RAWZ=0 NULL=1 RESZ=0 SlowINTZ=0
-desktop: 1600x900 59Hz; virtual: 1600x900 at 0,0
-<I> Initializing (RawInput).
-<RI> Input initialized.
 Begin MonoManager ReloadAssembly
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll (this message is harmless)
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll into Unity Child Domain
@@ -45,23 +35,53 @@ Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\A
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
 - Completed reload, in  0.063 seconds
-Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.069 seconds
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 5.358088 ms.
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 247. Operation took 12.723090 ms.
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
+  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
+  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+InvalidCastException: Cannot cast from source type to destination type.
+  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
+  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+ViewObject (PauseMenu)
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.dll (this message is harmless)
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 180. Operation took 4.383944 ms.
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 4.408815 ms.
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 244. Operation took 4.166020 ms.
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 248. Operation took 4.822753 ms.
 DllNotFoundException: QCARWrapper
   at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
   at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
@@ -94,349 +114,108 @@ DllNotFoundException: QCARWrapper
  
 (Filename:  Line: -1)
 
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
-  at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 240. Operation took 9.239859 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
 NullReferenceException: Object reference not set to an instance of an object
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
-  at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 9.122014 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 224. Operation took 8.399549 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 216. Operation took 9.056282 ms.
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 244. Operation took 9.096550 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 180. Operation took 3.923224 ms.
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 245. Operation took 5.952641 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.dll (this message is harmless)
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
-  at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 180. Operation took 5.457575 ms.
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
-Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 245. Operation took 4.822753 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.dll (this message is harmless)
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
-  at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 17 unused Assets to reduce memory usage. Loaded Objects now: 240. Operation took 5.954418 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
 NullReferenceException: Object reference not set to an instance of an object
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
-  at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 240. Operation took 6.470803 ms.
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
-  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
-  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-InvalidCastException: Cannot cast from source type to destination type.
-  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
-  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-ViewObject (PauseMenu)
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
-  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
- 
-(Filename:  Line: -1)
-
-StopQCAR
- 
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
-
-DllNotFoundException: QCARWrapper
-  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
-  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
-  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
 NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+The server has disconnected from the client. Most likely the server has shut down.
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Network/NetworkManager.cpp Line: 740)
+
+InvalidCastException: Cannot cast from source type to destination type.
   at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
   at DefaultTrackableEventHandler.OnTrackableStateChanged (Status previousStatus, Status newStatus) [0x00000] in <filename unknown>:0 
   at TrackableBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
  
 (Filename:  Line: -1)
 
-Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 18 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 9.040293 ms.
-Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
-
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 224. Operation took 6.669777 ms.
 StopQCAR
  
 (Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
@@ -456,3 +235,18 @@ InvalidCastException: Cannot cast from source type to destination type.
  
 (Filename:  Line: -1)
 
+StopQCAR
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
+  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 6.621218 ms.
