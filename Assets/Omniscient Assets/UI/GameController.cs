@@ -114,8 +114,12 @@ public class GameController : MonoBehaviour
 	
 	IEnumerator TransitionToPlayingView()
 	{
-		
-		Debug.Log("Got here from trackable");
+		if(_searchingView.State == GameView.GameViewState.AnimatingIn || _searchingView.State == GameView.GameViewState.AnimatingOut
+			|| _playingView.State == GameView.GameViewState.AnimatingIn || _playingView.State == GameView.GameViewState.AnimatingOut)
+		{
+			yield return new WaitForSeconds(_searchingView.AnimationDuration);
+		}
+		Debug.Log("Transition to playing view called");
 		_searchingView.Hide(true);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
 		_playingView.Show(true);
@@ -123,7 +127,12 @@ public class GameController : MonoBehaviour
 	
 	IEnumerator TransitionToSearchingView()
 	{
-		Debug.Log("Got here from trackable");
+		if(_searchingView.State == GameView.GameViewState.AnimatingIn || _searchingView.State == GameView.GameViewState.AnimatingOut
+			|| _playingView.State == GameView.GameViewState.AnimatingIn || _playingView.State == GameView.GameViewState.AnimatingOut)
+		{
+			yield return new WaitForSeconds(_searchingView.AnimationDuration);
+		}
+		Debug.Log("Transition to searching view called");
 		_playingView.Hide(true);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
 		_searchingView.Show(true);
