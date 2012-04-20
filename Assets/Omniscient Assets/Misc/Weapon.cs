@@ -118,6 +118,6 @@ public class Weapon : Object
 	// A computed value to determine if the weapon is currently locked
 	public bool isLocked()
 	{
-		return false;
+		return true;
 	}
 }
