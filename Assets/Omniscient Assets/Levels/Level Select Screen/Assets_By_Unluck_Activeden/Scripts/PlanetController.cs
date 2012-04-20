@@ -6,6 +6,11 @@ public class PlanetController : MonoBehaviour
 	private GameScreen _mainScreen;
 	private ButtonView _leftButton;
 	private ButtonView _rightButton;
+	private float previousX;
+	private float currentX;
+	private float changeOfX;
+	private bool addEndingRotation = false;
+	
 
 	
 	// Use this for initialization
@@ -37,15 +42,84 @@ public class PlanetController : MonoBehaviour
 	void Update()
 	{
 		Vector3 rotation = new Vector3(0,0,0);
-		if(_leftButton.Highlighted)
+		if(Input.GetMouseButtonDown(0))
 		{
-			rotation = new Vector3(0, 50, 0);
-			transform.Rotate(rotation * Time.deltaTime*2.0F);	
+			previousX = Input.mousePosition.x;
+			print("X Original: " + Input.mousePosition.x);
 		}
-		if(_rightButton.Highlighted)
+		
+		if(Input.GetMouseButton(0))
 		{
-			rotation = new Vector3(0, -50, 0);
+			currentX = Input.mousePosition.x;
+			changeOfX = (float)((currentX-previousX));
+			changeOfX = changeOfX * (float)2.0;
+			print ("Change of X: " + changeOfX);
+			
+			rotation = new Vector3(0, -changeOfX, 0);
 			transform.Rotate(rotation * Time.deltaTime*2.0F);
+			
+			previousX = Input.mousePosition.x;
+		}
+		
+		
+		if (Input.GetMouseButtonUp(0))
+		{
+			print ("GetMOuseButtonUpBeingCalled");
+			addEndingRotation = true;
+			changeOfX = changeOfX/2;
+		}
+			
+		
+		if (addEndingRotation == true)
+		{
+			if (changeOfX > 10)
+			{
+				changeOfX = changeOfX - (float)2.0;
+				rotation = new Vector3(0, -changeOfX, 0);
+				transform.Rotate(rotation * Time.deltaTime*2.0F);		
+			}
+			
+			else if (changeOfX < -10)
+			{
+				changeOfX = changeOfX + (float)2.0;
+				rotation = new Vector3(0, -changeOfX, 0);
+				transform.Rotate(rotation * Time.deltaTime*2.0F);		
+			}
+			
+			else
+			{
+				changeOfX = 0;
+				addEndingRotation = false;
+
+			}
+			
+		}
+				
+		
+		
+	}
+	
+	void ChangeIsPositive(float change, Vector3 rotation)
+	{
+		change = change - (float)2.0;
+		rotation = new Vector3(0, -change, 0);
+		transform.Rotate(rotation * Time.deltaTime*2.0F);
+			
+		if(change <= 0)
+		{
+			addEndingRotation = false;
+		}
+	}
+	
+	void ChangeIsNegative(float change, Vector3 rotation)
+	{
+		change = change + (float)2.0;
+		rotation = new Vector3(0, -change, 0);
+		transform.Rotate(rotation * Time.deltaTime*2.0F);
+			
+		if(change >= 0)
+		{
+			addEndingRotation = false;
 		}
 	}
 }
