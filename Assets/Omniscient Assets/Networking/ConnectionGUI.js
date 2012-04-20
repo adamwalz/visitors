@@ -31,7 +31,7 @@ function OnGUI ()
 		{
 			
 			
-			if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1))
+			if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1) && (playerNumberInt < 5))
 			{
 				try
 				{
