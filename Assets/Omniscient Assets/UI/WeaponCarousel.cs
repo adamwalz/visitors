@@ -6,13 +6,18 @@ public class WeaponCarousel : GameView
 	private WeaponCarouselButton _weaponOne;
 	private WeaponCarouselButton _weaponTwo;
 	private WeaponCarouselButton _weaponThree;
+	private WeaponCarouselButton _transitionWeapon;
 	private ButtonView _leftButton;
 	private ButtonView _rightButton;
 	private int _selectedWeaponIndex;
 	private int _carouselWeaponListOffset;
 	private int _primaryWeaponIndex;
-	
 	public event EventHandler WeaponSelected;
+	
+	// -1 means animating left, 0 means not animating, 1 means animating to the right
+	private int _carouselAnimating;
+	private float _carouselAnimationTimer;
+	private float _carouselAnimationSpeed;
 	
 	public int SelectedWeaponIndex
 	{
@@ -39,6 +44,9 @@ public class WeaponCarousel : GameView
 		_carouselWeaponListOffset = 0;
 		_selectedWeaponIndex = 0;
 		_primaryWeaponIndex = -1;
+		_carouselAnimating = 0;
+		_carouselAnimationTimer = 0.0f;
+		_carouselAnimationSpeed = 200.0f;
 		
 		string[] weaponTextures = Weapon.WeaponIDs();
 		
@@ -59,6 +67,11 @@ public class WeaponCarousel : GameView
 		_weaponThree.WeaponID = weaponTextures[2];
 		_weaponThree.ButtonPressed += new EventHandler(CarouselButtonPressed);
 		AddSubview(_weaponThree);
+		
+		_transitionWeapon = (WeaponCarouselButton)gameObject.AddComponent("WeaponCarouselButton");
+		_transitionWeapon.Init();
+		_transitionWeapon.WeaponID = weaponTextures[3];
+		AddSubview(_transitionWeapon);
 		
 		_leftButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_leftButton.Init();
@@ -86,7 +99,7 @@ public class WeaponCarousel : GameView
 	{
 		if(_carouselWeaponListOffset > 0) 
 		{
-			SetCarouselWeaponListOffset(_carouselWeaponListOffset - 1);
+			_carouselAnimating = -1;
 		}
 	}
 	
@@ -94,7 +107,7 @@ public class WeaponCarousel : GameView
 	{
 		if(_carouselWeaponListOffset < Weapon.WeaponIDs().Length - 3)
 		{
-			SetCarouselWeaponListOffset(_carouselWeaponListOffset + 1);
+			_carouselAnimating = 1;
 		}
 	}
 	
@@ -169,12 +182,59 @@ public class WeaponCarousel : GameView
 		{
 			_rightButton.Disabled = true;	
 		}
+		
+		// Animation
+		_transitionWeapon.Overlay.TextureName = "";
+		_transitionWeapon.Selected = false;
+		
+		Weapon TransitionWeapon = null;
+		if(_carouselAnimating == -1) TransitionWeapon = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset - 1]);
+		if(_carouselAnimating == 1) TransitionWeapon = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset + 3]);
+		
+		if(_carouselAnimating == -1)
+		{	
+			// Set transition button content
+			_transitionWeapon.WeaponID = TransitionWeapon.ID;
+			if(TransitionWeapon.isLocked()) _transitionWeapon.Overlay.TextureName = "lock";
+			if(_primaryWeaponIndex == _carouselWeaponListOffset - 1) _transitionWeapon.Overlay.TextureName = "PrimaryWeaponOverlay";
+			if(_selectedWeaponIndex == _carouselWeaponListOffset - 1) _transitionWeapon.Selected = true;
+			
+			_weaponOne.Position += new Vector2(_carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_weaponTwo.Position += new Vector2(_carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_weaponThree.Position += new Vector2(_carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_transitionWeapon.Position = new Vector2(-240 + _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			if(_weaponTwo.Position.x >= 120) 
+			{
+				_carouselAnimating = 0;
+				SetCarouselWeaponListOffset(_carouselWeaponListOffset - 1);
+			}
+		}
+		
+		// Animation
+		if(_carouselAnimating == 1)
+		{
+			// Set transition button content
+			_transitionWeapon.WeaponID = TransitionWeapon.ID;
+			if(TransitionWeapon.isLocked()) _transitionWeapon.Overlay.TextureName = "lock";
+			if(_primaryWeaponIndex == _carouselWeaponListOffset + 3) _transitionWeapon.Overlay.TextureName = "PrimaryWeaponOverlay";
+			if(_selectedWeaponIndex == _carouselWeaponListOffset + 3) _transitionWeapon.Selected = true;
+
+			
+			_weaponOne.Position += new Vector2(- _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_weaponTwo.Position += new Vector2(- _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_weaponThree.Position += new Vector2(- _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			_transitionWeapon.Position = new Vector2(240 - _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
+			
+			if(_weaponTwo.Position.x <= -120) 
+			{
+				_carouselAnimating = 0;
+				SetCarouselWeaponListOffset(_carouselWeaponListOffset + 1);
+			}
+		}
 	}
 	
 	public override void RefreshContent()
 	{
-		RefreshCarouselStuff();
-		
 		_leftButton.Size = new Vector2(45, 100);
 		_leftButton.Position = new Vector2(-210, 0);
 		
@@ -189,5 +249,12 @@ public class WeaponCarousel : GameView
 		
 		_weaponThree.Size = new Vector2(100, 100);
 		_weaponThree.Position = new Vector2(120, 0);
+		
+		_transitionWeapon.Size = new Vector2(100, 100);
+		_transitionWeapon.Position = new Vector2(9001, -9001);
+
+		RefreshCarouselStuff();
+		if(_carouselAnimating == 0)_carouselAnimationTimer = 0;
+		else _carouselAnimationTimer += Time.deltaTime;
 	}
 }
