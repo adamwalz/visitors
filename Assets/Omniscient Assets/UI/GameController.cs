@@ -60,19 +60,19 @@ public class GameController : MonoBehaviour
 	
 	public void Update()
 	{
-		/*
+		
 		// If we are searching but the searching view is not showing...
 		if(_searching && _searchingView.State != GameView.GameViewState.Showing)
 		{
 			// If the playing view is still showing, get rid of it
 			if(_playingView.State == GameView.GameViewState.Showing)
 			{
-				_playingView.Hide(false);
+				_playingView.Hide(true);
 			}
 			// If the playing view is hidden, but the searching view is not showing, start showing it
 			if(_playingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
 			{
-				_searchingView.Show(false);
+				_searchingView.Show(true);
 			}
 		}
 		
@@ -82,15 +82,15 @@ public class GameController : MonoBehaviour
 			// If the searching view is still showing, get rid of it
 			if(_searchingView.State == GameView.GameViewState.Showing)
 			{
-				_searchingView.Hide(false);
+				_searchingView.Hide(true);
 			}
 			// If the searching view is hidden, but the playing view is not showing, start showing it
 			if(_searchingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
 			{
-				_playingView.Show(false);
+				_playingView.Show(true);
 			}
 		}
-		*/
+		
 	}
 			
 	public void ResumePressed(object sender)	
@@ -152,14 +152,10 @@ public class GameController : MonoBehaviour
 	public void SwitchToPlayingView()
 	{
 		_searching = false;
-		_searchingView.Hide(false);
-		_playingView.Show(false);
 	}
 	public void SwitchToSearchingView()
 	{
-		_searching = true;	
-		_searchingView.Show(false);
-		_playingView.Hide(false);
+		_searching = true;
 	}
 
 	// IHUDGameViewController methods

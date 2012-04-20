@@ -13,11 +13,14 @@ public class GameControllerNetworking : MonoBehaviour
 	private bool hasStarted = false;
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
+	private bool _searching;
 	
 	public AudioClip[] soundEffects = new AudioClip[2];
 	// Use this for initialization
 	void Start () 
 	{
+		_searching = true;
+		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
 		_searchingView.Init();
@@ -36,7 +39,6 @@ public class GameControllerNetworking : MonoBehaviour
 		_playingView.SwitchWeaponButton.ButtonPressed += new EventHandler(SwitchWeaponButtonPressed);
 		_playingView.FireButton.ButtonPressed += new EventHandler(FireButtonPressed);
 		_mainScreen.AddView(_playingView);
-		_searchingView.Show(true);
 		
 		_pauseMenu = (PauseMenu)gameObject.AddComponent("PauseMenu");
 		_pauseMenu.Init();
@@ -102,34 +104,16 @@ public class GameControllerNetworking : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
-		StartCoroutine(TransitionToPlayingView());
+		_searching = true;
 	}
 	
 	public void SwitchToPlayingView()
 	{
-		// if in search view, go to play view
-		if (_searchingView.State == GameView.GameViewState.Showing)
-			StartCoroutine(TransitionToPlayingView());
+		_searching = false;
 	}
 	public void SwitchToSearchingView()
 	{
-		// if in play view, go to serach view
-		if (_playingView.State == GameView.GameViewState.Showing)
-			StartCoroutine(TransitionToSearchingView());
-	}
-	
-	IEnumerator TransitionToPlayingView()
-	{
-		_searchingView.Hide(true);
-		yield return new WaitForSeconds(_searchingView.AnimationDuration);
-		_playingView.Show(true);
-	}
-	
-	IEnumerator TransitionToSearchingView()
-	{
-		_playingView.Hide(true);
-		yield return new WaitForSeconds(_searchingView.AnimationDuration);
-		_searchingView.Show(true);
+		_searching = true;
 	}
 	
 	
@@ -154,6 +138,36 @@ public class GameControllerNetworking : MonoBehaviour
 			if (Network.maxConnections != Network.connections.Length)
 			{
 				networkView.RPC("MainMenu", RPCMode.Server);
+			}
+		}
+		
+				// If we are searching but the searching view is not showing...
+		if(_searching && _searchingView.State != GameView.GameViewState.Showing)
+		{
+			// If the playing view is still showing, get rid of it
+			if(_playingView.State == GameView.GameViewState.Showing)
+			{
+				_playingView.Hide(true);
+			}
+			// If the playing view is hidden, but the searching view is not showing, start showing it
+			if(_playingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
+			{
+				_searchingView.Show(true);
+			}
+		}
+		
+		// If we are playing but the playing view is not showing...
+		if(!_searching && _playingView.State != GameView.GameViewState.Showing)
+		{
+			// If the searching view is still showing, get rid of it
+			if(_searchingView.State == GameView.GameViewState.Showing)
+			{
+				_searchingView.Hide(true);
+			}
+			// If the searching view is hidden, but the playing view is not showing, start showing it
+			if(_searchingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
+			{
+				_playingView.Show(true);
 			}
 		}
 	}
