@@ -19,24 +19,7 @@ function Start () {
 	
 function Update () {
 	if (target) {
-	
-      
-		if (Input.GetMouseButton(0))
-		{
-			x += Input.GetAxis("Mouse X") * xSpeed * 0.02;
-	        y -= Input.GetAxis("Mouse Y") * ySpeed * 0.02;
-	      
-	        distance += -(Input.GetAxis("Mouse ScrollWheel") * Time.deltaTime) * zoomRate * Mathf.Abs(distance);
-	      
-	       		
-	 		y = ClampAngle(y, yMinLimit, yMaxLimit);
-	 		       
-	        var rotation = Quaternion.Euler(y, x, 0);
-	        var position = rotation * Vector3(0.0, 0.0, -distance) + target.position;
-	        
-	        transform.rotation = rotation;
-	        transform.position = position;
-		}         
+       
     }
 	
 
