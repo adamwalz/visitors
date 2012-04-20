@@ -17,8 +17,8 @@ public class PlanetController : MonoBehaviour
 		_leftButton.Init();
 		_leftButton.ButtonImageName = "CarouselLeft";
 		_leftButton.HighlightImageName = "CarouselLeft";
-		_leftButton.SetPosition(new Vector2(100, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
-		_leftButton.Size = new Vector2(100, 250);
+		_leftButton.SetPosition(new Vector2(35, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
+		_leftButton.Size = new Vector2(60, 250);
 		_leftButton.Show(false);
 		_mainScreen.AddView(_leftButton);
 		
@@ -26,8 +26,8 @@ public class PlanetController : MonoBehaviour
 		_rightButton.Init();
 		_rightButton.ButtonImageName = "CarouselRight";
 		_rightButton.HighlightImageName = "CarouselRight";
-		_rightButton.SetPosition(new Vector2(_mainScreen.Size.x - 100, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
-		_rightButton.Size = new Vector2(100, 250);
+		_rightButton.SetPosition(new Vector2(_mainScreen.Size.x - 35, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
+		_rightButton.Size = new Vector2(60, 250);
 		_rightButton.Show(false);
 		_mainScreen.AddView(_rightButton);
 		
