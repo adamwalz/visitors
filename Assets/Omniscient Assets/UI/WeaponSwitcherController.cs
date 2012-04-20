@@ -122,7 +122,7 @@ public class WeaponSwitcherController : MonoBehaviour
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
 		GameState.SaveSecondaryWeapon(weaponID);
-		Application.LoadLevel(GameState.getCurrentLevel());	
+		Application.LoadLevel(GameState.GetCurrentLevel());	
 	}
 	
 	public void TransitionToPrimaryWeapon()

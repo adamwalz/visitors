@@ -17,12 +17,12 @@ public class GameState : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 	
-	public static void setCurrentLevel(string level)
+	public static void SetCurrentLevel(string level)
 	{
 		_currentLevel = level;
 	}
 	
-	public static string getCurrentLevel()
+	public static string GetCurrentLevel()
 	{
 		return _currentLevel;
 	}
