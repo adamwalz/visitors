@@ -72,6 +72,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 		
 		// Automatically get into play mod
 		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+			
+		if (controller == null)
+		{
+			// Automatically get into play mod
+			controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
+			
+		}
+
 		if (controller != null)
 			controller.SwitchGameView();
 		else
@@ -93,6 +101,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 		// Automatically get out of play mode
 		// Automatically get into play mod
 		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+		
+		if (controller == null)
+		{
+			// Automatically get into play mod
+			controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
+			
+		}
 		if (controller != null)
 			controller.SwitchGameView();
 		else
