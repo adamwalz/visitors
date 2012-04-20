@@ -15,6 +15,8 @@ var playerNumberInt : int;
 var lastRefreshTime = -1000.0;
 var refreshTimer = 0.5;
 
+var nextLevel = "MP-Castle-AR";
+
 function OnGUI ()
 {
 	// Checking if you are connected to the server or not
@@ -37,7 +39,7 @@ function OnGUI ()
 					Network.maxConnections = playerNumberInt - 1;
 					
 					MasterServer.updateRate = 3;
-					MasterServer.RegisterHost("BlockGame", gameName, "Open");
+					MasterServer.RegisterHost("Visitors", gameName, "Open");
 				
 				
 					// Notify our objects that the level and the network is ready
@@ -47,7 +49,7 @@ function OnGUI ()
 						go.SendMessage("OnNetworkLoadedLevel", SendMessageOptions.DontRequireReceiver);	
 					}
 				
-					Application.LoadLevel("sampleHUDnetworking");
+					Application.LoadLevel(nextLevel);
 				}
 				
 				catch (err)
@@ -65,14 +67,14 @@ function OnGUI ()
 		{
 			lastRefreshTime = Time.realtimeSinceStartup;
 			MasterServer.ClearHostList();
-			MasterServer.RequestHostList("BlockGame");
+			MasterServer.RequestHostList("Visitors");
 		}
 		
 		if (GUI.Button (new Rect(10,500,200,100),"Show Joinable Games"))
 		{
 			lastRefreshTime = Time.realtimeSinceStartup;
 			MasterServer.ClearHostList();
-			MasterServer.RequestHostList("BlockGame");
+			MasterServer.RequestHostList("Visitors");
 		}
 		
 		var data : HostData[] = MasterServer.PollHostList();
@@ -113,7 +115,7 @@ function OnGUI ()
 			{
 				// Connect to HostData struct, internally the correct method is used (GUID when using NAT).
 				Network.Connect(element);
-				Application.LoadLevel("sampleHUDnetworking");			
+				Application.LoadLevel(nextLevel);			
 			}
 			
 			GUILayout.EndHorizontal();	
