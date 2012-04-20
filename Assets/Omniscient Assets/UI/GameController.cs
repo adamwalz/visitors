@@ -13,6 +13,7 @@ public class GameController : MonoBehaviour
 	private PauseMenu _pauseMenu;
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
+	private bool _searching;
 	
 	public AudioClip[] soundEffects = new AudioClip[2];
 	//public AudioSource shootSound;
@@ -22,6 +23,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
+		_searching = true;
 		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
@@ -41,7 +43,6 @@ public class GameController : MonoBehaviour
 		_playingView.SwitchWeaponButton.ButtonPressed += new EventHandler(SwitchWeaponButtonPressed);
 		_playingView.FireButton.ButtonPressed += new EventHandler(FireButtonPressed);
 		_mainScreen.AddView(_playingView);
-		_searchingView.Show(true);
 		
 		_pauseMenu = (PauseMenu)gameObject.AddComponent("PauseMenu");
 		_pauseMenu.Init();
@@ -55,6 +56,41 @@ public class GameController : MonoBehaviour
 		
 		//AudioClip[] soundEffects = GetComponents(AudioSource);
 		
+	}
+	
+	public void Update()
+	{
+		/*
+		// If we are searching but the searching view is not showing...
+		if(_searching && _searchingView.State != GameView.GameViewState.Showing)
+		{
+			// If the playing view is still showing, get rid of it
+			if(_playingView.State == GameView.GameViewState.Showing)
+			{
+				_playingView.Hide(false);
+			}
+			// If the playing view is hidden, but the searching view is not showing, start showing it
+			if(_playingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
+			{
+				_searchingView.Show(false);
+			}
+		}
+		
+		// If we are playing but the playing view is not showing...
+		if(!_searching && _playingView.State != GameView.GameViewState.Showing)
+		{
+			// If the searching view is still showing, get rid of it
+			if(_searchingView.State == GameView.GameViewState.Showing)
+			{
+				_searchingView.Hide(false);
+			}
+			// If the searching view is hidden, but the playing view is not showing, start showing it
+			if(_searchingView.State == GameView.GameViewState.Hidden && _searchingView.State != GameView.GameViewState.AnimatingIn)
+			{
+				_playingView.Show(false);
+			}
+		}
+		*/
 	}
 			
 	public void ResumePressed(object sender)	
@@ -110,34 +146,20 @@ public class GameController : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
-		StartCoroutine(TransitionToPlayingView());
+		_searching = false;
 	}
 	
 	public void SwitchToPlayingView()
 	{
-		StartCoroutine(TransitionToPlayingView());
+		_searching = false;
+		_searchingView.Hide(false);
+		_playingView.Show(false);
 	}
 	public void SwitchToSearchingView()
 	{
-		StartCoroutine(TransitionToSearchingView());	
-	}
-	
-	IEnumerator TransitionToPlayingView()
-	{
-		_searchingView.Hide(true);
+		_searching = true;	
+		_searchingView.Show(false);
 		_playingView.Hide(false);
-		yield return new WaitForSeconds(_searchingView.AnimationDuration);
-		_playingView.Hide(false);
-		_playingView.Show(true);
-	}
-	
-	IEnumerator TransitionToSearchingView()
-	{
-		_playingView.Hide(true);
-		_searchingView.Hide(false);
-		yield return new WaitForSeconds(_searchingView.AnimationDuration);
-		_searchingView.Hide(false);
-		_searchingView.Show(true);
 	}
 
 	// IHUDGameViewController methods
