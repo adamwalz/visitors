@@ -43,7 +43,6 @@ public class GameController : MonoBehaviour
 		_pauseMenu.ResumeButton.ButtonPressed += new EventHandler(ResumePressed);
 		_pauseMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
 		_pauseMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
-		print(_pauseMenu);
 		_mainScreen.AddView(_pauseMenu);
 	}
 			

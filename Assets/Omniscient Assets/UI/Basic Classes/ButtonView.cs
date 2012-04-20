@@ -63,6 +63,13 @@ public class ButtonView : GameView
 			color.b = 0.3f;
 			color.a = 0.2f;
 		}
+		else
+		{
+			color.r = 0.5f;
+			color.g = 0.5f;
+			color.b = 0.5f;
+			color.a = 0.5f;
+		}
 		_buttonImage.ImageGUITexture.color = color;
 	}
 	
