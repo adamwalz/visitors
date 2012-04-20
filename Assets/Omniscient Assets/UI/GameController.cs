@@ -102,13 +102,13 @@ public class GameController : MonoBehaviour
 	public void SwitchToPlayingView()
 	{
 		// if in search view, go to play view
-		if (_searchingView.State == GameView.GameViewState.Showing)
+		if (_searchingView.State == GameView.GameViewState.Showing || _searchingView.State == GameView.GameViewState.AnimatingIn)
 			StartCoroutine(TransitionToPlayingView());
 	}
 	public void SwitchToSearchingView()
 	{
 		// if in play view, go to serach view
-		if (_playingView.State == GameView.GameViewState.Showing)
+		if (_playingView.State == GameView.GameViewState.Showing || _searchingView.State == GameView.GameViewState.AnimatingIn)
 			StartCoroutine(TransitionToSearchingView());	
 	}
 	
@@ -130,7 +130,7 @@ public class GameController : MonoBehaviour
 		if(_searchingView.State == GameView.GameViewState.AnimatingIn || _searchingView.State == GameView.GameViewState.AnimatingOut
 			|| _playingView.State == GameView.GameViewState.AnimatingIn || _playingView.State == GameView.GameViewState.AnimatingOut)
 		{
-			yield return new WaitForSeconds(_searchingView.AnimationDuration);
+			yield return new WaitForSeconds(_searchingView.AnimationDuration * 2);
 		}
 		Debug.Log("Transition to searching view called");
 		_playingView.Hide(true);

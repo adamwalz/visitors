@@ -2,13 +2,15 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 
-public class NewLvlSelectCS : MonoBehaviour {
+public class NewLvlSelectCS : MonoBehaviour 
+{
 	
 	public string scene;
 	
 	// Use this for initialization
-	void Start () {
-	
+	void Start () 
+	{
+		GameState.setCurrentLevel(scene);
 	}
 	
 	// Update is called once per frame
