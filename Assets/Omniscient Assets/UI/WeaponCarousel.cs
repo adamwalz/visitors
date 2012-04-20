@@ -46,7 +46,7 @@ public class WeaponCarousel : GameView
 		_primaryWeaponIndex = -1;
 		_carouselAnimating = 0;
 		_carouselAnimationTimer = 0.0f;
-		_carouselAnimationSpeed = 200.0f;
+		_carouselAnimationSpeed = 300.0f;
 		
 		string[] weaponTextures = Weapon.WeaponIDs();
 		
