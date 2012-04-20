@@ -161,6 +161,10 @@ public class GameController : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
+		if (GameState.GetCurrentLevel().Contains("Egypt"))
+			Application.LoadLevel("SP-Egypt-NonAR");
+		else if (GameState.GetCurrentLevel().Contains("Castle"))
+			Application.LoadLevel("SP-Castle-NonAR");
 		_searching = false;
 	}
 	
