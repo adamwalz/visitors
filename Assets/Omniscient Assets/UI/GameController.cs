@@ -99,14 +99,16 @@ public class GameController : MonoBehaviour
 		StartCoroutine(TransitionToPlayingView());
 	}
 	
-	public void SwitchGameView()
+	public void SwitchToPlayingView()
 	{
-		bool searchingViewShowing = (_searchingView.State == GameView.GameViewState.Showing);
-		bool searchingViewAnimating = (_searchingView.State == GameView.GameViewState.AnimatingIn);
-		
-		if (searchingViewShowing || searchingViewAnimating)
+		// if in search view, go to play view
+		if (_searchingView.State == GameView.GameViewState.Showing)
 			StartCoroutine(TransitionToPlayingView());
-		else
+	}
+	public void SwitchToSearchingView()
+	{
+		// if in play view, go to serach view
+		if (_playingView.State == GameView.GameViewState.Showing)
 			StartCoroutine(TransitionToSearchingView());	
 	}
 	
