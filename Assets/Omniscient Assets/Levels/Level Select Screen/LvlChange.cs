@@ -11,7 +11,8 @@ public class LvlChange : MonoBehaviour {
 	{	
 		if (Input.GetMouseButtonDown(0))
 		{
-			Application.LoadLevel(SceneName);
+			GameState.setCurrentLevel(SceneName);
+			Application.LoadLevel("WeaponSwitcher");
 			Debug.Log("Should Of Shown Click");
 		}
 		

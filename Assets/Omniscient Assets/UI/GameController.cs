@@ -102,7 +102,10 @@ public class GameController : MonoBehaviour
 	
 	public void SwitchGameView()
 	{
-		if (_searchingView.Show)
+		bool searchingViewShowing = (_searchingView.State == GameView.GameViewState.Showing);
+		bool searchingViewAnimating = (_searchingView.State == GameView.GameViewState.AnimatingIn);
+		
+		if (searchingViewShowing || searchingViewAnimating)
 			StartCoroutine(TransitionToPlayingView());
 		else
 			StartCoroutine(TransitionToSearchingView());	
@@ -110,6 +113,7 @@ public class GameController : MonoBehaviour
 	
 	IEnumerator TransitionToPlayingView()
 	{
+		
 		Debug.Log("Got here from trackable");
 		_searchingView.Hide(true);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
@@ -146,7 +150,7 @@ public class GameController : MonoBehaviour
 		
 		GameObject cam = GameObject.Find("ARCamera");
 		Vector3 fwd = cam.transform.forward * 50000;
-		ShootWithoutNetworkInstantiate(cam.transform.position, cam.transform.rotation, fwd, _weaponIndex);
+		ShootWithoutNetworkInstantiate(cam.transform.position, cam.transform.rotation, fwd);
 		_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
 
 		
@@ -161,27 +165,19 @@ public class GameController : MonoBehaviour
 	}
 	
 	
-	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd, int weaponIndex)
+	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd)
 	{
-		//GameObject cam = GameObject.Find("ARCamera");
-		Transform spawn;
-		if (weaponIndex == 0)
-			spawn = (Transform) Resources.Load("fireballPrefab 1", typeof(Transform));
+		bool primaryWeapon = (_weaponIndex == 0);
+		string weaponID = "";
+		if (primaryWeapon)
+			weaponID = GameState.LoadPrimaryWeapon();
 		else
-			spawn = (Transform) Resources.Load("fireballPrefab 5", typeof(Transform));
-
-		
-		//GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-		//GameObject instance = (GameObject)Instantiate(thePrefab, cam.transform.position, cam.transform.rotation);
+			weaponID = GameState.LoadSecondaryWeapon();
+		Debug.Log("Shooting: " + weaponID + ". Primary: " + primaryWeapon);
+		Transform spawn = (Transform) Resources.Load(weaponID, typeof(Transform));
 		
 		Transform newWeapon = (Transform)Instantiate(spawn, position, rotation);
 		newWeapon.rigidbody.AddForce(fwd);
-		
-		
-		
-		//GameObject instance = (GameObject)Instantiate(thePrefab, position, rotation);
-		//Vector3 fwd = cam.transform.forward * 50000;
-		//instance.rigidbody.AddForce(fwd);
 	}
 	
 	public void HUDGameViewMenuButtonPressed()

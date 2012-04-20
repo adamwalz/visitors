@@ -9,10 +9,22 @@ using System.Collections;
 // level and the player's current weapon selections. 
 public class GameState : MonoBehaviour 
 {
+	static string _currentLevel;
+	
 	public static void SaveScore(string level, int score)
 	{
 		PlayerPrefs.SetInt("score" + level, score);
 		PlayerPrefs.Save();
+	}
+	
+	public static void setCurrentLevel(string level)
+	{
+		_currentLevel = level;
+	}
+	
+	public static string getCurrentLevel()
+	{
+		return _currentLevel;
 	}
 	
 	public static int LoadScore(string level)
@@ -24,6 +36,7 @@ public class GameState : MonoBehaviour
 	{
 		PlayerPrefs.SetString("primaryWeapon", weaponName);
 		PlayerPrefs.Save();
+		Debug.Log("Saving primary weapon: " + weaponName);
 	}
 	
 	public static string LoadPrimaryWeapon()
@@ -35,6 +48,7 @@ public class GameState : MonoBehaviour
 	{
 		PlayerPrefs.SetString("secondaryWeapon", weaponName);
 		PlayerPrefs.Save();
+		Debug.Log("Saving secondary weapon: " + weaponName);
 	}
 	
 	public static string LoadSecondaryWeapon()
