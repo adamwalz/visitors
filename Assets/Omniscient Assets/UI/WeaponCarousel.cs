@@ -76,14 +76,14 @@ public class WeaponCarousel : GameView
 		_leftButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_leftButton.Init();
 		_leftButton.ButtonImageName = "CarouselLeft";
-		_leftButton.HighlightImageName = "CarouselLeft";
+		_leftButton.HighlightImageName = "CarouselLeftHighlight";
 		_leftButton.ButtonPressed += new EventHandler(LeftButtonPressed);
 		AddSubview(_leftButton);
 		
 		_rightButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_rightButton.Init();
 		_rightButton.ButtonImageName = "CarouselRight";
-		_rightButton.HighlightImageName = "CarouselRight";
+		_rightButton.HighlightImageName = "CarouselRightHighlight";
 		_rightButton.ButtonPressed += new EventHandler(RightButtonPressed);
 		AddSubview(_rightButton);
 	}
