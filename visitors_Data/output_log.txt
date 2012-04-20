@@ -8,6 +8,15 @@ Direct3D:
 desktop: 1600x900 59Hz; virtual: 1600x900 at 0,0
 <I> Initializing (RawInput).
 <RI> Input initialized.
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+- Completed reload, in  0.086 seconds
+Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
 GfxDevice: creating device client; threaded=1
 Direct3D:
     Version:  Direct3D 9.0c [nvd3dum.dll 8.17.12.8562]
@@ -25,23 +34,15 @@ Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Dat
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
 Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.064 seconds
+- Completed reload, in  0.074 seconds
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
-Begin MonoManager ReloadAssembly
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\UnityEngine.dll into Unity Child Domain
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
-Loading C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
-- Completed reload, in  0.063 seconds
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 5.358088 ms.
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 3.994878 ms.
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 247. Operation took 12.723090 ms.
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 247. Operation took 8.561215 ms.
 DllNotFoundException: QCARWrapper
   at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
   at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
@@ -74,14 +75,13 @@ DllNotFoundException: QCARWrapper
  
 (Filename:  Line: -1)
 
-Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\System.Core.dll (this message is harmless)
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 4.408815 ms.
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 181. Operation took 3.280703 ms.
 Platform assembly: C:\Users\Keeyon\Documents\SeniorProject\Visitors\visitors_Data\Managed\Boo.Lang.dll (this message is harmless)
 Unloading 4 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 248. Operation took 4.822753 ms.
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 248. Operation took 6.088844 ms.
 DllNotFoundException: QCARWrapper
   at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
   at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
@@ -143,7 +143,7 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 NullReferenceException: Object reference not set to an instance of an object
-  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
   at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
   at GameScreen.Update () [0x00000] in <filename unknown>:0 
  
@@ -192,6 +192,27 @@ NullReferenceException: Object reference not set to an instance of an object
 (Filename:  Line: -1)
 
 NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
   at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
   at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
   at GameScreen.Update () [0x00000] in <filename unknown>:0 
@@ -205,9 +226,61 @@ NullReferenceException: Object reference not set to an instance of an object
  
 (Filename:  Line: -1)
 
-The server has disconnected from the client. Most likely the server has shut down.
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
  
-(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/Network/NetworkManager.cpp Line: 740)
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameControllerNetworking.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
 InvalidCastException: Cannot cast from source type to destination type.
   at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
@@ -249,4 +322,659 @@ DllNotFoundException: QCARWrapper
 
 Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
 
-Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 6.621218 ms.
+Unloading 24 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 5.216556 ms.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 225. Operation took 5.114700 ms.
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 261. Operation took 4.431318 ms.
+X Original: 556
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 223. Operation took 10.834021 ms.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 223. Operation took 10.561616 ms.
+Saving primary weapon: DestroyBall
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Saving secondary weapon: StrongBall
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 20 unused Assets to reduce memory usage. Loaded Objects now: 250. Operation took 12.672755 ms.
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
+  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
+  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchToSearchingView () [0x00000] in <filename unknown>:0 
+  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
+  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Transition to playing view called
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Transition to searching view called
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Trackable Target1 lost
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+StopQCAR
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
+  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 29 unused Assets to reduce memory usage. Loaded Objects now: 233. Operation took 11.847841 ms.
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 10 unused Assets to reduce memory usage. Loaded Objects now: 266. Operation took 12.585703 ms.
+X Original: 755
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -6
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -20
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -36
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -58
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -48
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -54
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -54
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -48
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -32
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -22
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -12
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -18
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -14
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -28
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -30
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -38
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -34
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -38
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -46
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -50
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -52
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -32
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -28
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -30
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -26
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -34
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -20
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -28
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -24
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -26
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -30
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -18
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -16
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -6
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -32
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -60
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -84
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -118
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -84
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+GetMOuseButtonUpBeingCalled
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+X Original: 670
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -22
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -78
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -148
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -206
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -276
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -246
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -202
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: -86
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+GetMOuseButtonUpBeingCalled
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+X Original: 588
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Change of X: 0
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 11 unused Assets to reduce memory usage. Loaded Objects now: 227. Operation took 10.187355 ms.
+Unloading 1 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 1 unused Assets to reduce memory usage. Loaded Objects now: 227. Operation took 10.011476 ms.
+Saving primary weapon: DestroyBall
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Saving secondary weapon: StrongBall
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Unloading 2 Unused Serialized files (Serialized files now loaded: 0 / Dirty serialized files: 0)
+
+Unloading 23 unused Assets to reduce memory usage. Loaded Objects now: 250. Operation took 13.200391 ms.
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) TrackerManager:trackerManagerInitTracker (int)
+  at TrackerManager.InitTracker (Type trackerType) [0x00000] in <filename unknown>:0 
+  at DataSetLoadBehaviour.Awake () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchToSearchingView () [0x00000] in <filename unknown>:0 
+  at DefaultTrackableEventHandler.OnTrackingLost () [0x00000] in <filename unknown>:0 
+  at DefaultTrackableEventHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at DefaultInitializationErrorHandler.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) QCAR:getInitErrorCode ()
+  at QCAR.CheckInitializationError () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Transition to playing view called
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.FireButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at GameController.SwitchWeaponButtonPressed (System.Object sender) [0x00000] in <filename unknown>:0 
+  at ButtonView.TouchEnded (Vector2 touch) [0x00000] in <filename unknown>:0 
+  at GameScreen.Update () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+StopQCAR
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+DllNotFoundException: QCARWrapper
+  at (wrapper managed-to-native) CameraDevice:cameraDeviceStopCamera ()
+  at CameraDevice.Stop () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.StopQCAR () [0x00000] in <filename unknown>:0 
+  at QCARBehaviour.OnDisable () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
+
+Transition to searching view called
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
+Trackable Target1 lost
+ 
+(Filename: C:/BuildAgent/work/b0bcff80449a48aa/Runtime/ExportGenerated/StandalonePlayer/UnityEngineDebug.cpp Line: 43)
+
