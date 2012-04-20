@@ -10,6 +10,7 @@ public class WeaponCarousel : GameView
 	private ButtonView _rightButton;
 	private int _selectedWeaponIndex;
 	private int _carouselWeaponListOffset;
+	private int _primaryWeaponIndex;
 	
 	public event EventHandler WeaponSelected;
 	
@@ -19,28 +20,43 @@ public class WeaponCarousel : GameView
 		set{SelectWeapon(value);}
 	}
 	
+	public int PrimaryWeaponIndex
+	{
+		get{return _primaryWeaponIndex;}
+		set{_primaryWeaponIndex = value;}
+	}
+	
+	public int CarouselWeaponListOffset
+	{
+		get{return _carouselWeaponListOffset;}
+		set{_carouselWeaponListOffset = value;}
+	}
+	
 	public override void Init ()
 	{
 		base.Init ();
 		
 		_carouselWeaponListOffset = 0;
 		_selectedWeaponIndex = 0;
+		_primaryWeaponIndex = -1;
+		
+		string[] weaponTextures = Weapon.WeaponIDs();
 		
 		_weaponOne = (WeaponCarouselButton)gameObject.AddComponent("WeaponCarouselButton");
 		_weaponOne.Init();
-		_weaponOne.WeaponID = "FireballWeapon";
+		_weaponOne.WeaponID = weaponTextures[0];
 		_weaponOne.ButtonPressed += new EventHandler(CarouselButtonPressed);
 		AddSubview(_weaponOne);
 		
 		_weaponTwo = (WeaponCarouselButton)gameObject.AddComponent("WeaponCarouselButton");
 		_weaponTwo.Init();
-		_weaponTwo.WeaponID = "FireballWeapon";
+		_weaponTwo.WeaponID = weaponTextures[1];
 		_weaponTwo.ButtonPressed += new EventHandler(CarouselButtonPressed);
 		AddSubview(_weaponTwo);
 		
 		_weaponThree = (WeaponCarouselButton)gameObject.AddComponent("WeaponCarouselButton");
 		_weaponThree.Init();
-		_weaponThree.WeaponID = "FireballWeapon";
+		_weaponThree.WeaponID = weaponTextures[2];
 		_weaponThree.ButtonPressed += new EventHandler(CarouselButtonPressed);
 		AddSubview(_weaponThree);
 		
@@ -96,6 +112,8 @@ public class WeaponCarousel : GameView
 	
 	public void RefreshCarouselStuff()
 	{
+		string[] weaponTextures = Weapon.WeaponIDs();
+		
 		Weapon WeaponOne = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset]);
 		Weapon WeaponTwo = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset + 1]);
 		Weapon WeaponThree = Weapon.GetWeaponById(Weapon.WeaponIDs()[_carouselWeaponListOffset + 2]);
@@ -108,9 +126,49 @@ public class WeaponCarousel : GameView
 		if(_selectedWeaponIndex == _carouselWeaponListOffset + 1) _weaponTwo.Selected = true;
 		if(_selectedWeaponIndex == _carouselWeaponListOffset + 2) _weaponThree.Selected = true;
 		
+		_weaponOne.Disabled = false;
+		_weaponTwo.Disabled = false;
+		_weaponThree.Disabled = false;
+		
+		_weaponOne.Overlay.TextureName = "";
+		_weaponTwo.Overlay.TextureName = "";
+		_weaponThree.Overlay.TextureName = "";
+		
 		if(WeaponOne.isLocked()) _weaponOne.Overlay.TextureName = "lock";
 		if(WeaponTwo.isLocked()) _weaponTwo.Overlay.TextureName = "lock";
 		if(WeaponThree.isLocked()) _weaponThree.Overlay.TextureName = "lock";
+		
+		_weaponOne.WeaponID = weaponTextures[_carouselWeaponListOffset];
+		_weaponTwo.WeaponID = weaponTextures[_carouselWeaponListOffset + 1];
+		_weaponThree.WeaponID = weaponTextures[_carouselWeaponListOffset + 2];
+		
+		if(_carouselWeaponListOffset == _primaryWeaponIndex)
+		{
+			_weaponOne.Overlay.TextureName = "PrimaryWeaponOverlay";
+			_weaponOne.Disabled = true;
+		}
+		if(_carouselWeaponListOffset + 1 == _primaryWeaponIndex)
+		{
+			_weaponTwo.Overlay.TextureName = "PrimaryWeaponOverlay";
+			_weaponTwo.Disabled = true;
+		}
+		if(_carouselWeaponListOffset + 2 == _primaryWeaponIndex)
+		{
+			_weaponThree.Overlay.TextureName = "PrimaryWeaponOverlay";
+			_weaponThree.Disabled = true;
+		}
+		
+		_leftButton.Disabled = false;
+		_rightButton.Disabled = false;
+		
+		if(_carouselWeaponListOffset == 0)
+		{
+			_leftButton.Disabled = true;	
+		}
+		if(_carouselWeaponListOffset + 3 == weaponTextures.Length)
+		{
+			_rightButton.Disabled = true;	
+		}
 	}
 	
 	public override void RefreshContent()

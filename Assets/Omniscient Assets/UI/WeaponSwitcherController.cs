@@ -13,7 +13,9 @@ public class WeaponSwitcherController : MonoBehaviour
 	private ButtonView _chooseButton;
 	private ButtonView _doneButton;
 	private WeaponCarousel _carousel;
-	private TextView _textView;
+	private TextView _nameView;
+	private TextView _descriptionView;
+	private GameEndMenu _menu;
 	
 	// Use this for initialization
 	void Start () 
@@ -69,13 +71,28 @@ public class WeaponSwitcherController : MonoBehaviour
 		_carousel.Show(false);
 		_mainScreen.AddView(_carousel);
 		
-		_textView = (TextView)gameObject.AddComponent("TextView");
-		_textView.Init();
-		_textView.Position = new Vector2(120, 50);
-		_textView.Text = "Hello";
-		_textView.FontSize = 30;
-		_textView.Show(false);
-		_mainScreen.AddView(_textView);
+		_nameView = (TextView)gameObject.AddComponent("TextView");
+		_nameView.Init();
+		_nameView.Position = new Vector2(120, 75);
+		_nameView.Text = "Hello";
+		_nameView.FontSize = 25;
+		_nameView.Show(false);
+		_mainScreen.AddView(_nameView);
+		
+		_descriptionView = (TextView)gameObject.AddComponent("TextView");
+		_descriptionView.Init();
+		_descriptionView.Position = new Vector2(120, 60);
+		_descriptionView.Text = "Hello";
+		_descriptionView.FontSize = 15;
+		_descriptionView.Show(false);
+		_mainScreen.AddView(_descriptionView);
+		
+		_menu = (GameEndMenu)gameObject.AddComponent("GameEndMenu");
+		_menu.Init();
+		_menu.Size = _mainScreen.Size;
+		_menu.Position = new Vector2(_mainScreen.Size.x / 2.0f, _mainScreen.Size.y / 2.0f);
+		_menu.Show(true);
+		_mainScreen.AddView(_menu);
 		
 		TransitionToPrimaryWeapon();
 	}
@@ -83,7 +100,18 @@ public class WeaponSwitcherController : MonoBehaviour
 	public void WeaponSelected(object sender)
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
-		_textView.Text = weaponID;
+		_nameView.Text = Weapon.GetWeaponById(weaponID).Name;
+		_descriptionView.Text = Weapon.GetWeaponById(weaponID).Description;
+		
+		_chooseButton.Disabled = false;
+		_doneButton.Disabled = false;
+		
+		if(Weapon.GetWeaponById(weaponID).isLocked()) 
+		{
+			_descriptionView.Text = Weapon.GetWeaponById(weaponID).UnlockRequirements;
+			_chooseButton.Disabled = true;
+			_doneButton.Disabled = true;
+		}
 	}
 	
 	public void BackButtonPressed(object sender)
@@ -94,7 +122,7 @@ public class WeaponSwitcherController : MonoBehaviour
 	public void ChooseButtonPressed(object sender)
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
-		GameState.SavePrimaryWeapon(weaponID);	
+		GameState.SavePrimaryWeapon(weaponID);
 		TransitionToSecondaryWeapon();
 	}
 	
@@ -107,6 +135,8 @@ public class WeaponSwitcherController : MonoBehaviour
 	
 	public void TransitionToPrimaryWeapon()
 	{
+		_carousel.PrimaryWeaponIndex = -1;
+		
 		_doneButton.Hide(false);
 		_secondaryBackground.Hide(false);
 		_backButton.Hide(false);
@@ -116,6 +146,11 @@ public class WeaponSwitcherController : MonoBehaviour
 	
 	public void TransitionToSecondaryWeapon()
 	{
+		_carousel.PrimaryWeaponIndex = _carousel.SelectedWeaponIndex;
+		if(_carousel.SelectedWeaponIndex == 0) _carousel.SelectWeapon(1);
+		else _carousel.SelectWeapon(0);
+		_carousel.CarouselWeaponListOffset = 0;
+		
 		_primaryBackground.Hide(false);
 		_chooseButton.Hide(false);
 		_secondaryBackground.Show(false);
