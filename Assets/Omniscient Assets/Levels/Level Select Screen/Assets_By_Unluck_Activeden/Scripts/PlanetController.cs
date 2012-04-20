@@ -3,9 +3,9 @@ using System.Collections;
 
 public class PlanetController : MonoBehaviour 
 {
-	private GameScreen _mainScreen;
-	private ButtonView _leftButton;
-	private ButtonView _rightButton;
+	//private GameScreen _mainScreen;
+	//private ButtonView _leftButton;
+	//private ButtonView _rightButton;
 	private float previousX;
 	private float currentX;
 	private float changeOfX;
@@ -14,6 +14,7 @@ public class PlanetController : MonoBehaviour
 
 	
 	// Use this for initialization
+	/*
 	void Start () 
 	{
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
@@ -37,7 +38,7 @@ public class PlanetController : MonoBehaviour
 		_mainScreen.AddView(_rightButton);
 		
 		print("Planet controller working!");
-	}
+	}*/
 	
 	void Update()
 	{
