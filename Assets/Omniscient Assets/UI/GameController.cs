@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameController : MonoBehaviour 
 {
@@ -13,9 +14,15 @@ public class GameController : MonoBehaviour
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
 	
+	public AudioClip[] soundEffects = new AudioClip[2];
+	//public AudioSource shootSound;
+	//public AudioSource changeWeaponSound2;
+	//public AudioClip changeWeaponSound;
+	
 	// Use this for initialization
 	void Start () 
 	{
+		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
 		_searchingView.Init();
@@ -44,6 +51,10 @@ public class GameController : MonoBehaviour
 		_pauseMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
 		_pauseMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
 		_mainScreen.AddView(_pauseMenu);
+		
+		
+		//AudioClip[] soundEffects = GetComponents(AudioSource);
+		
 	}
 			
 	public void ResumePressed(object sender)	
@@ -63,6 +74,9 @@ public class GameController : MonoBehaviour
 	
 	public void SwitchWeaponButtonPressed(object sender)
 	{
+		audio.clip = soundEffects[1];
+		audio.Play();
+		
 		if(_weaponIndex == 0) _weaponIndex = 1;
 		else _weaponIndex = 0;
 		_playingView.Switcher.CurrentWeapon = _weaponIndex;
@@ -130,6 +144,7 @@ public class GameController : MonoBehaviour
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
 		_weaponIndex = newWeapon;
+
 	}
 	
 	public void FireButtonPressed(object sender)
@@ -144,6 +159,15 @@ public class GameController : MonoBehaviour
 //		instance.rigidbody.AddForce(fwd);
 		
 
+		audio.clip = soundEffects[0];
+		audio.pitch = Random.Range(0.9F, 1.1F);
+		audio.Play();
+		//soundEffects[0].pitch = Random.Range(0.9F, 1.1F);
+		//soundEffects[0].Play();
+		
+		//audio.clip = shootSound;
+		//shootSound.pitch = Random.Range(0.9F, 1.1F);
+		//shootSound.Play();
 	
 		
 		GameObject cam = GameObject.Find("ARCamera");
