@@ -10,7 +10,7 @@ public class NewLvlSelectCS : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		GameState.setCurrentLevel(scene);
+		GameState.SetCurrentLevel(scene);
 	}
 	
 	// Update is called once per frame

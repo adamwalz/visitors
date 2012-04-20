@@ -101,40 +101,28 @@ public class GameController : MonoBehaviour
 	
 	public void SwitchToPlayingView()
 	{
-		// if in search view, go to play view
-		if (_searchingView.State == GameView.GameViewState.Showing || _searchingView.State == GameView.GameViewState.AnimatingIn)
-			StartCoroutine(TransitionToPlayingView());
+		StartCoroutine(TransitionToPlayingView());
 	}
 	public void SwitchToSearchingView()
 	{
-		// if in play view, go to serach view
-		if (_playingView.State == GameView.GameViewState.Showing || _searchingView.State == GameView.GameViewState.AnimatingIn)
-			StartCoroutine(TransitionToSearchingView());	
+		StartCoroutine(TransitionToSearchingView());	
 	}
 	
 	IEnumerator TransitionToPlayingView()
 	{
-		if(_searchingView.State == GameView.GameViewState.AnimatingIn || _searchingView.State == GameView.GameViewState.AnimatingOut
-			|| _playingView.State == GameView.GameViewState.AnimatingIn || _playingView.State == GameView.GameViewState.AnimatingOut)
-		{
-			yield return new WaitForSeconds(_searchingView.AnimationDuration);
-		}
-		Debug.Log("Transition to playing view called");
 		_searchingView.Hide(true);
+		_playingView.Hide(false);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
+		_playingView.Hide(false);
 		_playingView.Show(true);
 	}
 	
 	IEnumerator TransitionToSearchingView()
 	{
-		if(_searchingView.State == GameView.GameViewState.AnimatingIn || _searchingView.State == GameView.GameViewState.AnimatingOut
-			|| _playingView.State == GameView.GameViewState.AnimatingIn || _playingView.State == GameView.GameViewState.AnimatingOut)
-		{
-			yield return new WaitForSeconds(_searchingView.AnimationDuration * 2);
-		}
-		Debug.Log("Transition to searching view called");
 		_playingView.Hide(true);
+		_searchingView.Hide(false);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
+		_searchingView.Hide(false);
 		_searchingView.Show(true);
 	}
 
