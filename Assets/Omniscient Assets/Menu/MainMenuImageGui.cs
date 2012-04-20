@@ -97,7 +97,7 @@ public class MainMenuImageGui : MonoBehaviour {
 			if(_singlePlayerGUITexture.HitTest(Input.mousePosition))
 			{
 				 if(_activeButton == _singlePlayerGUITexture)
-					Application.LoadLevel("sampleHudCastle");
+					Application.LoadLevel("PlanetEarthScene");
 			}
 			if(_multiPlayerGUITexture.HitTest(Input.mousePosition))
 			{

@@ -100,8 +100,17 @@ public class GameController : MonoBehaviour
 		StartCoroutine(TransitionToPlayingView());
 	}
 	
+	public void SwitchGameView()
+	{
+		if (_searchingView.Show)
+			StartCoroutine(TransitionToPlayingView());
+		else
+			StartCoroutine(TransitionToSearchingView());	
+	}
+	
 	IEnumerator TransitionToPlayingView()
 	{
+		Debug.Log("Got here from trackable");
 		_searchingView.Hide(true);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
 		_playingView.Show(true);
@@ -109,6 +118,7 @@ public class GameController : MonoBehaviour
 	
 	IEnumerator TransitionToSearchingView()
 	{
+		Debug.Log("Got here from trackable");
 		_playingView.Hide(true);
 		yield return new WaitForSeconds(_searchingView.AnimationDuration);
 		_searchingView.Show(true);
@@ -176,7 +186,7 @@ public class GameController : MonoBehaviour
 	
 	public void HUDGameViewMenuButtonPressed()
 	{
-		Application.LoadLevel("VisitorsMainScene");
+		Application.LoadLevel("Main Menu");
 	}
 	
 	public void ResetLevel()

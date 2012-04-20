@@ -69,7 +69,14 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         foreach (Renderer component in rendererComponents) {
             component.enabled = true;
         }
-
+		
+		// Automatically get into play mod
+		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+		if (controller != null)
+			controller.SwitchGameView();
+		else
+			Debug.Log("Controller null in OnTrackingFound");
+		
         Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " found");
     }
 
@@ -82,7 +89,15 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         foreach (Renderer component in rendererComponents) {
             component.enabled = false;
         }
-
+		
+		// Automatically get out of play mode
+		// Automatically get into play mod
+		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+		if (controller != null)
+			controller.SwitchGameView();
+		else
+			Debug.Log("Controller null in OnTrackingLost");
+		
         Debug.Log("Trackable " + mTrackableBehaviour.TrackableName + " lost");
     }
 
