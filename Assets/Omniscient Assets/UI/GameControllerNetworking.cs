@@ -101,6 +101,19 @@ public class GameControllerNetworking : MonoBehaviour
 		StartCoroutine(TransitionToPlayingView());
 	}
 	
+	public void SwitchToPlayingView()
+	{
+		// if in search view, go to play view
+		if (_searchingView.State == GameView.GameViewState.Showing)
+			StartCoroutine(TransitionToPlayingView());
+	}
+	public void SwitchToSearchingView()
+	{
+		// if in play view, go to serach view
+		if (_playingView.State == GameView.GameViewState.Showing)
+			StartCoroutine(TransitionToSearchingView());
+	}
+	
 	IEnumerator TransitionToPlayingView()
 	{
 		_searchingView.Hide(true);

@@ -81,7 +81,7 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 		}
 
 		if (controller != null)
-			controller.SwitchGameView();
+			controller.SwitchToPlayingView();
 		else
 			Debug.Log("Controller null in OnTrackingFound");
 		
@@ -99,17 +99,13 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         }
 		
 		// Automatically get out of play mode
-		// Automatically get into play mod
-		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
-		
-		if (controller == null)
-		{
-			// Automatically get into play mod
+		GameController controller;
+		controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+		if (controller == null) // If in networking mode
 			controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
-			
-		}
+
 		if (controller != null)
-			controller.SwitchGameView();
+			controller.SwitchToSearchingView();
 		else
 			Debug.Log("Controller null in OnTrackingLost");
 		

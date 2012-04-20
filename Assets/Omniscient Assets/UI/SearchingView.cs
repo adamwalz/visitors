@@ -96,6 +96,7 @@ public class SearchingView : GameView
 			Vector2 printButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomLeftAnchor);
 			printButtonPosition += new Vector2(10, -10);
 			_printButton.SetPosition(printButtonPosition, GameViewAnchor.BottomLeftAnchor);
+			_printButton.Show(false);
 		
 			_playWithoutButton.Size = new Vector2(100, 100);
 			Vector2 playWithoutButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomRightAnchor);
