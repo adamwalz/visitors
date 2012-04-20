@@ -28,12 +28,12 @@ public class WeaponSwitcher : GameView
 		
 		_weaponOne = (ImageView)gameObject.AddComponent("ImageView");
 		_weaponOne.Init();
-		_weaponOne.TextureName = "fireballWeapon";
+		_weaponOne.TextureName = GameState.LoadPrimaryWeapon();
 		AddSubview(_weaponOne);
 		
 		_weaponTwo = (ImageView)gameObject.AddComponent("ImageView");
 		_weaponTwo.Init();
-		_weaponTwo.TextureName = "blueWeaponOne";
+		_weaponTwo.TextureName = GameState.LoadSecondaryWeapon();
 		AddSubview(_weaponTwo);
 		
 	}

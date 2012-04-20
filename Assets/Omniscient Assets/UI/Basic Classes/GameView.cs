@@ -293,6 +293,15 @@ public class GameView : MonoBehaviour
 		UpdateZValues();
 	}
 	
+	public void AddSubviewToFront(GameView subview)
+	{
+		_subviews.Insert(0, subview);
+		subview._parent = this;
+		subview.Screen = _screen;
+		subview.HasFocus = this.HasFocus;
+		UpdateZValues();
+	}
+	
 	public void RemoveSubview(GameView subview)
 	{
 		if(_subviews.Contains(subview))
