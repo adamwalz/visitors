@@ -1,8 +1,11 @@
 // GameView
-// By Nathan Swenson
+// Created by Nathan Swenson
 
 using UnityEngine;
 using System.Collections;
+
+// Use this for views that need to send out events, like buttons and junk
+public delegate void EventHandler(object sender);
 
 public class GameView : MonoBehaviour 
 {
