@@ -20,11 +20,13 @@ public class GameState : MonoBehaviour
 	public static void SetCurrentLevel(string level)
 	{
 		_currentLevel = level;
+		Debug.Log("Saving level: " + _currentLevel);
 	}
 	
 	public static string GetCurrentLevel()
 	{
 		return _currentLevel;
+		Debug.Log("Entering level: " + _currentLevel);
 	}
 	
 	public static int LoadScore(string level)

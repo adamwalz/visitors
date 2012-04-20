@@ -103,12 +103,15 @@ public class PieceDestructable : MonoBehaviour
         var hasSubDestructable = SpawnOnDestructPrefab != null;
 		if (hasSubDestructable)
 		{
+			Vector3 appropriateScale = new Vector3(0.18f/transform.localScale.x,0.18f/transform.localScale.y,0.18f/transform.localScale.z); 
+			GameObject imageTarget = GameObject.Find("ImageTarget");
             GameObject spawned;
             if (SpawnPrefabAtBoundsCenter)
-                spawned = PrefabCache.Instance.CreateInstance(SpawnOnDestructPrefab, this.collider.bounds.center, transform.rotation, transform.localScale);
+                spawned = PrefabCache.Instance.CreateInstance(SpawnOnDestructPrefab, this.collider.bounds.center, transform.rotation, appropriateScale);
             else
-                spawned = PrefabCache.Instance.CreateInstance(SpawnOnDestructPrefab, transform.position, transform.rotation, transform.localScale);
-            
+                spawned = PrefabCache.Instance.CreateInstance(SpawnOnDestructPrefab, transform.position, transform.rotation, appropriateScale);
+            spawned.transform.parent = imageTarget.transform;
+			
             if (spawned.rigidbody != null && rigidbody != null)
                 spawned.rigidbody.velocity = rigidbody.velocity;
 			var childContainer = spawned.GetComponent<ShardContainer>();
