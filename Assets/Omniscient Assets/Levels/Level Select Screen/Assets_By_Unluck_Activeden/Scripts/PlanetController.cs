@@ -46,7 +46,6 @@ public class PlanetController : MonoBehaviour
 		if(Input.GetMouseButtonDown(0))
 		{
 			previousX = Input.mousePosition.x;
-			print("X Original: " + Input.mousePosition.x);
 		}
 		
 		if(Input.GetMouseButton(0))
@@ -54,7 +53,6 @@ public class PlanetController : MonoBehaviour
 			currentX = Input.mousePosition.x;
 			changeOfX = (float)((currentX-previousX));
 			changeOfX = changeOfX * (float)2.0;
-			print ("Change of X: " + changeOfX);
 			
 			rotation = new Vector3(0, -changeOfX, 0);
 			transform.Rotate(rotation * Time.deltaTime*2.0F);
@@ -65,7 +63,6 @@ public class PlanetController : MonoBehaviour
 		
 		if (Input.GetMouseButtonUp(0))
 		{
-			print ("GetMOuseButtonUpBeingCalled");
 			addEndingRotation = true;
 			changeOfX = changeOfX/2;
 		}

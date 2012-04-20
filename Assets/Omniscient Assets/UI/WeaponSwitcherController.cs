@@ -122,6 +122,7 @@ public class WeaponSwitcherController : MonoBehaviour
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
 		GameState.SaveSecondaryWeapon(weaponID);
+		Debug.Log("Current Level" + GameState.GetCurrentLevel());
 		Application.LoadLevel(GameState.GetCurrentLevel());	
 	}
 	
