@@ -189,7 +189,7 @@ public class GameController : MonoBehaviour
 	
 		
 		GameObject cam = GameObject.Find("ARCamera");
-		Vector3 fwd = cam.transform.forward * 50000;
+		Vector3 fwd = cam.transform.forward * 10000;
 		ShootWithoutNetworkInstantiate(cam.transform.position, cam.transform.rotation, fwd);
 		_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
 

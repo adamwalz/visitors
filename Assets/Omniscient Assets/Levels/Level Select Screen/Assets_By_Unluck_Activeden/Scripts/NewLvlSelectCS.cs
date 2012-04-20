@@ -8,7 +8,7 @@ public class NewLvlSelectCS : MonoBehaviour
 	public string scene;
 	
 	// Use this for initialization
-	void Start ()
+	void Start () 
 	{
 		GameState.SetCurrentLevel(scene);
 	}
