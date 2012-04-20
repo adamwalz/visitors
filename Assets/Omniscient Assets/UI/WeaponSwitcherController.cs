@@ -65,17 +65,25 @@ public class WeaponSwitcherController : MonoBehaviour
 		_carousel.Init();
 		_carousel.Size = new Vector2(_mainScreen.Size.x, 200);
 		_carousel.SetPosition(new Vector2(_mainScreen.Size.x / 2, _mainScreen.Size.y / 2), GameView.GameViewAnchor.MiddleAnchor);
+		_carousel.WeaponSelected += new EventHandler(WeaponSelected);
 		_carousel.Show(false);
 		_mainScreen.AddView(_carousel);
 		
 		_textView = (TextView)gameObject.AddComponent("TextView");
 		_textView.Init();
 		_textView.Position = new Vector2(120, 50);
-		_textView.Text = "";
+		_textView.Text = "Hello";
+		_textView.FontSize = 30;
 		_textView.Show(false);
 		_mainScreen.AddView(_textView);
 		
 		TransitionToPrimaryWeapon();
+	}
+	
+	public void WeaponSelected(object sender)
+	{
+		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
+		_textView.Text = weaponID;
 	}
 	
 	public void BackButtonPressed(object sender)
@@ -85,13 +93,15 @@ public class WeaponSwitcherController : MonoBehaviour
 	
 	public void ChooseButtonPressed(object sender)
 	{
-		GameState.SavePrimaryWeapon("weaponOne");	
+		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
+		GameState.SavePrimaryWeapon(weaponID);	
 		TransitionToSecondaryWeapon();
 	}
 	
 	public void DoneButtonPressed(object sender)
 	{
-		GameState.SaveSecondaryWeapon("weaponTwo");
+		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
+		GameState.SaveSecondaryWeapon(weaponID);
 		Application.LoadLevel("VisitorsMainScene");	
 	}
 	

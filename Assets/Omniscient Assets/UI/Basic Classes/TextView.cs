@@ -8,6 +8,7 @@ public class TextView : GameView
 {
 	private string _text;
 	private GUIText _GUIText;
+	private int _fontSize;
 	
 	public GUIText InternalGUIText
 	{
@@ -26,6 +27,19 @@ public class TextView : GameView
 				}
 			}
 	}
+	
+	public int FontSize
+	{
+		get { return _fontSize; }
+		set 
+		{
+			_fontSize = value;
+			if(State != GameView.GameViewState.Hidden)
+			{
+				_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();	
+			}
+		}
+	}
 
 	// Use this for initialization
 	public new void Init () 
@@ -39,7 +53,7 @@ public class TextView : GameView
 		base.Show(animated);
 		_GUIText = (GUIText)gameObject.AddComponent("GUIText");
 		_GUIText.anchor = TextAnchor.LowerLeft;
-		_GUIText.fontSize = 50;
+		_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();
 		_GUIText.text = _text;
 	}
 	

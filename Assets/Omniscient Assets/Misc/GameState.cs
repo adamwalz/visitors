@@ -9,13 +9,13 @@ using System.Collections;
 // level and the player's current weapon selections. 
 public class GameState : MonoBehaviour 
 {
-	public static void SaveScore(int level, int score)
+	public static void SaveScore(string level, int score)
 	{
 		PlayerPrefs.SetInt("score" + level, score);
 		PlayerPrefs.Save();
 	}
 	
-	public static int LoadScore(int level)
+	public static int LoadScore(string level)
 	{
 		return PlayerPrefs.GetInt("score" + level);
 	}
