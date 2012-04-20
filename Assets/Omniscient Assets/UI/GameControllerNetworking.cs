@@ -49,6 +49,9 @@ public class GameControllerNetworking : MonoBehaviour
 		_pauseMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
 		print(_pauseMenu);
 		_mainScreen.AddView(_pauseMenu);
+		
+		GameState.SavePrimaryWeapon("Fireball1");
+		GameState.SaveSecondaryWeapon("StrongBall");
 	}
 			
 	public void ResumePressed(object sender)	
@@ -141,7 +144,7 @@ public class GameControllerNetworking : MonoBehaviour
 			}
 		}
 		
-				// If we are searching but the searching view is not showing...
+		// If we are searching but the searching view is not showing...
 		if(_searching && _searchingView.State != GameView.GameViewState.Showing)
 		{
 			// If the playing view is still showing, get rid of it
@@ -243,7 +246,7 @@ public class GameControllerNetworking : MonoBehaviour
 			//shoot
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 fwd = cam.transform.forward * 50000;
-			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd);
+			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd, _weaponIndex );
 			_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
 		}
 
@@ -259,9 +262,9 @@ public class GameControllerNetworking : MonoBehaviour
 	}
 	
 	[RPC]
-	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd)
+	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd, int currentWeapon)
 	{
-		bool primaryWeapon = (_weaponIndex == 0);
+		bool primaryWeapon = (currentWeapon == 0);
 		string weaponID = "";
 		if (primaryWeapon)
 			weaponID = GameState.LoadPrimaryWeapon();

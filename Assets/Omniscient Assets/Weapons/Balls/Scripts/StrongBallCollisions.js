@@ -1,7 +1,7 @@
 //var scriptName : GameObject;
 
 
-function OnCollisionEnter(collision : Collision)
+/*function OnCollisionEnter(collision : Collision)
 {
 	Debug.Log("Colliding With: " + collision.gameObject.name);
     if (collision.gameObject.name == "Temple1")
@@ -9,4 +9,4 @@ function OnCollisionEnter(collision : Collision)
     	collision.collider.gameObject.GetComponent(RedColor).SendMessage("ChangeColor");	
     }
 
-}
+}*/

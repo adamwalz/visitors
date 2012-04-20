@@ -70,18 +70,18 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
             component.enabled = true;
         }
 		
-		// Automatically get into play mod
-		GameController controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
-			
-		if (controller == null)
-		{
-			// Automatically get into play mod
-			controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
-			
-		}
+// Automatically get out of play mode
+		GameController controller = null;
+		GameControllerNetworking networkingController = null;
+		
+		controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
+		if (controller == null) // If in networking mode
+		networkingController = (GameControllerNetworking)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
 
 		if (controller != null)
 			controller.SwitchToPlayingView();
+		else if (networkingController != null)
+			networkingController.SwitchToPlayingView();
 		else
 			Debug.Log("Controller null in OnTrackingFound");
 		
@@ -94,18 +94,23 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
         Renderer[] rendererComponents = GetComponentsInChildren<Renderer>();
 
         // Disable rendering:
-        foreach (Renderer component in rendererComponents) {
+        foreach (Renderer component in rendererComponents) 
+		{
             component.enabled = false;
         }
 		
 		// Automatically get out of play mode
-		GameController controller;
+		GameController controller = null;
+		GameControllerNetworking networkingController = null;
+		
 		controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
 		if (controller == null) // If in networking mode
-			controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
+		networkingController = (GameControllerNetworking)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
 
 		if (controller != null)
 			controller.SwitchToSearchingView();
+		else if (networkingController != null)
+			networkingController.SwitchToSearchingView();
 		else
 			Debug.Log("Controller null in OnTrackingLost");
 		

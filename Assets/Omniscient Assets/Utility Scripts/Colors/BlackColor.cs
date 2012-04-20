@@ -10,7 +10,7 @@ public class BlackColor : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		renderer.material.color = Color.black;
+		//renderer.material.color = Color.black;
 		
 	}
 }
