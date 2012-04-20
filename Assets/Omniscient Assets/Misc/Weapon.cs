@@ -92,7 +92,7 @@ public class Weapon : Object
 		else if(id.Equals("tornado"))
 		{
 			weapon._id = "tornado";
-			weapon._name = "weapon one";
+			weapon._name = "Tornado";
 			weapon._description = "Inflicts continuous damage to rip buildings apart over time";
 			weapon._unlockRequirements = "Conquer 4 Civilizations";
 		}
@@ -118,6 +118,15 @@ public class Weapon : Object
 	// A computed value to determine if the weapon is currently locked
 	public bool isLocked()
 	{
-		return true;
+		string[] weaponIDs = WeaponIDs();
+		for(int i = 0; i < weaponIDs.Length; i++)
+		{
+			if(_id.Equals(weaponIDs[i]))
+			{
+				if(i > 2) return true;	
+			}
+		}
+		
+		return false;
 	}
 }
