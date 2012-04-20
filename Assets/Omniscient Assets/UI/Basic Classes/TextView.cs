@@ -8,14 +8,15 @@ public class TextView : GameView
 {
 	private string _text;
 	private GUIText _GUIText;
+	private int _fontSize;
 	
 	public GUIText InternalGUIText
 	{
 		get{return _GUIText;}
 	}
 	
-	// The filename of the texture to be used
-	public string TextureName
+	// The text for the GUIText
+	public string Text
 	{
 		get { return _text; }
 		set { 
@@ -25,6 +26,19 @@ public class TextView : GameView
 					_GUIText.text = _text;
 				}
 			}
+	}
+	
+	public int FontSize
+	{
+		get { return _fontSize; }
+		set 
+		{
+			_fontSize = value;
+			if(State != GameView.GameViewState.Hidden)
+			{
+				_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();	
+			}
+		}
 	}
 
 	// Use this for initialization
@@ -38,7 +52,9 @@ public class TextView : GameView
 	{
 		base.Show(animated);
 		_GUIText = (GUIText)gameObject.AddComponent("GUIText");
-		_GUIText.pixelOffset = new Vector2(0, 0);
+		_GUIText.anchor = TextAnchor.LowerLeft;
+		_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();
+		_GUIText.text = _text;
 	}
 	
 	protected override void OnHidden()

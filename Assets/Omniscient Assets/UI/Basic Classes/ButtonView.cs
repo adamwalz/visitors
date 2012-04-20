@@ -1,8 +1,6 @@
 using UnityEngine;
 using System.Collections;
 
-public delegate void EventHandler(object sender);
-
 public class ButtonView : GameView
 {
 	private ImageView _buttonImage;
