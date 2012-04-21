@@ -10,6 +10,7 @@ using System.Collections;
 public class GameState : MonoBehaviour 
 {
 	static string _currentLevel;
+	static bool _playingMultipler;
 	
 	public static void SaveScore(string level, int score)
 	{
@@ -56,5 +57,15 @@ public class GameState : MonoBehaviour
 	public static string LoadSecondaryWeapon()
 	{
 		return PlayerPrefs.GetString("secondaryWeapon");
+	}
+
+	public static bool GetPlayingMultiplayer()
+	{
+		return _playingMultipler;
+	}
+	
+	public static void SetPlayingMultiplayer(bool multiplayerBoolean)
+	{
+		_playingMultipler = multiplayerBoolean;
 	}
 }
