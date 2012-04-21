@@ -36,6 +36,7 @@ public class GameState : MonoBehaviour
 	
 	public static void SavePrimaryWeapon(string weaponName)
 	{
+		
 		PlayerPrefs.SetString("primaryWeapon", weaponName);
 		PlayerPrefs.Save();
 		Debug.Log("Saving primary weapon: " + weaponName);
@@ -43,7 +44,9 @@ public class GameState : MonoBehaviour
 	
 	public static string LoadPrimaryWeapon()
 	{
-		return PlayerPrefs.GetString("primaryWeapon");
+		string weaponName = PlayerPrefs.GetString("primaryWeapon");
+		Debug.Log("Loading primary weapon: " + weaponName);
+		return weaponName;
 	}
 	
 	public static void SaveSecondaryWeapon(string weaponName)
@@ -55,6 +58,8 @@ public class GameState : MonoBehaviour
 	
 	public static string LoadSecondaryWeapon()
 	{
-		return PlayerPrefs.GetString("secondaryWeapon");
+		string weaponName = PlayerPrefs.GetString("secondaryWeapon");
+		Debug.Log("Loading primary weapon: " + weaponName);
+		return weaponName;
 	}
 }
