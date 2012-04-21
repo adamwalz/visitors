@@ -1,0 +1,53 @@
+fileFormatVersion: 2
+guid: abaca85a0bc26c440a14f51608da638a
+labels:
+- xxl
+- electronic
+- electronica
+- trance
+- beat
+- music
+- track
+- song
+- pads
+- melodic
+- space
+- melody
+- demoscene
+- sawlead
+- imphenzia
+- soundtrack
+- instrumental
+- hope
+- hopeful
+- universe
+- seamless
+- loop
+- wav
+- ogg
+- vorbis
+- looping
+- looped
+- repeating
+- short
+- small
+- relaxed
+- relax
+- slow
+- chillout
+- chill
+- calm
+- mellow
+- soft
+- sweeping
+- synth
+- synths
+AudioImporter:
+  serializedVersion: 4
+  format: 0
+  quality: 0
+  stream: 1
+  3D: 0
+  forceToMono: 0
+  useHardware: 0
+  loopable: 0
