@@ -45,8 +45,12 @@ public class TextView : GameView
 	public override void Show(bool animated)
 	{
 		base.Show(animated);
+<<<<<<< HEAD
+		if(_GUIText == null) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextView"))).GetComponent(typeof(GUIText));
+=======
 		if(_GUIText == null && _small == false) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextView"))).GetComponent(typeof(GUIText));
 		else if(_GUIText == null && _small == true) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextViewSmall"))).GetComponent(typeof(GUIText));
+>>>>>>> 94e841d0a742bec0af7989b27aa4f35a582be888
 		_GUIText.anchor = TextAnchor.MiddleCenter;
 		_GUIText.text = _text;
 	}
