@@ -100,15 +100,12 @@ public class GameController : MonoBehaviour
 			}
 		}
 		
-<<<<<<< HEAD
-=======
 		// End game stuff
 		_playingView.WeaponBar.Energy -= Time.deltaTime;
 		if(_playingView.WeaponBar.Energy == 0 && !(_gameEndMenu.State == GameView.GameViewState.Showing) && !(_gameEndMenu.State == GameView.GameViewState.AnimatingIn))
 		{
 			ShowEndGameMenu();	
 		}
->>>>>>> 94e841d0a742bec0af7989b27aa4f35a582be888
 	}
 			
 	public void ResumePressed(object sender)	
