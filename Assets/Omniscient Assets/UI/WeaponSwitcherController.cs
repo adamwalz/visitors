@@ -38,7 +38,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_backButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_backButton.Init();
 		_backButton.ButtonImageName = "back";
-		_backButton.HighlightImageName = "back";
+		_backButton.HighlightImageName = "backHighlight";
 		_backButton.Size = new Vector2(100, 40);
 		_backButton.SetPosition(new Vector2(10, 10), GameView.GameViewAnchor.BottomLeftAnchor);
 		_backButton.ButtonPressed += new EventHandler(BackButtonPressed);
@@ -47,7 +47,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_chooseButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_chooseButton.Init();
 		_chooseButton.ButtonImageName = "choose";
-		_chooseButton.HighlightImageName = "choose";
+		_chooseButton.HighlightImageName = "chooseHighlight";
 		_chooseButton.Size = new Vector2(100, 40);
 		_chooseButton.SetPosition(new Vector2(_mainScreen.Size.x - 10, 10), GameView.GameViewAnchor.BottomRightAnchor);
 		_chooseButton.ButtonPressed += new EventHandler(ChooseButtonPressed);
@@ -56,7 +56,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_doneButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_doneButton.Init();
 		_doneButton.ButtonImageName = "done";
-		_doneButton.HighlightImageName = "done";
+		_doneButton.HighlightImageName = "doneHighlight";
 		_doneButton.Size = new Vector2(100, 40);
 		_doneButton.SetPosition(new Vector2(_mainScreen.Size.x - 10, 10), GameView.GameViewAnchor.BottomRightAnchor);
 		_doneButton.ButtonPressed += new EventHandler(DoneButtonPressed);
@@ -74,7 +74,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_nameView.Init();
 		_nameView.Position = new Vector2(_mainScreen.Size.x / 2, 80);
 		_nameView.Text = "Hello";
-		_nameView.FontSize = 25;
+		_nameView.Small = false;
 		_nameView.Show(false);
 		_mainScreen.AddView(_nameView);
 		
@@ -82,7 +82,7 @@ public class WeaponSwitcherController : MonoBehaviour
 		_descriptionView.Init();
 		_descriptionView.Position = new Vector2(_mainScreen.Size.x / 2, 60);
 		_descriptionView.Text = "Hello";
-		_descriptionView.FontSize = 15;
+		_descriptionView.Small = true;
 		_descriptionView.Show(false);
 		_mainScreen.AddView(_descriptionView);
 		
@@ -122,6 +122,7 @@ public class WeaponSwitcherController : MonoBehaviour
 	{
 		string weaponID = Weapon.WeaponIDs()[_carousel.SelectedWeaponIndex];
 		GameState.SaveSecondaryWeapon(weaponID);
+		Debug.Log("Current Level" + GameState.GetCurrentLevel());
 		Application.LoadLevel(GameState.GetCurrentLevel());	
 	}
 	

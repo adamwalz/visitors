@@ -10,7 +10,11 @@ public class WeaponBar : GameView
 	public float Energy
 	{
 		get{return _energy;}
-		set{_energy = value;}
+		set
+		{
+			_energy = value;
+			if(_energy < 0) _energy = 0;
+		}
 	}
 	
 	public override void Init()

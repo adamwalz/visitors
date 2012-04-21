@@ -52,7 +52,6 @@ public class GameEndMenu : GameView
 		_scoreText = (TextView)gameObject.AddComponent("TextView");
 		_scoreText.Init();
 		_scoreText.Text = "Score: ???";
-		_scoreText.FontSize = 30;
 		AddSubview(_scoreText);
 		
 		_mainMenuButton = (ButtonView)gameObject.AddComponent("ButtonView");

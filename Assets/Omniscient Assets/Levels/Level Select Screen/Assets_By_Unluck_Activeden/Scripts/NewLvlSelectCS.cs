@@ -7,12 +7,6 @@ public class NewLvlSelectCS : MonoBehaviour
 	
 	public string scene;
 	
-	// Use this for initialization
-	void Start () 
-	{
-		GameState.SetCurrentLevel(scene);
-	}
-	
 	// Update is called once per frame
 	void Update () {
 		if (Input.GetMouseButtonDown(0)) // check for left-mouse
@@ -23,11 +17,20 @@ public class NewLvlSelectCS : MonoBehaviour
 			
 			if (Physics.Raycast(ray, out hit, (float)100.0))
 			{
-    			if (hit.collider.tag == "LevelLight")
+    			if (hit.collider.tag == "Egypt")
     			{
-    				Application.LoadLevel("WeaponSwitcher");
+					GameState.SetCurrentLevel("SP-Egypt-AR");
+    				
      	  		}
-    		}
+    		
+				if (hit.collider.tag == "Player")
+				{
+					GameState.SetCurrentLevel("SP-Castle-AR");
+				}
+				
+				Application.LoadLevel("WeaponSwitcher");
+			
+			}
 		}
 	}
 }

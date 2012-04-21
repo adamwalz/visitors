@@ -11,6 +11,7 @@ public class GameController : MonoBehaviour
 	private SearchingView _searchingView;
 	private PlayingView _playingView;
 	private PauseMenu _pauseMenu;
+	private GameEndMenu _gameEndMenu;
 	private int currentLevel = -1;
 	private int _weaponIndex = 0;
 	private bool _searching;
@@ -53,6 +54,14 @@ public class GameController : MonoBehaviour
 		_pauseMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
 		_mainScreen.AddView(_pauseMenu);
 		
+		_gameEndMenu = (GameEndMenu)gameObject.AddComponent("GameEndMenu");
+		_gameEndMenu.Init();
+		_gameEndMenu.Size = _mainScreen.Size;
+		_gameEndMenu.Position = new Vector2(_mainScreen.Size.x / 2.0f, _mainScreen.Size.y / 2.0f);
+		_gameEndMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
+		_gameEndMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
+		_mainScreen.AddView(_gameEndMenu);
+		
 		
 		//AudioClip[] soundEffects = GetComponents(AudioSource);
 		
@@ -91,6 +100,15 @@ public class GameController : MonoBehaviour
 			}
 		}
 		
+<<<<<<< HEAD
+=======
+		// End game stuff
+		_playingView.WeaponBar.Energy -= Time.deltaTime;
+		if(_playingView.WeaponBar.Energy == 0 && !(_gameEndMenu.State == GameView.GameViewState.Showing) && !(_gameEndMenu.State == GameView.GameViewState.AnimatingIn))
+		{
+			ShowEndGameMenu();	
+		}
+>>>>>>> 94e841d0a742bec0af7989b27aa4f35a582be888
 	}
 			
 	public void ResumePressed(object sender)	
@@ -146,6 +164,10 @@ public class GameController : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
+		if (GameState.GetCurrentLevel().Contains("Egypt"))
+			Application.LoadLevel("SP-Egypt-NonAR");
+		else if (GameState.GetCurrentLevel().Contains("Castle"))
+			Application.LoadLevel("SP-Castle-NonAR");
 		_searching = false;
 	}
 	
@@ -189,7 +211,7 @@ public class GameController : MonoBehaviour
 	
 		
 		GameObject cam = GameObject.Find("ARCamera");
-		Vector3 fwd = cam.transform.forward * 10000;
+		Vector3 fwd = cam.transform.forward * 500;
 		ShootWithoutNetworkInstantiate(cam.transform.position, cam.transform.rotation, fwd);
 		_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
 
@@ -232,5 +254,12 @@ public class GameController : MonoBehaviour
 			currentLevel = Application.loadedLevel;
 		}
 		Application.LoadLevel(currentLevel);
+	}
+	
+	public void ShowEndGameMenu()
+	{
+		_searchingView.HasFocus = false;
+		_playingView.HasFocus = false;
+		_gameEndMenu.Show(true);
 	}
 }

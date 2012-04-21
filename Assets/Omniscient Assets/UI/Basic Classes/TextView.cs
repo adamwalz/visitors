@@ -8,7 +8,7 @@ public class TextView : GameView
 {
 	private string _text;
 	private GUIText _GUIText;
-	private int _fontSize;
+	private bool _small;
 	
 	public GUIText InternalGUIText
 	{
@@ -28,32 +28,30 @@ public class TextView : GameView
 			}
 	}
 	
-	public int FontSize
+	public bool Small
 	{
-		get { return _fontSize; }
-		set 
-		{
-			_fontSize = value;
-			if(State != GameView.GameViewState.Hidden)
-			{
-				_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();	
-			}
-		}
+		get { return _small;}
+		set { _small = value;}
 	}
-
+	
 	// Use this for initialization
 	public new void Init () 
 	{
 		base.Init();
+		_small = false;
 		_text = "Placeholder";
 	}
 	
 	public override void Show(bool animated)
 	{
 		base.Show(animated);
+<<<<<<< HEAD
 		if(_GUIText == null) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextView"))).GetComponent(typeof(GUIText));
+=======
+		if(_GUIText == null && _small == false) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextView"))).GetComponent(typeof(GUIText));
+		else if(_GUIText == null && _small == true) _GUIText = (GUIText)((GameObject)Instantiate(Resources.Load("GUITextForTextViewSmall"))).GetComponent(typeof(GUIText));
+>>>>>>> 94e841d0a742bec0af7989b27aa4f35a582be888
 		_GUIText.anchor = TextAnchor.MiddleCenter;
-		_GUIText.fontSize = _fontSize * UtilityPlugin.ContentScaleFactor();
 		_GUIText.text = _text;
 	}
 	

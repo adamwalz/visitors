@@ -9,12 +9,20 @@ public class ButtonView : GameView
 	private bool _isHighlighted;
 	public event EventHandler ButtonPressed;
 	protected bool _disabled;
+	private Color _color;
 	
 	// The filename of the texture to be used for this button, when it is not highlighted
 	public string ButtonImageName
 	{
 		get { return _buttonImageName; }
 		set { _buttonImageName = value; }
+	}
+	
+	// I just added this so buttons can be fadey
+	public Color ButtonColor
+	{
+		get {return _color;}
+		set {_color = value;}
 	}
 	
 	public bool Highlighted
@@ -40,6 +48,12 @@ public class ButtonView : GameView
 	public override void Init ()
 	{
 		base.Init();
+		
+		_color.r = 0.5f;
+		_color.g = 0.5f;
+		_color.b = 0.5f;
+		_color.a = 0.5f;
+		
 		_buttonImage = (ImageView)gameObject.AddComponent("ImageView");
 		_buttonImage.Init();
 		_buttonImage.TextureName = _buttonImageName;
@@ -65,10 +79,7 @@ public class ButtonView : GameView
 		}
 		else
 		{
-			color.r = 0.5f;
-			color.g = 0.5f;
-			color.b = 0.5f;
-			color.a = 0.5f;
+			color = _color;
 		}
 		_buttonImage.ImageGUITexture.color = color;
 	}
