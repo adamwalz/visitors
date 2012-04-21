@@ -1,0 +1,43 @@
+fileFormatVersion: 2
+guid: 2172b1c2c355e2c419e629d3ea68b7ed
+labels:
+- xxl
+- energetic
+- electronic
+- electronica
+- trance
+- powerful
+- beat
+- track
+- music
+- song
+- space
+- pads
+- melodic
+- melody
+- demoscene
+- sawlead
+- imphenzia
+- energy
+- soundtrack
+- instrumental
+- hope
+- hopeful
+- universe
+- seamless
+- loop
+- ogg
+- vorbis
+- looping
+- looped
+- repeating
+- long
+AudioImporter:
+  serializedVersion: 4
+  format: 0
+  quality: .0399999991
+  stream: 1
+  3D: 0
+  forceToMono: 0
+  useHardware: 0
+  loopable: 0
