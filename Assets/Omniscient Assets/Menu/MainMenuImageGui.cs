@@ -83,11 +83,18 @@ public class MainMenuImageGui : MonoBehaviour {
 			if(_singlePlayerGUITexture.HitTest(Input.mousePosition))
 			{
 				 if(_activeButton == _singlePlayerGUITexture)
+				{
+					GameState.SetPlayingMultiplayer(false);
 					Application.LoadLevel("PlanetEarthScene");
+				}
 			}
 			if(_multiPlayerGUITexture.HitTest(Input.mousePosition))
 			{
-				if(_activeButton == _multiPlayerGUITexture) Application.LoadLevel("ConnectionScene");
+				if(_activeButton == _multiPlayerGUITexture) 
+				{
+					GameState.SetPlayingMultiplayer(true);
+					Application.LoadLevel("PlanetEarthScene");
+				}
 			}
 			if(_optionsGUITexture.HitTest(Input.mousePosition))
 			{
