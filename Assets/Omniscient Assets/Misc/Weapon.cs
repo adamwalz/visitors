@@ -121,12 +121,14 @@ public class Weapon : Object
 		string[] weaponIDs = WeaponIDs();
 		for(int i = 0; i < weaponIDs.Length; i++)
 		{
+			if (_id.Equals(weaponIDs[3]))
+				return GameState.LoadIsLocked();
+			
 			if(_id.Equals(weaponIDs[i]))
 			{
 				if(i > 2) return true;	
 			}
 		}
-		
 		return false;
 	}
 }

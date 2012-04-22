@@ -12,9 +12,11 @@ public class WinningCollisions : MonoBehaviour
 	void Start()
 	{
 		if (GameState.GetCurrentLevel().Contains("Egypt"))
-			CollisionsToWin = 50;
+			CollisionsToWin = 25;
 		else if (GameState.GetCurrentLevel().Contains("Castle"))
 			CollisionsToWin = 4;
+		else
+			CollisionsToWin = 5;
 		
 		hasWon = false;
 	}
@@ -26,8 +28,8 @@ public class WinningCollisions : MonoBehaviour
 			if (!contact.otherCollider.gameObject.tag.Equals("weapon"))
 			{	
 				CollisionsToWin--;
-				Destroy(contact.otherCollider.gameObject);
 				Debug.Log("Piece fell off image target, collision left = " + CollisionsToWin);
+				Destroy(contact.otherCollider.gameObject);
 			}
 			
 			if (CollisionsToWin <= 0 && !hasWon)
@@ -37,8 +39,12 @@ public class WinningCollisions : MonoBehaviour
 				GameController controller;
 				controller = view.GetComponent("GameController") as GameController;
 				float score = controller._playingView.WeaponBar.Energy;
-				if (score > 50) // unlock something
-					Debug.Log("energy pretty high");
+				if (score > 50 && GameState.LoadIsLocked()) // unlock something
+				{
+					GameState.SaveIsLocked(true);
+					// TODO: pop up message to say that new weapon is unlocked
+					Debug.Log("New weapon unlocked");
+				}
 				
 				// Call the winning popup
 				hasWon = true;
