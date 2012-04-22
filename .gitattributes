@@ -1,1 +1,4 @@
-*.unity -crlf -diff
+# binary files (-clrf -diff)
+*.unity binary
+*.pidb binary
+*.assets binary
