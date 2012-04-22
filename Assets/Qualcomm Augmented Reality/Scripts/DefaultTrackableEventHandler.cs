@@ -104,9 +104,12 @@ public class DefaultTrackableEventHandler : MonoBehaviour,
 		GameControllerNetworking networkingController = null;
 		
 		controller = (GameController)GameObject.Find("ViewObject").GetComponent("GameController");
-		if (controller == null) // If in networking mode
-		networkingController = (GameControllerNetworking)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
-
+		 // If in networking mode
+		if (controller == null)
+		{
+			print("Nathan is over 9000");
+			networkingController = (GameControllerNetworking)GameObject.Find("ViewObject").GetComponent("GameControllerNetworking");
+		}
 		if (controller != null)
 			controller.SwitchToSearchingView();
 		else if (networkingController != null)

@@ -229,7 +229,7 @@ public class GameControllerNetworking : MonoBehaviour
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 velocityVec = cam.transform.forward * velocity;
 		
-			networkView.RPC("Shoot",RPCMode.All, cam.transform, velocityVec, _weaponIndex);
+			networkView.RPC("Shoot",RPCMode.All, cam.transform.position, cam.transform.rotation, velocityVec, _weaponIndex);
 		
 			// Shooting sounds
 			audio.clip = soundEffects[0];
@@ -242,7 +242,7 @@ public class GameControllerNetworking : MonoBehaviour
 	}
 	
 	[RPC]
-	public void Shoot(Transform fromObject, Vector3 velocityVec, int currentWeapon)
+	public void Shoot(Vector3 position, Quaternion rotation, Vector3 velocityVec, int currentWeapon)
 	{
 		// Choose weapon
 		bool primaryWeapon = (currentWeapon == 0);
@@ -254,7 +254,7 @@ public class GameControllerNetworking : MonoBehaviour
 		Debug.Log("Shooting: " + weapon.name + ". Primary: " + primaryWeapon);
 		
 		// Instantiate weapon
-		Transform weaponSpawn = (Transform)Instantiate(weapon, fromObject.position, fromObject.rotation);
+		Transform weaponSpawn = (Transform)Instantiate(weapon, position, rotation);
 		weaponSpawn.rigidbody.AddForce(velocityVec);
 	}
 	
