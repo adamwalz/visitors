@@ -9,9 +9,8 @@ public class ConnectionController : MonoBehaviour
 	private ConnectionView _connectionView;
 	private float lastRefreshTime = -1000.0F;
 	private float refreshTimer = 0.5F;
-	private ButtonView _joinGameOneButton;
-	private ButtonView _joinGameTwoButton;
 	private ArrayList _joinableGames;
+	private NetworkGameListView _listView;
 	
 	// Use this for initialization
 	void Start () 
@@ -28,44 +27,23 @@ public class ConnectionController : MonoBehaviour
 		_mainScreen.AddView(_connectionView);
 		_connectionView.Show(false);
 		
-		_joinGameOneButton = (ButtonView)gameObject.AddComponent("ButtonView");
-		_joinGameOneButton.Init();
-		_joinGameOneButton.ButtonImageName = "join";
-		_joinGameOneButton.HighlightImageName = "joinHighlight";
-		_joinGameOneButton.Size = new Vector2(100, 30);
-		_joinGameOneButton.Position = new Vector2(_mainScreen.Size.x / 2.0f - 100, _mainScreen.Size.y / 2.0f);
-		_joinGameOneButton.ButtonPressed += new EventHandler(JoinButtonPressed);
-		_mainScreen.AddView(_joinGameOneButton);
-		_joinGameOneButton.Show(false);
-		
-		_joinGameTwoButton = (ButtonView)gameObject.AddComponent("ButtonView");
-		_joinGameTwoButton.Init();
-		_joinGameTwoButton.ButtonImageName = "join";
-		_joinGameTwoButton.HighlightImageName = "joinHighlight";
-		_joinGameTwoButton.Size = new Vector2(100, 30);
-		_joinGameTwoButton.Position = new Vector2(_mainScreen.Size.x / 2.0f + 100, _mainScreen.Size.y / 2.0f);
-		_joinGameTwoButton.ButtonPressed += new EventHandler(JoinButtonPressed);
-
-		_mainScreen.AddView(_joinGameTwoButton);
-		_joinGameTwoButton.Show(false);
+		_listView = (NetworkGameListView)gameObject.AddComponent("NetworkGameListView");
+		_listView.Init();
+		_listView.Size = new Vector2(_mainScreen.Size.x - 60, 90);
+		_listView.SetPosition(new Vector2(30, 222), GameView.GameViewAnchor.TopLeftAnchor);
+		_listView.ListItemPressed += new ListEventHandler(JoinButtonPressed);
+		_mainScreen.AddView(_listView);
+		_listView.Show(false);
 		
 		// Reset all the things
 		RefreshGames();
 		GameState.ResetGameState();
 	}
 	
-	public void JoinButtonPressed(object sender)
+	public void JoinButtonPressed(object sender, int index)
 	{
-		if(sender == _joinGameOneButton)
-		{
-			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[0]).gameName);
-			ConnectToGame(0);
-		}
-		if(sender == _joinGameTwoButton)
-		{
-			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[1]).gameName);
-			ConnectToGame(1);
-		}
+		Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[index]).gameName);
+		ConnectToGame(index);
 	}
 	
 	public void RefreshPressed(object sender)
@@ -83,9 +61,6 @@ public class ConnectionController : MonoBehaviour
 	public void Update()
 	{
 		HostData[] games = MasterServer.PollHostList();
-		
-		_joinGameOneButton.Disabled = true;
-		_joinGameTwoButton.Disabled = true;
 				
 		_joinableGames.Clear();
 		foreach (HostData element in games)
@@ -96,11 +71,24 @@ public class ConnectionController : MonoBehaviour
 			}
 			
 			_joinableGames.Add(element);
-			string gameInfo = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
 		}
 		
-		if(_joinableGames.Count > 0) _joinGameOneButton.Disabled = false;
-		if(_joinableGames.Count > 1) _joinGameTwoButton.Disabled = false;	
+		ArrayList cellInfo = new ArrayList();
+		
+		foreach(HostData element in _joinableGames)
+		{
+			NetworkGameListCellInfo info = new NetworkGameListCellInfo();
+			string[] lines = Regex.Split(element.comment, ",");
+			
+			info.GameName = element.gameName;
+			info.LevelName = lines[0];
+			info.PrimaryWeaponImageName = lines[1];
+			info.SecondaryWeaponImageName = lines[2];
+			info.GameDescription = "Players: " + element.connectedPlayers + " / " + element.playerLimit;
+			cellInfo.Add(info);
+		}
+		
+		_listView.InfoForCells = (NetworkGameListCellInfo[])cellInfo.ToArray(typeof(NetworkGameListCellInfo));
 	}
 		
 	public void ConnectToGame(int gameIndex)
