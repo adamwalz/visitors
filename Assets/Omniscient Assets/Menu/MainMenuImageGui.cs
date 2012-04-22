@@ -92,9 +92,7 @@ public class MainMenuImageGui : MonoBehaviour {
 			{
 				if(_activeButton == _multiPlayerGUITexture) 
 				{
-					GameState.SetIsServer(true);
-					GameState.SetPlayerNumber(2);
-					Application.LoadLevel("PlanetEarthScene");
+					Application.LoadLevel("ConnectionScene");
 				}
 			}
 			if(_optionsGUITexture.HitTest(Input.mousePosition))
