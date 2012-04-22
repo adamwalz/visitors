@@ -23,31 +23,20 @@ public class NewLvlSelectCS : MonoBehaviour
     			{
 					Debug.Log("Hit Egypt");
 					if (GameState.GetIsServer())
-					{
-						GameState.SetCurrentLevel("MP-Egypt-AR");
-						Application.LoadLevel("WeaponSwitcher");
-					}
+						GameState.SetCurrentLevel("MP-Egypt-AR", true);
 					else
-					{
-						GameState.SetCurrentLevel("SP-Egypt-AR");
-						Application.LoadLevel("WeaponSwitcher");
-					}
-					
+						GameState.SetCurrentLevel("SP-Egypt-AR", true);
+					Application.LoadLevel("WeaponSwitcher");
      	  		}
     		
 				else if (hit.collider.tag == "Castle")
 				{
 					Debug.Log("Hit Castle");
 					if (GameState.GetIsServer())
-					{
-						GameState.SetCurrentLevel("MP-Castle-AR");
-						Application.LoadLevel("WeaponSwitcher");
-					}
+						GameState.SetCurrentLevel("MP-Castle-AR", true);
 					else
-					{
-						GameState.SetCurrentLevel("SP-Castle-AR");
-						Application.LoadLevel("WeaponSwitcher");
-					}
+						GameState.SetCurrentLevel("SP-Castle-AR", true);
+					Application.LoadLevel("WeaponSwitcher");
 				}
 			}
 		}

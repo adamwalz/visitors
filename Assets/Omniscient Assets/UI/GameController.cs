@@ -24,7 +24,7 @@ public class GameController : MonoBehaviour
 	// Use this for initialization
 	void Start () 
 	{
-		_searching = true;
+		_searching = GameState.GetIsAugmented();
 		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
@@ -61,10 +61,6 @@ public class GameController : MonoBehaviour
 		_gameEndMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
 		_gameEndMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
 		_mainScreen.AddView(_gameEndMenu);
-		
-		
-		//AudioClip[] soundEffects = GetComponents(AudioSource);
-		
 	}
 	
 	public void Update()
@@ -140,8 +136,6 @@ public class GameController : MonoBehaviour
 		_searchingView.HasFocus = false;
 	}
 	
-	
-	
 	public void PausePressed(object sender)
 	{
 		ShowPauseMenu();
@@ -162,10 +156,10 @@ public class GameController : MonoBehaviour
 	public void PlayWithoutButtonPressed(object sender)
 	{
 		if (GameState.GetCurrentLevel().Contains("Egypt"))
-			Application.LoadLevel("SP-Egypt-NonAR");
+			GameState.SetCurrentLevel("SP-Egypt-NonAR", false);
 		else if (GameState.GetCurrentLevel().Contains("Castle"))
-			Application.LoadLevel("SP-Castle-NonAR");
-		_searching = false;
+			GameState.SetCurrentLevel("SP-Egypt-NonAR", false);
+		Application.LoadLevel(GameState.GetCurrentLevel());
 	}
 	
 	public void SwitchToPlayingView()
