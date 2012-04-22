@@ -223,57 +223,41 @@ public class GameControllerNetworking : MonoBehaviour
 	}
 	
 	public void FireButtonPressed(object sender)
-	{
-
-//		_gameView.Energy = _gameView.Energy - 1.0f;
-//		GameObject cam = GameObject.Find("ARCamera");
-//		Debug.Log(cam.transform.position);
-//		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-//		GameObject instance = (GameObject)Network.Instantiate(thePrefab, cam.transform.position, cam.transform.rotation, 0);
-//		Vector3 fwd = cam.transform.forward * 50000;
-//		instance.rigidbody.AddForce(fwd);
-		
-
-	
-		
+	{	
 		if (hasStarted)
 		{
-			//sound
+			// Fire vector
+			float velocity = 500;
+			GameObject cam = GameObject.Find("ARCamera");
+			Vector3 velocityVec = cam.transform.forward * velocity;
+		
+			networkView.RPC("Shoot",RPCMode.All, cam.transform, velocityVec);
+		
+			// Shooting sounds
 			audio.clip = soundEffects[0];
 			audio.pitch = Random.Range(0.9F, 1.1F);
 			audio.Play();
-			
-			//shoot
-			GameObject cam = GameObject.Find("ARCamera");
-			Vector3 fwd = cam.transform.forward * 50000;
-			networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All, cam.transform.position, cam.transform.rotation, fwd, _weaponIndex );
-			_playingView.WeaponBar.Energy = _playingView.WeaponBar.Energy - 1.0f;
+		
+			// UI Changes
+			_playingView.WeaponBar.Energy -= 1.0f;
 		}
-
-		
-		//networkView.RPC("ShootWithoutNetworkInstantiate",RPCMode.All);
-		
-		/*
-		GameObject thePrefab = (GameObject)Resources.Load("StrongBall");
-		GameObject instance = (GameObject)Network.Instantiate(thePrefab, cam.transform.position, cam.transform.rotation, 0);
-		Vector3 fwd = cam.transform.forward * 50000;
-		instance.rigidbody.AddForce(fwd);
-		*/
 	}
 	
 	[RPC]
-	public void ShootWithoutNetworkInstantiate(Vector3 position, Quaternion rotation, Vector3 fwd, int currentWeapon)
+	public void Shoot(Transform fromObject, Vector3 velocityVec)
 	{
-		bool primaryWeapon = (currentWeapon == 0);
-		string weaponID = "";
+		// Choose weapon
+		bool primaryWeapon = (_weaponIndex == 0);
+		Transform weapon;
 		if (primaryWeapon)
-			weaponID = GameState.LoadPrimaryWeapon();
+			weapon = (Transform)Resources.Load(GameState.LoadPrimaryWeapon(), typeof(Transform));
 		else
-			weaponID = GameState.LoadSecondaryWeapon();
-		Transform spawn = (Transform) Resources.Load(weaponID, typeof(Transform));
+			weapon = (Transform)Resources.Load(GameState.LoadSecondaryWeapon(), typeof(Transform));
+		Debug.Log("Shooting: " + weapon.name + ". Primary: " + primaryWeapon);
 		
-		Transform newWeapon = (Transform)Instantiate(spawn, position, rotation);
-		newWeapon.rigidbody.AddForce(fwd);
+		// Instantiate weapon
+		Transform weaponSpawn = (Transform)Instantiate(weapon, fromObject.position, fromObject.rotation);
+		weaponSpawn.rigidbody.AddForce(velocityVec);
 	}
 	
 	public void HUDGameViewMenuButtonPressed()

@@ -17,19 +17,38 @@ public class NewLvlSelectCS : MonoBehaviour
 			
 			if (Physics.Raycast(ray, out hit, (float)100.0))
 			{
+				Debug.Log("Hit Object Named: " + hit.collider.gameObject.name + " and a Tag with: " + hit.collider.tag);
+				//hit.collider.gameObject.name
     			if (hit.collider.tag == "Egypt")
     			{
-					GameState.SetCurrentLevel("SP-Egypt-AR");
-    				
+					Debug.Log("Hit Egypt");
+					if (GameState.GetIsServer())
+					{
+						GameState.SetCurrentLevel("MP-Egypt-AR");
+						Application.LoadLevel("WeaponSwitcher");
+					}
+					else
+					{
+						GameState.SetCurrentLevel("SP-Egypt-AR");
+						Application.LoadLevel("WeaponSwitcher");
+					}
+					
      	  		}
     		
-				if (hit.collider.tag == "Player")
+				else if (hit.collider.tag == "Castle")
 				{
-					GameState.SetCurrentLevel("SP-Castle-AR");
+					Debug.Log("Hit Castle");
+					if (GameState.GetIsServer())
+					{
+						GameState.SetCurrentLevel("MP-Castle-AR");
+						Application.LoadLevel("WeaponSwitcher");
+					}
+					else
+					{
+						GameState.SetCurrentLevel("SP-Castle-AR");
+						Application.LoadLevel("WeaponSwitcher");
+					}
 				}
-				
-				Application.LoadLevel("WeaponSwitcher");
-			
 			}
 		}
 	}

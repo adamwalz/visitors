@@ -10,6 +10,8 @@ using System.Collections;
 public class GameState : MonoBehaviour 
 {
 	static string _currentLevel;
+	static bool _isServer;
+	static int _playerNumber;
 	
 	public static void SaveScore(string level, int score)
 	{
@@ -36,6 +38,7 @@ public class GameState : MonoBehaviour
 	
 	public static void SavePrimaryWeapon(string weaponName)
 	{
+		
 		PlayerPrefs.SetString("primaryWeapon", weaponName);
 		PlayerPrefs.Save();
 		Debug.Log("Saving primary weapon: " + weaponName);
@@ -43,7 +46,9 @@ public class GameState : MonoBehaviour
 	
 	public static string LoadPrimaryWeapon()
 	{
-		return PlayerPrefs.GetString("primaryWeapon");
+		string weaponName = PlayerPrefs.GetString("primaryWeapon");
+		Debug.Log("Loading primary weapon: " + weaponName);
+		return weaponName;
 	}
 	
 	public static void SaveSecondaryWeapon(string weaponName)
@@ -55,6 +60,28 @@ public class GameState : MonoBehaviour
 	
 	public static string LoadSecondaryWeapon()
 	{
-		return PlayerPrefs.GetString("secondaryWeapon");
+		string weaponName = PlayerPrefs.GetString("secondaryWeapon");
+		Debug.Log("Loading primary weapon: " + weaponName);
+		return weaponName;
+	}
+
+	public static bool GetIsServer()
+	{
+		return _isServer;
+	}
+	
+	public static void SetIsServer(bool multiplayerBoolean)
+	{
+		_isServer = multiplayerBoolean;
+	}
+	
+	public static int GetPlayerNumber()
+	{
+		return _playerNumber;
+	}
+	
+	public static void SetPlayerNumber(int numberOfPlayers)
+	{
+		_playerNumber = numberOfPlayers;
 	}
 }
