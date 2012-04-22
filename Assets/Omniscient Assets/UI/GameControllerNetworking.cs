@@ -127,7 +127,7 @@ public class GameControllerNetworking : MonoBehaviour
 			//No Longer see this game session as an option
 			if (Network.maxConnections == Network.connections.Length)
 			{
-				Network.maxConnections = -1;
+				//Network.maxConnections = -1;
 				networkView.RPC("GameIsFull",RPCMode.All);
 			}
 		}

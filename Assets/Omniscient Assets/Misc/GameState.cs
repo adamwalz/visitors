@@ -14,6 +14,13 @@ public class GameState : MonoBehaviour
 	static bool _isAugmented;
 	static int _playerNumber;
 	
+	public static void ResetGameState()
+	{
+		_currentLevel = "";
+		_isServer = false;
+		_isAugmented = false;
+		_playerNumber = 0;
+	}
 	public static void SaveScore(string level, int score)
 	{
 		PlayerPrefs.SetInt("score" + level, score);

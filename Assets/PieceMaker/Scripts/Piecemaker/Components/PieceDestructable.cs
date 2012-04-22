@@ -106,12 +106,19 @@ public class PieceDestructable : MonoBehaviour
 		{
 			float scaleFactor = 1.0f;
 			string name = this.name;
-			if (name.Contains("Temple"))
+			if (name.Contains("TempleColumn") || name.Contains("TempleRoof"))
 				scaleFactor = 0.18f;
+			else if (name.Contains("TempleSphynx"))
+				scaleFactor = 0.15f;
 			else if (name.Contains("CastleCube"))
 				scaleFactor = 18.0f;
 			else if (name.Contains("CastleCylinder27"))
 				scaleFactor = 4.0f;
+			else if (name.Contains("TempleObelisk"))
+				scaleFactor = 2.0f;
+			else if (name.Contains("TemplePedestal"))
+				scaleFactor = 0.5f;
+			
 			Vector3 appropriateScale = new Vector3(scaleFactor/transform.localScale.x,scaleFactor/transform.localScale.y,scaleFactor/transform.localScale.z);
 			GameObject imageTarget = GameObject.Find("ImageTarget");
             GameObject spawned;

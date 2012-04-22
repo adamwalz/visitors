@@ -8,6 +8,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 	string peopleMessage;
 	
 	int portNumber = 724;
+	int currentConnectedPlayers;
 	
 	void Start()
 	{
@@ -22,6 +23,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 				Network.InitializeServer(32, portNumber, false);
 				
 				Network.maxConnections = playerNumberInt - 1;
+				currentConnectedPlayers = 0;
 				
 				
 				MasterServer.updateRate = 3;
@@ -33,6 +35,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 	// Update is called once per frame
 	void Update () 
 	{
+		/*
 		//If the game hasn't been created, but game is full, We Set up Temple
 		if ((hasCreated == false) && (Network.peerType == NetworkPeerType.Server))//(Network.peerType == NetworkPeerType.Server))
 		{
@@ -40,6 +43,17 @@ public class InitializingNetworkingScene : MonoBehaviour {
 			{
 				networkView.RPC("SetUpGame", RPCMode.All);
 			}
+		}*/
+		
+	}
+	
+	void OnPlayerConnected(NetworkPlayer player)
+	{
+		Debug.Log("Player has connected to server");
+		currentConnectedPlayers ++;
+		if (currentConnectedPlayers == Network.maxConnections)
+		{
+			networkView.RPC("SetUpGame", RPCMode.All);
 		}
 		
 	}
@@ -52,24 +66,26 @@ public class InitializingNetworkingScene : MonoBehaviour {
 			{
 				//Debug.Log("On Gui");
 				//Server Updates the Remaining Players and Sends the Info to the Clients
-				if ( peopleRemaining != Network.maxConnections - Network.connections.Length)
+				/*if ( peopleRemaining != Network.maxConnections - Network.connections.Length)
 				{
 					peopleRemaining = Network.maxConnections - Network.connections.Length;
+					networkView.RPC("ChangeRemainingPlayers",RPCMode.Others, peopleRemaining);
+				}*/
+				
+				if (currentConnectedPlayers != Network.maxConnections)
+				{
+					peopleRemaining = Network.maxConnections-currentConnectedPlayers;
 					networkView.RPC("ChangeRemainingPlayers",RPCMode.Others, peopleRemaining);
 				}
 			}	
 			
 			//Having the correct Message with Correct Grammar depending on remaining People
 			if (peopleRemaining > 1)
-			{
 				peopleMessage = "Waiting For " + peopleRemaining + " More Players To Join The Game";
-				
-			}
-			
-			else
-			{
+			else if (peopleRemaining == 1)
 				peopleMessage = "Waiting For " + peopleRemaining + " More Player To Join The Game";	
-			}
+			else if (peopleRemaining == 0)
+				networkView.RPC("SetUpGame", RPCMode.All);
 			
 			GUI.Label(new Rect(10, 10, 150, 150), peopleMessage);
 			

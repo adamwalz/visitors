@@ -35,11 +35,14 @@ public class ConnectionController : MonoBehaviour
 		_mainScreen.AddView(_listView);
 		_listView.Show(false);
 		
+		// Reset all the things
 		RefreshGames();
+		GameState.ResetGameState();
 	}
 	
 	public void JoinButtonPressed(object sender, int index)
 	{
+		Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[index]).gameName);
 		ConnectToGame(index);
 	}
 	
@@ -91,6 +94,16 @@ public class ConnectionController : MonoBehaviour
 	public void ConnectToGame(int gameIndex)
 	{
 		HostData element = (HostData)_joinableGames[gameIndex];
+		
+		// Check all the things
+		RefreshGames();
+		if (   !(((HostData)_joinableGames[gameIndex]).gameName).Equals(element.gameName)
+			|| !(((HostData)_joinableGames[gameIndex]).connectedPlayers).Equals(element.connectedPlayers)
+			|| !(((HostData)_joinableGames[gameIndex]).ip).Equals(element.ip)
+			|| !(((HostData)_joinableGames[gameIndex]).playerLimit).Equals(element.playerLimit))
+			return;
+		
+		Debug.Log("The Game we actually join is: " + ((HostData)_joinableGames[gameIndex]).gameName);
 		Network.Connect(element);
 					
 		string[] lines = Regex.Split(element.comment, ",");
