@@ -59,6 +59,11 @@ public class ConnectionView : GameView
 		get{return _createGameButton;}	
 	}
 	
+	public ButtonView RefreshButton
+	{
+		get{return _refreshButton;}	
+	}
+	
 	public NumberSelectorView NumberOfPlayersSelector
 	{
 		get{return _numberSelectorView;}

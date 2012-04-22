@@ -50,8 +50,6 @@ public class GameControllerNetworking : MonoBehaviour
 		print(_pauseMenu);
 		_mainScreen.AddView(_pauseMenu);
 		
-		GameState.SavePrimaryWeapon("Fireball1");
-		GameState.SaveSecondaryWeapon("StrongBall");
 	}
 			
 	public void ResumePressed(object sender)	
@@ -231,7 +229,7 @@ public class GameControllerNetworking : MonoBehaviour
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 velocityVec = cam.transform.forward * velocity;
 		
-			networkView.RPC("Shoot",RPCMode.All, cam.transform, velocityVec);
+			networkView.RPC("Shoot",RPCMode.All, cam.transform, velocityVec, _weaponIndex);
 		
 			// Shooting sounds
 			audio.clip = soundEffects[0];
@@ -244,10 +242,10 @@ public class GameControllerNetworking : MonoBehaviour
 	}
 	
 	[RPC]
-	public void Shoot(Transform fromObject, Vector3 velocityVec)
+	public void Shoot(Transform fromObject, Vector3 velocityVec, int currentWeapon)
 	{
 		// Choose weapon
-		bool primaryWeapon = (_weaponIndex == 0);
+		bool primaryWeapon = (currentWeapon == 0);
 		Transform weapon;
 		if (primaryWeapon)
 			weapon = (Transform)Resources.Load(GameState.LoadPrimaryWeapon(), typeof(Transform));
