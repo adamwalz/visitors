@@ -155,7 +155,6 @@ public class GameController : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
-		Debug.Log("Got here");
 		string scene = GameState.GetCurrentLevel();
 		Debug.Log("Playing without AR in scene: " + scene);
 		if (scene.Contains("Egypt"))
