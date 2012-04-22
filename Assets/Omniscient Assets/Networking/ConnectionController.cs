@@ -107,8 +107,12 @@ public class ConnectionController : MonoBehaviour
 	{
 		HostData element = (HostData)_joinableGames[gameIndex];
 		
+		// Check all the things
 		RefreshGames();
-		if (!(((HostData)_joinableGames[gameIndex]).gameName).Equals(element.gameName))
+		if (   !(((HostData)_joinableGames[gameIndex]).gameName).Equals(element.gameName)
+			|| !(((HostData)_joinableGames[gameIndex]).connectedPlayers).Equals(element.connectedPlayers)
+			|| !(((HostData)_joinableGames[gameIndex]).ip).Equals(element.ip)
+			|| !(((HostData)_joinableGames[gameIndex]).playerLimit).Equals(element.playerLimit))
 			return;
 		
 		Debug.Log("The Game we actually join is: " + ((HostData)_joinableGames[gameIndex]).gameName);
