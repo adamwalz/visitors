@@ -15,13 +15,15 @@ public class ConnectionController : MonoBehaviour
 		_connectionView.Init();
 		_connectionView.Size = new Vector2(_mainScreen.Size.x, _mainScreen.Size.y);
 		_connectionView.SetPosition(new Vector2(0, 0), GameView.GameViewAnchor.BottomLeftAnchor);
-		_connectionView.CreateGameButton.ButtonPressed += new EventHandler(ConnectPressed);
+		_connectionView.CreateGameButton.ButtonPressed += new EventHandler(CreatePressed);
 		_mainScreen.AddView(_connectionView);
 		_connectionView.Show(false);
 	}
 	
-	public void ConnectPressed(object sender)
+	public void CreatePressed(object sender)
 	{
-		UtilityPlugin.PrintARCard();
+		GameState.SetIsServer(true);
+		GameState.SetPlayerNumber(_connectionView.NumberOfPlayersSelector.Number);
+		Application.LoadLevel("PlanetEarthScene");
 	}
 }

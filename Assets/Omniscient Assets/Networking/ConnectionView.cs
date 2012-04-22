@@ -59,6 +59,11 @@ public class ConnectionView : GameView
 		get{return _createGameButton;}	
 	}
 	
+	public NumberSelectorView NumberOfPlayersSelector
+	{
+		get{return _numberSelectorView;}
+	}
+	
 	public override void RefreshContent()
 	{
 		_background.Size = Size;
