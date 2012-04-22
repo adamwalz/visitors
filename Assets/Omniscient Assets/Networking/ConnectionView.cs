@@ -10,6 +10,7 @@ public class ConnectionView : GameView
 	private TextView _numberOfPlayers;
 	private NumberSelectorView _numberSelectorView;
 	private ButtonView _createGameButton;
+	// private ButtonView _backButton;
 	
 	public override void Init()
 	{
@@ -52,6 +53,13 @@ public class ConnectionView : GameView
 		_numberSelectorView.MinimumNumber = 2;
 		_numberSelectorView.MaximumNumber = 4;
 		AddSubview(_numberSelectorView);
+		
+		/*
+		_backButton = (ButtonView)gameObject.AddComponent("ButtonView");
+		_backButton.Init();
+		_backButton.ButtonImageName = "backNavigationButton";
+		_backButton.ButtonImageName = "backNavigationButtonHighlight";
+		*/
 	}
 	
 	public ButtonView CreateGameButton
