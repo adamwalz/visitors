@@ -30,8 +30,8 @@ function OnGUI ()
 		if (GUI.Button (new Rect(220,500,120,100),"Start New Game"))
 		{
 			
-			
-			if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1) && (playerNumberInt < 5))
+			Application.LoadLevel("PlanetEarthScene");
+			/*if ((int.TryParse(playerNumberString, playerNumberInt)) && (playerNumberInt > 1) && (playerNumberInt < 5))
 			{
 				try
 				{
@@ -56,7 +56,7 @@ function OnGUI ()
 				{
 					Debug.Log("Exception catched: " + err);
 				}
-			}
+			}*/
 		}
 	
 			
@@ -76,8 +76,9 @@ function OnGUI ()
 			MasterServer.ClearHostList();
 			MasterServer.RequestHostList("Visitors");
 		}
-		
+	
 		var data : HostData[] = MasterServer.PollHostList();
+		
 		// Go through all the hosts in the host list
 		for (var element in data)
 		{

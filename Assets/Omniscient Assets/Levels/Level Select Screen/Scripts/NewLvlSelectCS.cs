@@ -22,10 +22,10 @@ public class NewLvlSelectCS : MonoBehaviour
     			if (hit.collider.tag == "Egypt")
     			{
 					Debug.Log("Hit Egypt");
-					if (GameState.GetPlayingMultiplayer())
+					if (GameState.GetIsServer())
 					{
 						GameState.SetCurrentLevel("MP-Egypt-AR");
-						Application.LoadLevel("ConnectionScene");
+						Application.LoadLevel("WeaponSwitcher");
 					}
 					else
 					{
@@ -38,10 +38,10 @@ public class NewLvlSelectCS : MonoBehaviour
 				else if (hit.collider.tag == "Castle")
 				{
 					Debug.Log("Hit Castle");
-					if (GameState.GetPlayingMultiplayer())
+					if (GameState.GetIsServer())
 					{
 						GameState.SetCurrentLevel("MP-Castle-AR");
-						Application.LoadLevel("ConnectionScene");
+						Application.LoadLevel("WeaponSwitcher");
 					}
 					else
 					{
