@@ -39,6 +39,9 @@ public class MainMenuImageGui : MonoBehaviour {
 		_optionsGUITexture.pixelInset = new Rect(0, 0, 180, 180);
 		tex = (Texture2D)Resources.Load("options", typeof(Texture2D));
 		_optionsGUITexture.texture = tex;
+		
+		// Reset the crap out of the GameState
+		GameState.ResetGameState();
 	}
 	
 	// Update is called once per frame

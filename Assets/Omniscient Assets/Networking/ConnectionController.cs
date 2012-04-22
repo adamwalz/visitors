@@ -49,19 +49,21 @@ public class ConnectionController : MonoBehaviour
 		_mainScreen.AddView(_joinGameTwoButton);
 		_joinGameTwoButton.Show(false);
 		
+		// Reset all the things
 		RefreshGames();
+		GameState.ResetGameState();
 	}
 	
 	public void JoinButtonPressed(object sender)
 	{
 		if(sender == _joinGameOneButton)
 		{
-			Debug.Log("The Game we should join is: " + _joinableGames[0].gameName);
+			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[0]).gameName);
 			ConnectToGame(0);
 		}
 		if(sender == _joinGameTwoButton)
 		{
-			Debug.Log("The Game we should join is: " + _joinableGames[1].gameName);
+			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[1]).gameName);
 			ConnectToGame(1);
 		}
 	}
@@ -104,7 +106,12 @@ public class ConnectionController : MonoBehaviour
 	public void ConnectToGame(int gameIndex)
 	{
 		HostData element = (HostData)_joinableGames[gameIndex];
-		Debug.Log("The Game we actually join is: " + _joinableGames[gameIndex].gameName);
+		
+		RefreshGames();
+		if (!(((HostData)_joinableGames[gameIndex]).gameName).Equals(element.gameName))
+			return;
+		
+		Debug.Log("The Game we actually join is: " + ((HostData)_joinableGames[gameIndex]).gameName);
 		Network.Connect(element);
 					
 		string[] lines = Regex.Split(element.comment, ",");

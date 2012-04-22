@@ -61,15 +61,11 @@ public class InitializingNetworkingScene : MonoBehaviour {
 			
 			//Having the correct Message with Correct Grammar depending on remaining People
 			if (peopleRemaining > 1)
-			{
 				peopleMessage = "Waiting For " + peopleRemaining + " More Players To Join The Game";
-				
-			}
-			
-			else
-			{
+			else if (peopleRemaining == 1)
 				peopleMessage = "Waiting For " + peopleRemaining + " More Player To Join The Game";	
-			}
+			else if (peopleRemaining == 0)
+				networkView.RPC("SetUpGame", RPCMode.All);
 			
 			GUI.Label(new Rect(10, 10, 150, 150), peopleMessage);
 			
