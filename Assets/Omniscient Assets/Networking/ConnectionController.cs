@@ -54,8 +54,16 @@ public class ConnectionController : MonoBehaviour
 	
 	public void JoinButtonPressed(object sender)
 	{
-		if(sender == _joinGameOneButton)ConnectToGame(0);
-		if(sender == _joinGameTwoButton)ConnectToGame(1);
+		if(sender == _joinGameOneButton)
+		{
+			Debug.Log("The Game we should join is: " + _joinableGames[0].gameName);
+			ConnectToGame(0);
+		}
+		if(sender == _joinGameTwoButton)
+		{
+			Debug.Log("The Game we should join is: " + _joinableGames[1].gameName);
+			ConnectToGame(1);
+		}
 	}
 	
 	public void RefreshPressed(object sender)
@@ -96,6 +104,7 @@ public class ConnectionController : MonoBehaviour
 	public void ConnectToGame(int gameIndex)
 	{
 		HostData element = (HostData)_joinableGames[gameIndex];
+		Debug.Log("The Game we actually join is: " + _joinableGames[gameIndex].gameName);
 		Network.Connect(element);
 					
 		string[] lines = Regex.Split(element.comment, ",");
