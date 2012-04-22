@@ -11,6 +11,7 @@ public class GameState : MonoBehaviour
 {
 	static string _currentLevel;
 	static bool _isServer;
+	static bool _isAugmented;
 	static int _playerNumber;
 	
 	public static void SaveScore(string level, int score)
@@ -19,16 +20,17 @@ public class GameState : MonoBehaviour
 		PlayerPrefs.Save();
 	}
 	
-	public static void SetCurrentLevel(string level)
+	public static void SetCurrentLevel(string level, bool isAugmented)
 	{
 		_currentLevel = level;
-		Debug.Log("Saving level: " + _currentLevel);
+		_isAugmented = isAugmented;
+		Debug.Log("Saving level: " + _currentLevel + ", Augmented: " + _isAugmented);
 	}
 	
 	public static string GetCurrentLevel()
 	{
-		return _currentLevel;
 		Debug.Log("Entering level: " + _currentLevel);
+		return _currentLevel;
 	}
 	
 	public static int LoadScore(string level)
@@ -83,5 +85,10 @@ public class GameState : MonoBehaviour
 	public static void SetPlayerNumber(int numberOfPlayers)
 	{
 		_playerNumber = numberOfPlayers;
+	}
+	
+	public static bool GetIsAugmented()
+	{
+		return _isAugmented;
 	}
 }
