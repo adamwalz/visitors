@@ -7,7 +7,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 	int peopleRemaining;
 	string peopleMessage;
 	
-	int portNumber = 25000;
+	int portNumber = 724;
 	
 	void Start()
 	{
