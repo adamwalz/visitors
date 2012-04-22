@@ -40,19 +40,19 @@ public class PauseMenu : GameView
 		_mainMenu = (ButtonView)gameObject.AddComponent("ButtonView");
 		_mainMenu.Init();
 		_mainMenu.ButtonImageName = "main menu";
-		_mainMenu.HighlightImageName = "main menu";
+		_mainMenu.HighlightImageName = "main menuHighlight";
 		AddSubview(_mainMenu);
 		
 		_reset = (ButtonView)gameObject.AddComponent("ButtonView");
 		_reset.Init();
 		_reset.ButtonImageName = "reset";
-		_reset.HighlightImageName = "reset";
+		_reset.HighlightImageName = "resetHighlight";
 		AddSubview(_reset);
 		
 		_resume = (ButtonView)gameObject.AddComponent("ButtonView");
 		_resume.Init();
 		_resume.ButtonImageName = "resume";
-		_resume.HighlightImageName = "resume";
+		_resume.HighlightImageName = "resumeHighlight";
 		AddSubview(_resume);
 	}
 	

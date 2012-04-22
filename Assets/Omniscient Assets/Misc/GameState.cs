@@ -13,6 +13,7 @@ public class GameState : MonoBehaviour
 	static bool _isServer;
 	static bool _isAugmented;
 	static int _playerNumber;
+	static bool _locked;
 	
 	public static void ResetGameState()
 	{
@@ -97,5 +98,36 @@ public class GameState : MonoBehaviour
 	public static bool GetIsAugmented()
 	{
 		return _isAugmented;
+	}
+	
+	public static bool LoadIsLocked()
+	{
+		return (PlayerPrefs.GetInt("isLocked") != 0);
+	}
+	
+	public static void SaveIsLocked(bool isLocked)
+	{
+		int locked = 0;
+		if(isLocked) locked = 1;
+		PlayerPrefs.SetInt("isLocked", locked);
+		PlayerPrefs.Save();
+	}
+	
+	public static void GoToScene(GameScreen screen, string scene)
+	{
+		LoadingView loading = (LoadingView)screen.gameObject.AddComponent("LoadingView");
+		loading.Size = screen.Size;
+		loading.Position = new Vector2(screen.Size.x / 2, screen.Size.y / 2);
+		loading.Init();
+		screen.AddView(loading);
+		loading.Show(false);
+		screen.StartCoroutine(LoadSceneSoon(scene));
+		
+	}
+	
+	public static IEnumerator LoadSceneSoon(string scene)
+	{
+		yield return new WaitForSeconds(0.001f);
+		Application.LoadLevel(scene);
 	}
 }

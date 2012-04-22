@@ -42,8 +42,20 @@ public class ConnectionController : MonoBehaviour
 	
 	public void JoinButtonPressed(object sender, int index)
 	{
-		Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[index]).gameName);
+<<<<<<< HEAD
 		ConnectToGame(index);
+=======
+		if(sender == _joinGameOneButton)
+		{
+			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[0]).gameName);
+			ConnectToGame(0);
+		}
+		if(sender == _joinGameTwoButton)
+		{
+			Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[1]).gameName);
+			ConnectToGame(1);
+		}
+>>>>>>> e062ccea0daa747684dde7f03c5cab203a87acda
 	}
 	
 	public void RefreshPressed(object sender)
@@ -112,7 +124,7 @@ public class ConnectionController : MonoBehaviour
 		GameState.SaveSecondaryWeapon(lines[2]);
 		GameState.SetIsServer(false);
 				
-		GameState.GoToScene(_mainScreen, (lines[0]));
+		Application.LoadLevel(lines[0]);
 	}
 	
 	

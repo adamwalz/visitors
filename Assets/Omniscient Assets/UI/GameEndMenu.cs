@@ -57,13 +57,13 @@ public class GameEndMenu : GameView
 		_mainMenuButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_mainMenuButton.Init();
 		_mainMenuButton.ButtonImageName = "miniMenuButton";
-		_mainMenuButton.HighlightImageName = "miniMenuButton";
+		_mainMenuButton.HighlightImageName = "miniMenuButtonHighlight";
 		AddSubview(_mainMenuButton);
 		
 		_resetButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_resetButton.Init();
 		_resetButton.ButtonImageName = "miniResetButton";
-		_resetButton.HighlightImageName = "miniResetButton";
+		_resetButton.HighlightImageName = "miniResetButtonHighlight";
 		AddSubview(_resetButton);
 	}
 	
