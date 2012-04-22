@@ -84,7 +84,7 @@ public class MainMenuImageGui : MonoBehaviour {
 			{
 				 if(_activeButton == _singlePlayerGUITexture)
 				{
-					GameState.SetPlayingMultiplayer(false);
+					GameState.SetIsServer(false);
 					Application.LoadLevel("PlanetEarthScene");
 				}
 			}
@@ -92,7 +92,8 @@ public class MainMenuImageGui : MonoBehaviour {
 			{
 				if(_activeButton == _multiPlayerGUITexture) 
 				{
-					GameState.SetPlayingMultiplayer(true);
+					GameState.SetIsServer(true);
+					GameState.SetPlayerNumber(2);
 					Application.LoadLevel("PlanetEarthScene");
 				}
 			}

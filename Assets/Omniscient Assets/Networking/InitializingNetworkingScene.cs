@@ -3,16 +3,40 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class InitializingNetworkingScene : MonoBehaviour {
-	public GameObject temple;
 	public bool hasCreated = false;
 	int peopleRemaining;
 	string peopleMessage;
-
+	
+	int portNumber = 25000;
+	
+	void Start()
+	{
+		if (Network.peerType == NetworkPeerType.Disconnected)
+		{
+			Debug.Log("Disconnected");
+			if (GameState.GetIsServer())
+			{
+				string gameNameWeaponsString = GameState.GetCurrentLevel() + "," + GameState.LoadPrimaryWeapon() + "," + GameState.LoadSecondaryWeapon();
+				string gameName = SystemInfo.deviceName;
+				int playerNumberInt = GameState.GetPlayerNumber();
+				
+				Network.InitializeServer(32, portNumber, false);
+				
+				Network.maxConnections = playerNumberInt - 1;
+				
+				
+				MasterServer.updateRate = 3;
+				MasterServer.RegisterHost("Visitors", gameName, gameNameWeaponsString);
+				Debug.Log("the comment: " + gameNameWeaponsString);
+			}
+		}
+	}
+	
 	// Update is called once per frame
 	void Update () 
 	{
 		//If the game hasn't been created, but game is full, We Set up Temple
-		if ((hasCreated == false) && (Network.peerType == NetworkPeerType.Server))
+		if ((hasCreated == false) && (Network.peerType == NetworkPeerType.Server))//(Network.peerType == NetworkPeerType.Server))
 		{
 			if (Network.maxConnections == Network.connections.Length)
 			{
@@ -26,9 +50,9 @@ public class InitializingNetworkingScene : MonoBehaviour {
 		//If game hasn't Started yet
 		if (hasCreated == false)
 		{
-			
 			if (Network.peerType == NetworkPeerType.Server)
 			{
+				//Debug.Log("On Gui");
 				//Server Updates the Remaining Players and Sends the Info to the Clients
 				if ( peopleRemaining != Network.maxConnections - Network.connections.Length)
 				{
