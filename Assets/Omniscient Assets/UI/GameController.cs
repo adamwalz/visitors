@@ -155,10 +155,13 @@ public class GameController : MonoBehaviour
 	
 	public void PlayWithoutButtonPressed(object sender)
 	{
-		if (GameState.GetCurrentLevel().Contains("Egypt"))
+		Debug.Log("Got here");
+		string scene = GameState.GetCurrentLevel();
+		Debug.Log("Playing without AR in scene: " + scene);
+		if (scene.Contains("Egypt"))
 			GameState.SetCurrentLevel("SP-Egypt-NonAR", false);
-		else if (GameState.GetCurrentLevel().Contains("Castle"))
-			GameState.SetCurrentLevel("SP-Egypt-NonAR", false);
+		else if (scene.Contains("Castle"))
+			GameState.SetCurrentLevel("SP-Castle-NonAR", false);
 		Application.LoadLevel(GameState.GetCurrentLevel());
 	}
 	
@@ -175,7 +178,6 @@ public class GameController : MonoBehaviour
 	public void HUDGameViewWeaponsSwitched(int newWeapon)
 	{
 		_weaponIndex = newWeapon;
-
 	}
 	
 	public void FireButtonPressed(object sender)

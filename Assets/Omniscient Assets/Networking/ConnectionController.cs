@@ -100,7 +100,7 @@ public class ConnectionController : MonoBehaviour
 		Network.Connect(element);
 					
 		string[] lines = Regex.Split(element.comment, ",");
-		GameState.SetCurrentLevel(lines[0]);
+		GameState.SetCurrentLevel(lines[0], true);
 		GameState.SavePrimaryWeapon(lines[1]);
 		GameState.SaveSecondaryWeapon(lines[2]);
 		GameState.SetIsServer(false);

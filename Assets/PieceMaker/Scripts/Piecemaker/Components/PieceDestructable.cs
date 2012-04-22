@@ -99,11 +99,20 @@ public class PieceDestructable : MonoBehaviour
 	protected void Destruct(GameObject instigator, Vector3 damageDirection, Vector3 damageGiverPosition, float force, float upForce, float explosionRadius)
 	{
 		isDestroyed = true;
+		Debug.Log("Destructing: " + this.name);
 
         var hasSubDestructable = SpawnOnDestructPrefab != null;
 		if (hasSubDestructable)
 		{
-			Vector3 appropriateScale = new Vector3(0.18f/transform.localScale.x,0.18f/transform.localScale.y,0.18f/transform.localScale.z); 
+			float scaleFactor = 1.0f;
+			string name = this.name;
+			if (name.Contains("Temple"))
+				scaleFactor = 0.18f;
+			else if (name.Contains("CastleCube"))
+				scaleFactor = 18.0f;
+			else if (name.Contains("CastleCylinder27"))
+				scaleFactor = 4.0f;
+			Vector3 appropriateScale = new Vector3(scaleFactor/transform.localScale.x,scaleFactor/transform.localScale.y,scaleFactor/transform.localScale.z);
 			GameObject imageTarget = GameObject.Find("ImageTarget");
             GameObject spawned;
             if (SpawnPrefabAtBoundsCenter)
