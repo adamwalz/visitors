@@ -48,6 +48,8 @@ public class ConnectionController : MonoBehaviour
 
 		_mainScreen.AddView(_joinGameTwoButton);
 		_joinGameTwoButton.Show(false);
+		
+		RefreshGames();
 	}
 	
 	public void JoinButtonPressed(object sender)
@@ -56,16 +58,25 @@ public class ConnectionController : MonoBehaviour
 		if(sender == _joinGameTwoButton)ConnectToGame(1);
 	}
 	
-	void Update()
+	public void RefreshPressed(object sender)
 	{
-		if (Time.realtimeSinceStartup > lastRefreshTime + refreshTimer)
-		{
-			lastRefreshTime = Time.realtimeSinceStartup;
-			MasterServer.ClearHostList();
-			MasterServer.RequestHostList("Visitors");
-		}
+		RefreshGames();
+	}
 	
+	public void RefreshGames()
+	{
+		lastRefreshTime = Time.realtimeSinceStartup;
+		MasterServer.ClearHostList();
+		MasterServer.RequestHostList("Visitors");
+	}
+	
+	public void Update()
+	{
 		HostData[] games = MasterServer.PollHostList();
+		
+		_joinGameOneButton.Disabled = true;
+		_joinGameTwoButton.Disabled = true;
+				
 		_joinableGames.Clear();
 		foreach (HostData element in games)
 		{
@@ -78,21 +89,9 @@ public class ConnectionController : MonoBehaviour
 			string gameInfo = element.gameName + " " + element.connectedPlayers + " / " + element.playerLimit;
 		}
 		
-		_joinGameOneButton.Disabled = true;
-		_joinGameTwoButton.Disabled = true;
-		
 		if(_joinableGames.Count > 0) _joinGameOneButton.Disabled = false;
-		if(_joinableGames.Count > 1) _joinGameTwoButton.Disabled = false;
-		
+		if(_joinableGames.Count > 1) _joinGameTwoButton.Disabled = false;	
 	}
-	
-	public void RefreshPressed(object sender)
-	{
-		lastRefreshTime = Time.realtimeSinceStartup;
-		MasterServer.ClearHostList();
-		MasterServer.RequestHostList("Visitors");
-	}
-	
 		
 	public void ConnectToGame(int gameIndex)
 	{
