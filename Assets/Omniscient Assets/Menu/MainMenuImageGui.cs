@@ -100,8 +100,12 @@ public class MainMenuImageGui : MonoBehaviour {
 			}
 			if(_optionsGUITexture.HitTest(Input.mousePosition))
 			{
+				// Reset settings
 				if(_activeButton == _optionsGUITexture)
-					print("No options for you!");
+				{
+					GameState.SaveIsLocked(true);
+					GameState.ResetGameState();
+				}
 			}
 		}	
 	}
