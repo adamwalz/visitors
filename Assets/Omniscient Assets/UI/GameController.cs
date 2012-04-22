@@ -9,7 +9,7 @@ public class GameController : MonoBehaviour
 	private	GUIText serverMessage;
 	private GameScreen _mainScreen;
 	private SearchingView _searchingView;
-	private PlayingView _playingView;
+	public PlayingView _playingView;
 	private PauseMenu _pauseMenu;
 	private GameEndMenu _gameEndMenu;
 	private int currentLevel = -1;
@@ -100,7 +100,7 @@ public class GameController : MonoBehaviour
 		_playingView.WeaponBar.Energy -= Time.deltaTime;
 		if(_playingView.WeaponBar.Energy == 0 && !(_gameEndMenu.State == GameView.GameViewState.Showing) && !(_gameEndMenu.State == GameView.GameViewState.AnimatingIn))
 		{
-			ShowEndGameMenu();	
+			ShowEndGameMenu(false, 0);	
 		}
 	}
 			
@@ -237,10 +237,12 @@ public class GameController : MonoBehaviour
 		Application.LoadLevel(currentLevel);
 	}
 	
-	public void ShowEndGameMenu()
+	public void ShowEndGameMenu(bool winning, int score)
 	{
 		_searchingView.HasFocus = false;
 		_playingView.HasFocus = false;
+		_gameEndMenu.Victory = winning;
+		_gameEndMenu.Score = score;
 		_gameEndMenu.Show(true);
 	}
 }
