@@ -13,7 +13,6 @@ public class InitializingNetworkingScene : MonoBehaviour {
 	{
 		if (Network.peerType == NetworkPeerType.Disconnected)
 		{
-			Debug.Log("Disconnected");
 			if (GameState.GetIsServer())
 			{
 				string gameNameWeaponsString = GameState.GetCurrentLevel() + "," + GameState.LoadPrimaryWeapon() + "," + GameState.LoadSecondaryWeapon();
@@ -27,7 +26,6 @@ public class InitializingNetworkingScene : MonoBehaviour {
 				
 				MasterServer.updateRate = 3;
 				MasterServer.RegisterHost("Visitors", gameName, gameNameWeaponsString);
-				Debug.Log("the comment: " + gameNameWeaponsString);
 			}
 		}
 	}
@@ -40,7 +38,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 		{
 			if (Network.maxConnections == Network.connections.Length)
 			{
-				networkView.RPC("SetUpTemple", RPCMode.All);
+				networkView.RPC("SetUpGame", RPCMode.All);
 			}
 		}
 		
@@ -87,7 +85,7 @@ public class InitializingNetworkingScene : MonoBehaviour {
 	
 	//Called on Server and Clients and Sets up the Temple
 	[RPC]
-	void SetUpTemple()
+	void SetUpGame()
 	{
 		/*
 		GameObject templeObject;
