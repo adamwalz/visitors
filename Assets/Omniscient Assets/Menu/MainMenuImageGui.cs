@@ -32,7 +32,7 @@ public class MainMenuImageGui : MonoBehaviour {
 		// Setup multi player button
 		_multiPlayerGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
 		_multiPlayerGUITexture.transform.position = new Vector3(0.23f, 0.225f, 0.0f);
-		_multiPlayerGUITexture.pixelInset = new Rect(0, 0, 140, 140);
+		_multiPlayerGUITexture.pixelInset = new Rect(0, 0, 140, 170);
 		tex = (Texture2D)Resources.Load("multi_player", typeof(Texture2D));
 		_multiPlayerGUITexture.texture = tex;
 		

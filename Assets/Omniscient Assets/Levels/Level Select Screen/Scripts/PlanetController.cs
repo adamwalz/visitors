@@ -11,7 +11,7 @@ public class PlanetController : MonoBehaviour
 	private float changeOfX;
 	private bool addEndingRotation = false;
 	private ButtonView _backButton;
-	
+	private ImageView _selectLevelImage;
 
 	
 	// Use this for initialization
@@ -57,6 +57,14 @@ public class PlanetController : MonoBehaviour
 		_backButton.ButtonPressed += new EventHandler(BackPressed);
 		_mainScreen.AddView(_backButton);
 		_backButton.Show(false);
+		
+		_selectLevelImage = (ImageView)gameObject.AddComponent("ImageView");
+		_selectLevelImage.Init();
+		_selectLevelImage.TextureName = "SelectLevel";
+		_selectLevelImage.Size = new Vector2(332, 43);
+		_selectLevelImage.Position = new Vector2(_mainScreen.Size.x / 2.0f, _mainScreen.Size.y - 22);
+		_mainScreen.AddView(_selectLevelImage);
+		_selectLevelImage.Show(false);
 	}
 	
 	public void BackPressed(object sender)

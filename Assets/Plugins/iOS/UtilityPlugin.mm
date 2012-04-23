@@ -24,7 +24,7 @@ extern "C"
 {
     void _PrintARCard()
     {
-        NSURL* pdf = [[NSBundle mainBundle] URLForResource:@"target_stones_USLetter" withExtension:@"pdf"];
+        NSURL* pdf = [[NSBundle mainBundle] URLForResource:@"targetWithoutFeatures" withExtension:@"png"];
         [UtilityPlugin printThing:pdf];
     }
     
