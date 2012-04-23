@@ -139,7 +139,7 @@ public class GameState : MonoBehaviour
 		if(_scenes.Count > 0) 
 		{
 			_scenes.Pop();
-			Application.LoadLevel((string)_scenes.Peek());
+			Application.LoadLevel((string)_scenes.Pop());
 		}
 	}
 	

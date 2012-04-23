@@ -3,13 +3,14 @@ using System.Collections;
 
 public class PlanetController : MonoBehaviour 
 {
-	//private GameScreen _mainScreen;
+	private GameScreen _mainScreen;
 	//private ButtonView _leftButton;
 	//private ButtonView _rightButton;
 	private float previousX;
 	private float currentX;
 	private float changeOfX;
 	private bool addEndingRotation = false;
+	private ButtonView _backButton;
 	
 
 	
@@ -39,6 +40,29 @@ public class PlanetController : MonoBehaviour
 		
 		print("Planet controller working!");
 	}*/
+	
+	void Start ()
+	{
+		// Push our current scene onto the game state (so we can go back to it with a back button)
+		GameState.PushScene(Application.loadedLevelName);
+				
+		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
+		_backButton = (ButtonView)gameObject.AddComponent("ButtonView");
+		_backButton.Init();
+		_backButton.ButtonImageName = "backNavigationButton";
+		_backButton.HighlightImageName = "backNavigationButtonHighlight";
+		_backButton.Size = new Vector2(40, 40);
+		Vector2 backButtonPosition = new Vector2(10, _mainScreen.Size.y - 10);
+		_backButton.SetPosition(backButtonPosition, GameView.GameViewAnchor.TopLeftAnchor);
+		_backButton.ButtonPressed += new EventHandler(BackPressed);
+		_mainScreen.AddView(_backButton);
+		_backButton.Show(false);
+	}
+	
+	public void BackPressed(object sender)
+	{
+		GameState.PopScene();
+	}
 	
 	void Update()
 	{

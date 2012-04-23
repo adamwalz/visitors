@@ -16,9 +16,14 @@ public class WeaponSwitcherController : MonoBehaviour
 	private TextView _nameView;
 	private TextView _descriptionView;
 	
+	private ButtonView _previousSceneButton;
+	
 	// Use this for initialization
 	void Start () 
 	{
+		// Push our current scene onto the game state (so we can go back to it with a back button)
+		GameState.PushScene(Application.loadedLevelName);
+		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		
 		_primaryBackground = (ImageView)gameObject.AddComponent("ImageView");
@@ -87,6 +92,22 @@ public class WeaponSwitcherController : MonoBehaviour
 		_mainScreen.AddView(_descriptionView);
 		
 		TransitionToPrimaryWeapon();
+		
+		_previousSceneButton = (ButtonView)gameObject.AddComponent("ButtonView");
+		_previousSceneButton.Init();
+		_previousSceneButton.ButtonImageName = "backNavigationButton";
+		_previousSceneButton.HighlightImageName = "backNavigationButtonHighlight";
+		_previousSceneButton.Size = new Vector2(40, 40);
+		Vector2 previousSceneButtonPosition = new Vector2(10, _mainScreen.Size.y - 10);
+		_previousSceneButton.SetPosition(previousSceneButtonPosition, GameView.GameViewAnchor.TopLeftAnchor);
+		_previousSceneButton.ButtonPressed += new EventHandler(PreviousScenePressed);
+		_mainScreen.AddView(_previousSceneButton);
+		_previousSceneButton.Show(false);
+	}
+	
+	public void PreviousScenePressed(object sender)
+	{
+		GameState.PopScene();
 	}
 	
 	public void WeaponSelected(object sender)
