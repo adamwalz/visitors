@@ -14,6 +14,7 @@ public class GameState : MonoBehaviour
 	static bool _isAugmented;
 	static int _playerNumber;
 	static bool _locked;
+	static Stack _scenes;
 	
 	public static void ResetGameState()
 	{
@@ -122,12 +123,29 @@ public class GameState : MonoBehaviour
 		screen.AddView(loading);
 		loading.Show(false);
 		screen.StartCoroutine(LoadSceneSoon(scene));
-		
 	}
 	
 	public static IEnumerator LoadSceneSoon(string scene)
 	{
 		yield return new WaitForSeconds(0.001f);
 		Application.LoadLevel(scene);
+	}
+	
+	// Back button stuff
+	
+	public static void PopScene()
+	{
+		if(_scenes == null) _scenes = new Stack();
+		if(_scenes.Count > 0) 
+		{
+			_scenes.Pop();
+			Application.LoadLevel((string)_scenes.Peek());
+		}
+	}
+	
+	public static void PushScene(string scene)
+	{
+		if(_scenes == null) _scenes = new Stack();
+		_scenes.Push(scene);
 	}
 }

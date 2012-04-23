@@ -11,11 +11,17 @@ public class ConnectionController : MonoBehaviour
 	private float refreshTimer = 0.5F;
 	private ArrayList _joinableGames;
 	private NetworkGameListView _listView;
+	private bool _waitingToJoin;
+	private HostData _currentGame;
 	
 	// Use this for initialization
 	void Start () 
 	{
+		// Push our current scene onto the game state (so we can go back to it with a back button)
+		GameState.PushScene(Application.loadedLevelName);
+		
 		_joinableGames = new ArrayList();
+		_waitingToJoin = false;
 		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_connectionView = (ConnectionView)gameObject.AddComponent("ConnectionView");
@@ -24,6 +30,7 @@ public class ConnectionController : MonoBehaviour
 		_connectionView.SetPosition(new Vector2(0, 0), GameView.GameViewAnchor.BottomLeftAnchor);
 		_connectionView.CreateGameButton.ButtonPressed += new EventHandler(CreatePressed);
 		_connectionView.RefreshButton.ButtonPressed += new EventHandler(RefreshPressed);
+		_connectionView.BackButton.ButtonPressed += new EventHandler(BackPressed);
 		_mainScreen.AddView(_connectionView);
 		_connectionView.Show(false);
 		
@@ -40,6 +47,11 @@ public class ConnectionController : MonoBehaviour
 		GameState.ResetGameState();
 	}
 	
+	public void BackPressed(object sender)
+	{
+		GameState.PopScene();
+	}
+	
 	public void JoinButtonPressed(object sender, int index)
 	{
 		Debug.Log("The Game we should join is: " + ((HostData)_joinableGames[index]).gameName);
@@ -53,7 +65,6 @@ public class ConnectionController : MonoBehaviour
 	
 	public void RefreshGames()
 	{
-		lastRefreshTime = Time.realtimeSinceStartup;
 		MasterServer.ClearHostList();
 		MasterServer.RequestHostList("Visitors");
 	}
@@ -103,18 +114,43 @@ public class ConnectionController : MonoBehaviour
 			|| !(((HostData)_joinableGames[gameIndex]).playerLimit).Equals(element.playerLimit))
 			return;
 		
+		Debug.Log("Connection Hit, refresh occurs");
 		Debug.Log("The Game we actually join is: " + ((HostData)_joinableGames[gameIndex]).gameName);
-		Network.Connect(element);
 					
 		string[] lines = Regex.Split(element.comment, ",");
 		GameState.SetCurrentLevel(lines[0], true);
 		GameState.SavePrimaryWeapon(lines[1]);
 		GameState.SaveSecondaryWeapon(lines[2]);
 		GameState.SetIsServer(false);
-				
-		GameState.GoToScene(_mainScreen, (lines[0]));
+		
+		_waitingToJoin = true;
+		_currentGame = element;
+		
 	}
 	
+	void OnMasterServerEvent(MasterServerEvent theEvent)
+	{
+		if(theEvent == MasterServerEvent.HostListReceived)
+		{
+			if(_waitingToJoin == true)
+			{
+				Debug.Log("The Event recieved was: " + theEvent.ToString());
+				HostData[] games = MasterServer.PollHostList();
+				foreach(HostData data in games)
+				{
+					Debug.Log("Current Checking Host Data is: " + data.ToString());
+					if(_currentGame.gameName == data.gameName)
+					{
+						Debug.Log("Connecting to Host Data: " + data.ToString());
+						Network.Connect(_currentGame);
+						GameState.GoToScene(_mainScreen, GameState.GetCurrentLevel());
+					}
+				}
+				
+				_waitingToJoin = false;
+			}
+		}
+	}
 	
 	public void CreatePressed(object sender)
 	{

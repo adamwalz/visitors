@@ -10,7 +10,7 @@ public class ConnectionView : GameView
 	private TextView _numberOfPlayers;
 	private NumberSelectorView _numberSelectorView;
 	private ButtonView _createGameButton;
-	// private ButtonView _backButton;
+	private ButtonView _backButton;
 	
 	public override void Init()
 	{
@@ -54,12 +54,11 @@ public class ConnectionView : GameView
 		_numberSelectorView.MaximumNumber = 4;
 		AddSubview(_numberSelectorView);
 		
-		/*
 		_backButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_backButton.Init();
 		_backButton.ButtonImageName = "backNavigationButton";
-		_backButton.ButtonImageName = "backNavigationButtonHighlight";
-		*/
+		_backButton.HighlightImageName = "backNavigationButtonHighlight";
+		AddSubview(_backButton);
 	}
 	
 	public ButtonView CreateGameButton
@@ -76,11 +75,20 @@ public class ConnectionView : GameView
 	{
 		get{return _numberSelectorView;}
 	}
+		
+	public ButtonView BackButton
+	{
+		get{return _backButton;}
+	}
 	
 	public override void RefreshContent()
 	{
 		_background.Size = Size;
 		_background.Position = new Vector2(0, 0);
+		
+		_backButton.Size = new Vector2(40, 40);
+		Vector2 backButtonPosition = AnchorOffset(GameView.GameViewAnchor.TopLeftAnchor) + new Vector2(10, -10);
+		_backButton.SetPosition(backButtonPosition, GameView.GameViewAnchor.TopLeftAnchor);
 		
 		_joinGame.Size = new Vector2(391.0f / 2.0f, 69.0f / 2.0f);
 		Vector2 joinGamePosition = AnchorOffset(GameView.GameViewAnchor.TopLeftAnchor) + new Vector2(20, -60);

@@ -12,6 +12,9 @@ public class MainMenuImageGui : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
+		// Push our current scene onto the game state (so we can go back to it with a back button)
+		GameState.PushScene(Application.loadedLevelName);
+		
 		// Setup background
 		_mainMenuGUITexture = (GUITexture)((GameObject)Instantiate(Resources.Load("HUDElement"))).GetComponent(typeof(GUITexture));
 		_mainMenuGUITexture.transform.position = new Vector3(0, 0, -100000.0f);

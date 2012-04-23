@@ -97,7 +97,7 @@ public class NetworkGameListView : GameView
 		_upButton.Disabled = false;
 		_downButton.Disabled = false;
 		if(_listPosition == 0) _upButton.Disabled = true;
-		if(_infoForCells.Length > _listPosition - 1) _downButton.Disabled = true;
+		if(_listPosition > _infoForCells.Length - 3) _downButton.Disabled = true;
 		
 		// le hack
 		_cellOne.Position = new Vector2(9000, -9000);
