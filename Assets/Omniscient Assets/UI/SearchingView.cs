@@ -7,6 +7,7 @@ public class SearchingView : GameView
 	ButtonView _printButton;
 	ButtonView _playWithoutButton;
 	ImageView _crosshairImage;
+	ImageView _searchingImage;
 	
 	public ButtonView PauseButton
 	{
@@ -52,6 +53,11 @@ public class SearchingView : GameView
 		_playWithoutButton.ButtonImageName = "playWithoutButton";
 		_playWithoutButton.HighlightImageName = "playWithoutButtonPressed";
 		AddSubview(_playWithoutButton);
+		
+		_searchingImage = (ImageView)gameObject.AddComponent("ImageView");
+		_searchingImage.Init();
+		_searchingImage.TextureName = "SearchingForARCard";
+		AddSubview(_searchingImage);
 	}
 	
 	public override void Show(bool animated)
@@ -101,6 +107,10 @@ public class SearchingView : GameView
 			Vector2 playWithoutButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomRightAnchor);
 			playWithoutButtonPosition += new Vector2(-10, -10);
 			_playWithoutButton.SetPosition(playWithoutButtonPosition, GameViewAnchor.BottomRightAnchor);
+			
+			_searchingImage.Size = new Vector2(350, 32);
+			Vector2 topOfImage = AnchorOffset(GameView.GameViewAnchor.TopMiddleAnchor) + new Vector2(0, -60);
+			_searchingImage.SetPosition(topOfImage, GameView.GameViewAnchor.TopMiddleAnchor);
 		}
 		
 		if(State == GameView.GameViewState.AnimatingOut)

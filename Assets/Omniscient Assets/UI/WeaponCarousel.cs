@@ -203,7 +203,7 @@ public class WeaponCarousel : GameView
 			_weaponTwo.Position += new Vector2(_carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
 			_weaponThree.Position += new Vector2(_carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
 			_transitionWeapon.Position = new Vector2(-240 + _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
-			if(_weaponTwo.Position.x >= 120) 
+			if(_weaponTwo.Position.x >= 115) 
 			{
 				_carouselAnimating = 0;
 				SetCarouselWeaponListOffset(_carouselWeaponListOffset - 1);
@@ -225,7 +225,7 @@ public class WeaponCarousel : GameView
 			_weaponThree.Position += new Vector2(- _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
 			_transitionWeapon.Position = new Vector2(240 - _carouselAnimationTimer * _carouselAnimationSpeed, 0.0f);
 			
-			if(_weaponTwo.Position.x <= -120) 
+			if(_weaponTwo.Position.x <= -115) 
 			{
 				_carouselAnimating = 0;
 				SetCarouselWeaponListOffset(_carouselWeaponListOffset + 1);

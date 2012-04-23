@@ -66,7 +66,7 @@ public class Weapon : Object
 			weapon._id = "Fireball2";
 			weapon._name = "Exploder";
 			weapon._description = "Fireball which explodes on impact";
-			weapon._unlockRequirements = "Conquer 2 Civilizations";
+			weapon._unlockRequirements = "Beat any level with over 50% energy";
 		}
 		else if(id.Equals("Fireball3"))
 		{

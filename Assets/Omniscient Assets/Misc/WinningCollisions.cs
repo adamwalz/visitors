@@ -41,7 +41,7 @@ public class WinningCollisions : MonoBehaviour
 				float score = controller._playingView.WeaponBar.Energy;
 				if (score > 50 && GameState.LoadIsLocked()) // unlock something
 				{
-					GameState.SaveIsLocked(true);
+					GameState.SaveIsLocked(false);
 					// TODO: pop up message to say that new weapon is unlocked
 					Debug.Log("New weapon unlocked");
 				}
