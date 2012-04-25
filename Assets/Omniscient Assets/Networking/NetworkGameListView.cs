@@ -13,6 +13,7 @@ public class NetworkGameListView : GameView
 	private int _listPosition;
 	private NetworkGameListCell _cellOne;
 	private NetworkGameListCell _cellTwo;
+	private TextView _noGamesText;
 	
 	public event ListEventHandler ListItemPressed;
 	
@@ -59,6 +60,12 @@ public class NetworkGameListView : GameView
 		_cellTwo.Init();
 		_cellTwo.ButtonPressed += new EventHandler(CellPressed);
 		AddSubview(_cellTwo);
+		
+		_noGamesText = (TextView)gameObject.AddComponent("TextView");
+		_noGamesText.Init();
+		_noGamesText.Small = true;
+		_noGamesText.Text = "No games found. Try pressing the refresh button.";
+		AddSubview(_noGamesText);
 	}
 	
 	private void CellPressed(object sender)
@@ -99,9 +106,17 @@ public class NetworkGameListView : GameView
 		if(_listPosition == 0) _upButton.Disabled = true;
 		if(_listPosition > _infoForCells.Length - 3) _downButton.Disabled = true;
 		
-		// le hack
+		// le hack (it's over 9000!)
 		_cellOne.Position = new Vector2(9000, -9000);
 		_cellTwo.Position = new Vector2(-9000, 9000);
+		_noGamesText.Position = new Vector2(9000, 9000);
+		
+		if(_infoForCells.Length == 0)
+		{
+			// Center the text in the cell part of the list view
+			_noGamesText.Position = new Vector2(-30, 0);
+			_noGamesText.InternalGUIText.anchor = TextAnchor.MiddleCenter;
+		}
 		
 		if(_infoForCells.Length > _listPosition)
 		{

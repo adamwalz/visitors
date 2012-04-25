@@ -36,7 +36,7 @@ public class GameControllerNetworking : MonoBehaviour
 		_playingView.Size = new Vector2(_mainScreen.Size.x, _mainScreen.Size.y);
 		_playingView.SetPosition(new Vector2(0, 0), GameView.GameViewAnchor.BottomLeftAnchor);
 		_playingView.PauseButton.ButtonPressed += new EventHandler(PausePressed);
-		_playingView.SwitchWeaponButton.ButtonPressed += new EventHandler(SwitchWeaponButtonPressed);
+		_playingView.WeaponSwitcher.WeaponSwitched += new EventHandler(WeaponsSwitched);
 		_playingView.FireButton.ButtonPressed += new EventHandler(FireButtonPressed);
 		_mainScreen.AddView(_playingView);
 		
@@ -67,14 +67,12 @@ public class GameControllerNetworking : MonoBehaviour
 		networkView.RPC("ResetLevel",RPCMode.All);
 	}
 	
-	public void SwitchWeaponButtonPressed(object sender)
+	public void WeaponsSwitched(object sender)
 	{
 		audio.clip = soundEffects[1];
 		audio.Play();
 		
-		if(_weaponIndex == 0) _weaponIndex = 1;
-		else _weaponIndex = 0;
-		_playingView.Switcher.CurrentWeapon = _weaponIndex;
+		_weaponIndex = _playingView.WeaponSwitcher.CurrentWeapon;
 	}
 	
 	public void ShowPauseMenu()

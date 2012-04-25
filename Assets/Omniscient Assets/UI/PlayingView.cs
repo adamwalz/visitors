@@ -15,19 +15,14 @@ public class PlayingView : GameView
 		get{return _pauseButton;}	
 	}
 	
-	public ButtonView SwitchWeaponButton
+	public WeaponSwitcher WeaponSwitcher
 	{
-		get{return _switchWeaponButton;}	
+		get{return _switcher;}	
 	}
 	
 	public ButtonView FireButton
 	{
 		get{return _fireButton;}	
-	}
-	
-	public WeaponSwitcher Switcher
-	{
-		get{return _switcher;}	
 	}
 	
 	public WeaponBar WeaponBar
@@ -52,11 +47,11 @@ public class PlayingView : GameView
 		_crosshairImage.TextureName = "crosshair";
 		AddSubview(_crosshairImage);
 		
-		_switchWeaponButton = (ButtonView)gameObject.AddComponent("ButtonView");
-		_switchWeaponButton.Init();
-		_switchWeaponButton.ButtonImageName = "switchWeaponButton";
-		_switchWeaponButton.HighlightImageName = "switchWeaponButtonPressed";
-		AddSubview(_switchWeaponButton);
+		// _switchWeaponButton = (ButtonView)gameObject.AddComponent("ButtonView");
+		// _switchWeaponButton.Init();
+		// _switchWeaponButton.ButtonImageName = "switchWeaponButton";
+		// _switchWeaponButton.HighlightImageName = "switchWeaponButtonPressed";
+		// AddSubview(_switchWeaponButton);
 		
 		_fireButton = (ButtonView)gameObject.AddComponent("ButtonView");
 		_fireButton.Init();
@@ -112,10 +107,10 @@ public class PlayingView : GameView
 			_crosshairImage.Size = new Vector2(50, 50);
 			_crosshairImage.Position = new Vector2(0, 0);
 		
-			_switchWeaponButton.Size = new Vector2(100, 100);
-			Vector2 switchWeaponButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomLeftAnchor);
-			switchWeaponButtonPosition += new Vector2(10, -10);
-			_switchWeaponButton.SetPosition(switchWeaponButtonPosition, GameViewAnchor.BottomLeftAnchor);
+			//_switchWeaponButton.Size = new Vector2(100, 100);
+			//Vector2 switchWeaponButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomLeftAnchor);
+			//switchWeaponButtonPosition += new Vector2(10, -10);
+			//_switchWeaponButton.SetPosition(switchWeaponButtonPosition, GameViewAnchor.BottomLeftAnchor);
 		
 			_fireButton.Size = new Vector2(100, 100);
 			Vector2 fireButtonPosition = AnchorOffset(GameView.GameViewAnchor.BottomRightAnchor);
@@ -126,9 +121,9 @@ public class PlayingView : GameView
 			_weaponBar.SetPosition(AnchorOffset(GameView.GameViewAnchor.BottomMiddleAnchor), GameView.GameViewAnchor.BottomMiddleAnchor);
 			_weaponBar.Position = _weaponBar.Position + new Vector2(0, 20);
 			
-			_switcher.Size = new Vector2(130, 60);
-			_switcher.SetPosition(_switchWeaponButton.GetPosition(GameView.GameViewAnchor.TopLeftAnchor), GameView.GameViewAnchor.BottomMiddleAnchor);
-			_switcher.Position += new Vector2(20.0f, -20.0f);
+			_switcher.Size = new Vector2(110, 55);
+			Vector2 weaponSwitcherPosition = AnchorOffset(GameView.GameViewAnchor.BottomLeftAnchor) + new Vector2(5, 20);
+			_switcher.SetPosition(weaponSwitcherPosition, GameView.GameViewAnchor.BottomLeftAnchor);
 		}
 		
 		if(State == GameView.GameViewState.AnimatingOut)
