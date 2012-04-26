@@ -104,7 +104,7 @@ public class PieceDestructable : MonoBehaviour
         var hasSubDestructable = SpawnOnDestructPrefab != null;
 		if (hasSubDestructable)
 		{
-			float scaleFactor = 1.0f;
+			float scaleFactor = 0.2f;
 			string name = this.name;
 			if (name.Contains("TempleColumn") || name.Contains("TempleRoof"))
 				scaleFactor = 0.18f;

@@ -48,9 +48,8 @@ public class WinningCollisions : MonoBehaviour
 				controller.ShowEndGameMenu(true, (int)score);
 			}
 			
-			// Destroy any object that touch the plane of death
+			// Destroy any object that touch the plane of death (hence the name)
 			Destroy(contact.otherCollider.gameObject);
-			Debug.Log("I KILL YOU");
 		}
 	}
 }
