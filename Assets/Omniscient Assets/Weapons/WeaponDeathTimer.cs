@@ -4,11 +4,13 @@ using System.Collections;
 public class WeaponDeathTimer : MonoBehaviour
 {
 	
-	int deathTime;
+	private int deathTime;
 	// Use this for initialization
 	void Start ()
 	{
 		deathTime = 500;
+		if (this.gameObject.name.Contains("Fire"))
+			deathTime = 100;
 	}
 	
 	// Update is called once per frame

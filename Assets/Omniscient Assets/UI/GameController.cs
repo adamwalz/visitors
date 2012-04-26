@@ -67,8 +67,6 @@ public class GameController : MonoBehaviour
 		_gameEndMenu.MainMenuButton.ButtonPressed += new EventHandler(MenuPressed);
 		_gameEndMenu.ResetButton.ButtonPressed += new EventHandler(ResetPressed);
 		_mainScreen.AddView(_gameEndMenu);
-		
-		Resources.LoadAll("DestructionPrefabs");
 	}
 	
 	public void Update()
@@ -228,9 +226,9 @@ public class GameController : MonoBehaviour
 	
 	public void Shoot(Transform fromObject, GameObject weapon)
 	{
-		float velocity = 5000;
+		float velocity = 7000;
 		if (weapon.name.Equals("DestroyBall"))
-			velocity = 7000;
+			velocity = 10000;
 		
 		// Instantiate weapon
 		GameObject weaponSpawn = (GameObject)Instantiate(weapon, fromObject.position, fromObject.rotation);

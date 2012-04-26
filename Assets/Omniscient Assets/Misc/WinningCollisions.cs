@@ -5,16 +5,18 @@ using System.Collections.Generic;
 public class WinningCollisions : MonoBehaviour
 {
 
-	private static int CollisionsToWin = 1;
+	private static int CollisionsToWin = 5;
 	private GameObject view;
 	private bool hasWon;
 
 	void Start()
 	{
+		
 		if (GameState.GetCurrentLevel().Contains("Egypt"))
 			CollisionsToWin = 25;
 		else if (GameState.GetCurrentLevel().Contains("Castle"))
-			CollisionsToWin = 4;
+			CollisionsToWin = 10;
+		else CollisionsToWin = 5;
 		
 		hasWon = false;
 	}

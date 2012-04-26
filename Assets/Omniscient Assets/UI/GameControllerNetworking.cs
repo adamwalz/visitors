@@ -242,7 +242,7 @@ public class GameControllerNetworking : MonoBehaviour
 		if (hasStarted)
 		{
 			// Fire vector
-			float velocity = 500;
+			float velocity = 5000;
 			GameObject cam = GameObject.Find("ARCamera");
 			Vector3 velocityVec = cam.transform.forward * velocity;
 		
@@ -273,6 +273,8 @@ public class GameControllerNetworking : MonoBehaviour
 		// Instantiate weapon
 		Transform weaponSpawn = (Transform)Instantiate(weapon, position, rotation);
 		weaponSpawn.rigidbody.AddForce(velocityVec);
+		GameObject imageTarget = GameObject.Find("ImageTarget");	
+		weaponSpawn.transform.parent = imageTarget.transform;
 	}
 	
 	public void HUDGameViewMenuButtonPressed()
