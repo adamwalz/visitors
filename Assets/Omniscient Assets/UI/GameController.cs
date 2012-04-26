@@ -228,13 +228,15 @@ public class GameController : MonoBehaviour
 	
 	public void Shoot(Transform fromObject, GameObject weapon)
 	{
-		float velocity = 3000;
+		float velocity = 5000;
 		if (weapon.name.Equals("DestroyBall"))
 			velocity = 7000;
 		
 		// Instantiate weapon
 		GameObject weaponSpawn = (GameObject)Instantiate(weapon, fromObject.position, fromObject.rotation);
 		weaponSpawn.transform.rigidbody.AddForce(fromObject.forward * velocity);
+		GameObject imageTarget = GameObject.Find("ImageTarget");
+		weaponSpawn.transform.parent = imageTarget.transform;
 	}
 	
 	public void HUDGameViewMenuButtonPressed()
