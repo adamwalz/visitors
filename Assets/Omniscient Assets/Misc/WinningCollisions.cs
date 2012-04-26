@@ -5,7 +5,7 @@ using System.Collections.Generic;
 public class WinningCollisions : MonoBehaviour
 {
 
-	private static int CollisionsToWin;
+	private static int CollisionsToWin = 1;
 	private GameObject view;
 	private bool hasWon;
 
@@ -15,8 +15,6 @@ public class WinningCollisions : MonoBehaviour
 			CollisionsToWin = 25;
 		else if (GameState.GetCurrentLevel().Contains("Castle"))
 			CollisionsToWin = 4;
-		else
-			CollisionsToWin = 5;
 		
 		hasWon = false;
 	}
@@ -29,7 +27,6 @@ public class WinningCollisions : MonoBehaviour
 			{	
 				CollisionsToWin--;
 				Debug.Log("Piece fell off image target, collision left = " + CollisionsToWin);
-				Destroy(contact.otherCollider.gameObject);
 			}
 			
 			if (CollisionsToWin <= 0 && !hasWon)
@@ -50,6 +47,10 @@ public class WinningCollisions : MonoBehaviour
 				hasWon = true;
 				controller.ShowEndGameMenu(true, (int)score);
 			}
+			
+			// Destroy any object that touch the plane of death
+			Destroy(contact.otherCollider.gameObject);
+			Debug.Log("I KILL YOU");
 		}
 	}
 }

@@ -111,9 +111,9 @@ public class PieceDestructable : MonoBehaviour
 			else if (name.Contains("TempleSphynx"))
 				scaleFactor = 0.15f;
 			else if (name.Contains("CastleCube"))
-				scaleFactor = 18.0f;
+				scaleFactor = 0.91f;
 			else if (name.Contains("CastleCylinder27"))
-				scaleFactor = 4.0f;
+				scaleFactor = 0.004f;
 			else if (name.Contains("TempleObelisk"))
 				scaleFactor = 2.0f;
 			else if (name.Contains("TemplePedestal"))
