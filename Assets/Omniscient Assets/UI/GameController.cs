@@ -16,6 +16,10 @@ public class GameController : MonoBehaviour
 	private int _weaponIndex = 0;
 	private bool _searching;
 	
+	// These two booleans determine whether or not the energy should be going down over time
+	private bool _hasStarted;
+	private bool _paused;
+	
 	public AudioClip[] soundEffects = new AudioClip[2];
 	//public AudioSource shootSound;
 	//public AudioSource changeWeaponSound2;
@@ -25,6 +29,8 @@ public class GameController : MonoBehaviour
 	void Start () 
 	{
 		_searching = GameState.GetIsAugmented();
+		_hasStarted = false;
+		_paused = false;
 		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
@@ -96,11 +102,14 @@ public class GameController : MonoBehaviour
 			}
 		}
 		
+		// Update game energy
+		if(_hasStarted && !_paused) 
+			_playingView.WeaponBar.Energy -= Time.deltaTime;
+		
 		// End game stuff
-		_playingView.WeaponBar.Energy -= Time.deltaTime;
 		if(_playingView.WeaponBar.Energy == 0 && !(_gameEndMenu.State == GameView.GameViewState.Showing) && !(_gameEndMenu.State == GameView.GameViewState.AnimatingIn))
 		{
-			ShowEndGameMenu(false, 0);	
+			ShowEndGameMenu(false, 0);
 		}
 	}
 			
@@ -129,6 +138,7 @@ public class GameController : MonoBehaviour
 	
 	public void ShowPauseMenu()
 	{
+		_paused = true;
 		_pauseMenu.Show(true);
 		_playingView.HasFocus = false;
 		_searchingView.HasFocus = false;
@@ -141,6 +151,7 @@ public class GameController : MonoBehaviour
 	
 	public void DismissPauseMenu()
 	{
+		_paused = false;
 		_pauseMenu.Hide(true);
 		_playingView.HasFocus = true;
 		_searchingView.HasFocus = true;
@@ -164,6 +175,7 @@ public class GameController : MonoBehaviour
 	
 	public void SwitchToPlayingView()
 	{
+		_hasStarted = true;
 		_searching = false;
 	}
 	public void SwitchToSearchingView()

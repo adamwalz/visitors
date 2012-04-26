@@ -15,11 +15,17 @@ public class GameControllerNetworking : MonoBehaviour
 	private int _weaponIndex = 0;
 	private bool _searching;
 	
+	// These two booleans determine whether or not the energy should be going down over time
+	private bool _hasStarted;
+	private bool _paused;
+	
 	public AudioClip[] soundEffects = new AudioClip[2];
 	// Use this for initialization
 	void Start () 
-	{
+	{	
 		_searching = true;
+		_hasStarted = false;
+		_paused = false;
 		
 		_mainScreen = (GameScreen)gameObject.AddComponent("GameScreen");
 		_searchingView = (SearchingView)gameObject.AddComponent("SearchingView");
@@ -77,6 +83,7 @@ public class GameControllerNetworking : MonoBehaviour
 	
 	public void ShowPauseMenu()
 	{
+		_paused = true;
 		_pauseMenu.Show(true);
 		_playingView.HasFocus = false;
 		_searchingView.HasFocus = false;
@@ -91,6 +98,7 @@ public class GameControllerNetworking : MonoBehaviour
 	
 	public void DismissPauseMenu()
 	{
+		_paused = false;
 		_pauseMenu.Hide(true);
 		_playingView.HasFocus = true;
 		_searchingView.HasFocus = true;
@@ -108,6 +116,7 @@ public class GameControllerNetworking : MonoBehaviour
 	
 	public void SwitchToPlayingView()
 	{
+		_hasStarted = true;
 		_searching = false;
 	}
 	public void SwitchToSearchingView()
@@ -169,6 +178,16 @@ public class GameControllerNetworking : MonoBehaviour
 				_playingView.Show(true);
 			}
 		}
+		
+		// Update game energy
+		//if(_hasStarted && !_paused) 
+		//	_playingView.WeaponBar.Energy -= Time.deltaTime;
+		
+		// End game stuff
+		//if(_playingView.WeaponBar.Energy == 0 && !(_gameEndMenu.State == GameView.GameViewState.Showing) && !(_gameEndMenu.State == GameView.GameViewState.AnimatingIn))
+		//{
+		//	ShowEndGameMenu(false, 0);
+		//}
 	}
 	
 	//This function is called on Server when a Client Disconnects
