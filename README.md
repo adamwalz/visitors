@@ -2,7 +2,7 @@ Visitors - by Omniscient
 =================  
 One of the first iPhone/iPad Augmented Reality Tower-Destruction Games
 
-Video demo can be seen here: https://www.youtube.com/watch?v=KXt1eTw2dI4
+Live video demo can be seen here: https://www.youtube.com/watch?v=KXt1eTw2dI4
 
 AR Card
 ----------------
@@ -29,7 +29,7 @@ AR Card In Game
 
 ![Found AR Card Temple](https://m1.behance.net/rendition/modules/40782513/disp/8113e1af08fd41e95c01bcf4f5bc0fef.png)
 
-![Found AR Card Temp Dest](https://m1.behance.net/rendition/modules/40782513/disp/8113e1af08fd41e95c01bcf4f5bc0fef.png)
+![Found AR Card Temp Dest](https://m1.behance.net/rendition/modules/40782515/disp/315bd26b19eb4e5faa692e95c715717d.png)
 
 ![Found Temple ZoomOut](https://m1.behance.net/rendition/modules/40782511/disp/cab16b5d820b358ec1940127f5367804.png)
 
